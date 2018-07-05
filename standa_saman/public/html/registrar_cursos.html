@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Registrar Curso</title>
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/style_cursos.css">
+    <!-- Font awesome icons-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt"
+        crossorigin="anonymous">
+</head>
+
+<body>
+    <header>
+        <nav class="y-align">
+            <img src="../img/logo.png" alt="Logo blanco de Cenfotec">
+            <span id="btnMenu" class="fas fa-bars"></span>
+        </nav>
+        <div id="menu" class="hide">
+            <div>
+                <a href="#">Inicio</a>
+                <a href="#">Perfil</a>
+                <a href="#">Modificar perfil</a>
+                <a href="#">Cerrar sesión</a>
+            </div>
+        </div>
+    </header>
+    <main>
+        <section id="titulo" class="y-align">
+            <h1 class="x-align">Registrar</h1>
+        </section>
+        <section id="formulario" class="main-grid">
+            <div class="main-title y-align">
+                <h1 class="x-align">Curso</h1>
+            </div>
+            <div class="main-content">
+                <div class="input-grid">
+
+                    <label>Nombre:</label>
+                    <input type="text" id="txtNombreCurso" required>
+
+                    <label>Código:</label>
+                    <input type="text" id="txtCodigoCurso" required>
+
+                    <label>Carrera:</label>
+                    <input type="text" id="txtCarreraCurso" required>
+
+                    <label>Créditos:</label>
+                    <input type="number" id="numCreditosCurso" min="0" max="10" required>
+
+                    <label>Costo:</label>
+                    <input type="number" id="numCostoCurso" min="0" max="500000" required>
+
+                    <label>Sede:</label>
+                    <input type="text" id="txtSedeCurso" required>
+
+                    <label> Requisitos del curso:</label>
+                    <input type="text" id="txtRequisitoCurso" required>
+
+                </div>
+            </div>
+            <div class="main-action y-align">
+                <div id="buttons" class="x-align float">
+                    <button type="button" class="float-left" id="botonCancelar">Cancelar</button>
+                    <button type="button" class="float-right" id="btn_Registrar">Registrar</button>
+                </div>
+        </section>
+    </main>
+    <!-- SweetAlert 2 script -->
+    <script src="../js/jquery-3.3.1.js"></script>
+    <script src="../js/controlador_menu.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2"></script>
+    <script src="../js/controlador_registrar_cursos.js"></script>
+    <script src="../js/servicio_registrar_cursos.js"></script>
+</body>
+
+</html>

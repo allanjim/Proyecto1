@@ -10,10 +10,10 @@ function registrarEntrenador(plistaEntrenador){
         dataType : 'json',
         async : false,
         data:{
-            nombre_Entrenador : plistaEntrenador[0],
-            numero_Entrenador : plistaEntrenador[1],
-            edad_Entrenador : plistaEntrenador[2],
-            sexo_Entrenador : plistaEntrenador[3],
+            nombre_entrenador : plistaEntrenador[0],
+            numero_entrenador : plistaEntrenador[1],
+            edad_entrenador : plistaEntrenador[2],
+            sexo_entrenador : plistaEntrenador[3],
             foto : plistaEntrenador [4]
         }
       });

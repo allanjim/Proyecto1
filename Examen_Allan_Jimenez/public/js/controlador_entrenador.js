@@ -29,7 +29,7 @@ function obtenerDatos() {
     nEdad_entrenador = inputEdad_entrenador.value;
     sSexo_entrenador = inputSexo_entrenador.value;
 
-    aInfoEntrenador.push(sNombre_entrenador, sNumero_entrenador, sEdad_entrenador, sSexo_entrenador, foto);
+    aInfoEntrenador.push(sNombre_entrenador, sNumero_entrenador, nEdad_entrenador, sSexo_entrenador, imagenUrl);
 
     bError = validarDatos();
 
@@ -47,8 +47,8 @@ function obtenerDatos() {
             type: 'success',
             confirmButtonText: 'Entendido'
         });
-        console.log(aInfoEntrenador);
         registrarEntrenador(aInfoEntrenador);
+        limpiarFormulario();
     }
 
 };
@@ -56,6 +56,7 @@ function obtenerDatos() {
 function validarDatos() {
     let bError = false;
     let arregloInputs = document.querySelectorAll('required');
+    let listaEntrenador = obtenerListaEntrenador(); 
 
     sNombre_entrenador = inputNombre_entrenador.value;
     sNumero_entrenador = inputNumero_entrenador.value;
@@ -64,7 +65,6 @@ function validarDatos() {
 
     let regexSoloNumeros = /^[0-9]+$/;
     let regexSoloLetras = /^[a-zA-Z0-9-]+$/;
-    let regexTipoSecundario = /^[- a-zA-Z]+$/;
 
     for (let i = 0; i < arregloInputs.length; i++) {
         if (arregloInputs[i].value == '') {
@@ -73,7 +73,19 @@ function validarDatos() {
         } else {
             arregloInputs[i].classList.remove('errorInput');
         }
+
     };
+
+   for(let i=0; i<listaEntrenador.length;i++){
+        if(sNumero_entrenador == listaEntrenador[i]['numero_entrenador']){
+            bError = true;
+            inputNumero_entrenador.classList.add('errorInput');
+    }else{
+        inputNumero_entrenador.classList.remove('errorInput');
+    }
+
+    };
+
     if (regexSoloLetras.test(sNombre_entrenador) == false) {
         bError = true;
         inputNombre_entrenador.classList.add('errorInput');
@@ -86,7 +98,7 @@ function validarDatos() {
     } else {
         inputNumero_entrenador.classList.remove('errorInput');
     }
-    if (regexSoloNumeros.test(sEdad_entrenador) == false && sEdad_entrenador >=15 && sEdad_entrenador < 80) {
+    if (regexSoloNumeros.test(nEdad_entrenador) == false && nEdad_entrenador >15 && nEdad_entrenador < 80) {
         bError = true;
         inputEdad_entrenador.classList.add('errorInput');
     } else {
@@ -123,10 +135,10 @@ function mostrarEntrenador(pFiltro) {
 
 
 
-        cNombre_entrenador.innerHTML = listaentrenador[i]['nombre_entrenador'];
-        cNumero_entrenador.innerHTML = listaentrenador[i]['numero_entrenador'];
-        cEdad_entrenador.innerHTML = listaentrenador[i]['edad_entrenador'];
-        cSexo_entrenador.innerHTML = listaentrenador[i]['sexo_entrenador'];
+        cNombre_entrenador.innerHTML = listaEntrenador[i]['nombre_entrenador'];
+        cNumero_entrenador.innerHTML = listaEntrenador[i]['numero_entrenador'];
+        cEdad_entrenador.innerHTML = listaEntrenador[i]['edad_entrenador'];
+        cSexo_entrenador.innerHTML = listaEntrenador[i]['sexo_entrenador'];
 
         let imagen = document.createElement('img');
         imagen.src = listaEntrenador[i]['foto'];
@@ -138,6 +150,7 @@ function mostrarEntrenador(pFiltro) {
     }
 
 };
+
 function limpiarFormulario() {
 
     inputNombre_entrenador.value = '';

@@ -1,18 +1,14 @@
 let imagenUrl = '';
 
 $(function() {
-    // Configure Cloudinary
-    // with credentials available on
-    // your Cloudinary account dashboard
+
     $.cloudinary.config({ cloud_name: 'allanjimrod1', api_key: '455654255442863'});
 
-    // Upload button
     let uploadButton = $('#btnSeleccionarImagen');
 
-    // Upload button event
     uploadButton.on('click', function(e){
         // Initiate upload
-        cloudinary.openUploadWidget({ cloud_name: 'allanjimrod1', upload_preset: 'eqidialq', tags: ['cgal']},
+        cloudinary.openUploadWidget({ cloud_name: 'allanjimrod1', upload_preset: 'eqidialq'},
         function(error, result) {
             if(error) console.log(error);
             // If NO error, log image data to console

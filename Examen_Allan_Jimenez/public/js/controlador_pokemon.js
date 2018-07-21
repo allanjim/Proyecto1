@@ -1,6 +1,8 @@
 'use strict';
 
 mostrarPokemon();
+cargarTipoPrimario();
+cargarTipoSecundario();
 let botonRegistrar = document.querySelector('#btnRegistrar');
 botonRegistrar.addEventListener('click', obtenerDatos);
 
@@ -9,7 +11,6 @@ let inputNumero_pokemon = document.querySelector('#txtNumero');
 let inputTipo_pokemon = document.querySelector('#txtPrimario');
 let inputTipoSecundario_pokemon = document.querySelector('#txtSecundario');
 let inputFiltro = document.querySelector('#txtFiltro');
-
 inputFiltro.addEventListener('keyup', function(){
 
     mostrarPokemon(inputFiltro.value);
@@ -29,8 +30,8 @@ function obtenerDatos() {
     sTipo_pokemon = inputTipo_pokemon.value;
     sTipoSecundario_pokemon = inputTipoSecundario_pokemon.value;
 
-    aInfoPokemon.push(sNombre_pokemon, sNumero_pokemon, sTipo_pokemon, sTipoSecundario_pokemon, foto);
-
+    aInfoPokemon.push(sNombre_pokemon, sNumero_pokemon, sTipo_pokemon, sTipoSecundario_pokemon, imagenUrl);
+    console.log(imagenUrl);
     bError = validarDatos();
 
     if (bError == true) {
@@ -48,6 +49,7 @@ function obtenerDatos() {
             confirmButtonText: 'Entendido'
         });
         console.log(aInfoPokemon);
+        console.log(imagenUrl);
         registrarPokemon(aInfoPokemon);
     }
 
@@ -56,7 +58,9 @@ function obtenerDatos() {
 function validarDatos() {
     let bError = false;
     let arregloInputs = document.querySelectorAll('required');
-
+    let tipo_pokemon = ['Fuego', 'Agua', 'Planta', 'Insecto', 'Dragón', 'Fantasma', 'Eléctrico', 'Lucha', 'Hada', 
+    'Volador', 'Hielo', 'Roca', 'Normal', 'Hierro', 'Tierra', 'Veneno', 'Psiquico', 'Siniestro'];
+    
     sNombre_pokemon = inputNombre_pokemon.value;
     sNumero_pokemon = inputNumero_pokemon.value;
     sTipo_pokemon = inputTipo_pokemon.value;
@@ -101,6 +105,29 @@ function validarDatos() {
     return bError;
 };
 
+function cargarTipoPrimario() {
+    let tipo_pokemon = ['Fuego', 'Agua', 'Planta', 'Insecto', 'Dragón', 'Fantasma', 'Eléctrico', 'Lucha', 'Hada', 
+    'Volador', 'Hielo', 'Roca', 'Normal', 'Hierro', 'Tierra', 'Veneno', 'Psiquico', 'Siniestro'];
+    let select = document.querySelector('#txtPrimario'); //Seleccionamos el select
+    
+    for(let i=0; i < tipo_pokemon.length; i++){ 
+        let option = document.createElement('option'); //Creamos la opcion
+        option.innerHTML = tipo_pokemon[i]; //Metemos el texto en la opción
+        select.appendChild(option); //Metemos la opción en el select
+    }
+};
+
+function cargarTipoSecundario() {
+    let tipo_pokemon = ['Fuego', 'Agua', 'Planta', 'Insecto', 'Dragón', 'Fantasma', 'Eléctrico', 'Lucha', 'Hada', 
+    'Volador', 'Hielo', 'Roca', 'Normal', 'Hierro', 'Tierra', 'Veneno', 'Psiquico', 'Siniestro'];
+    let select = document.querySelector('#txtSecundario'); //Seleccionamos el select
+    
+    for(let i=0; i < tipo_pokemon.length; i++){ 
+        let option = document.createElement('option'); //Creamos la opcion
+        option.innerHTML = tipo_pokemon[i]; //Metemos el texto en la opción
+        select.appendChild(option); //Metemos la opción en el select
+    }
+};
 
 function mostrarPokemon(pFiltro) {
     let listaPokemon = obtenerListaPokemon();
@@ -115,25 +142,23 @@ function mostrarPokemon(pFiltro) {
         listaPokemon[i]['tipo_pokemon'].toLowerCase().includes(pFiltro.toLowerCase())){
 
         let fila = tbody.insertRow();
-    
+
+        let cFoto = fila.insertCell();
         let cNombre_pokemon = fila.insertCell();
         let cNumero_pokemon = fila.insertCell();
         let cTipo_pokemon = fila.insertCell();
         let ctipoSecundario_pokemon = fila.insertCell();
-        let cFoto = fila.insertCell();
-
-
-
-        cNombre_pokemon.innerHTML = listaPokemon[i]['nombre_pokemon'];
-        cNumero_pokemon.innerHTML = listaPokemon[i]['numero_pokemon'];
-        cTipo_pokemon.innerHTML = listaPokemon[i]['tipo_pokemon'];
-        ctipoSecundario_pokemon.innerHTML = listaPokemon[i]['tipoSecundario_pokemon'];
 
         let imagen = document.createElement('img');
         imagen.src = listaPokemon[i]['foto'];
         imagen.classList.add('imageSettings');
 
         cFoto.appendChild(imagen);
+
+        cNombre_pokemon.innerHTML = listaPokemon[i]['nombre_pokemon'];
+        cNumero_pokemon.innerHTML = listaPokemon[i]['numero_pokemon'];
+        cTipo_pokemon.innerHTML = listaPokemon[i]['tipo_pokemon'];
+        ctipoSecundario_pokemon.innerHTML = listaPokemon[i]['tipoSecundario_pokemon'];
 
         }
     }

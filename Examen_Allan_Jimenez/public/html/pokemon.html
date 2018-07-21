@@ -6,70 +6,93 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Pokémon</title>
-    <link rel="stylesheet" href="../css/estilos_index.css">
+    <link rel="stylesheet" href="../css/estilos_pokemon.css">
+    <link rel="stylesheet" href="../css/reset.css">
 </head>
 
 <body>
     <header>
-
-    </header>
-    <main>
-        <section class="sct_registro">
-            <div class="formulario">
-                <form>
-
-                    <img src="" alt="Foto" id="txtImagen">
-
-                    <label for="txtNombre">Nombre del pokémon:</label>
-                    <input type="text" id="txtNombre" required>
-
-                    <label for="txtNumero">Número de la pokédex:</label>
-                    <input type="text" id="txtNumero" required>
-
-                    <label for="txtPrimario">Tipo primario del pokémon</label>
-                    <input type="text" id="txtPrimario" required>
-
-                    <label for="txtSecundario">Tipo secundario del pokémon:</label>
-                    <input type="text" id="txtSecundario">
-
-                    <button type="button" id="btnSeleccionarImagen">Subir foto</button>
-
-                    <button type="button" id="btnRegistrar">Registrar</button>
-
-                </form>
-            </div>
-
+        <header>
             <div>
-                <input type="text" id="txtFiltro">
+                <div id="titulo">
+                    <h1>Pokémon</h1>
+                </div>
+                <div id="menu">
+                    <nav>
+                        <a href="../html/index.html">Inicio</a>
+                        <a href="../html/entrenador.html">Entrenador</a>
+                        <a href="../html/pokemon.html">Pokémon</a>
+                    </nav>
+                </div>
             </div>
-        </section>
+        </header>
+        <main>
 
-        <section>
-            <div>
-                <table id="tblPokemones">
-                    <thead>
-                        <th>Nombre</th>
-                        <th>Número</th>
-                        <th>Tipo Primario</th>
-                        <th>Tipo Secundario</th>
-                        <th>Foto</th>
-                    </thead>
+            <section class="sct_fondo">
+                <h1>Registro de pokémon</h1>
+            </section>
 
-                    <tbody>
+            <section class="sct_registro">
+                <div id="container_formulario">
 
-                    </tbody>
-                </table>
-            </div>
-        </section>
-    </main>
-    <footer></footer>
-    <script src="../js/jquery-3.3.1.js"></script>
-    <script src="../js/servicio_entrenador.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2"></script>
-    <script src='https://cdn.jsdelivr.net/jquery.cloudinary/1.0.18/jquery.cloudinary.js' type='text/javascript'></script>
-    <script src="https://widget.cloudinary.com/global/all.js" type="text/javascript"></script>
-    <script src="../js/servicio_imagen.js"></script>
-    <script src="../js/controlador_entrenador.js"></script>
+                    <div id="cuadro_formulario">
+
+                        <div class="formulario">
+                            <form>
+
+                                <input type="text" id="txtNombre" placeholder="Nombre del pokémon*" required>
+
+                                <input type="text" id="txtNumero" placeholder="Número de la pokédex*" required>
+
+
+                               <select name="pokemones" id="txtPrimario">
+                                <option value="">Seleccione el tipo del pokémon</option>
+                               </select>
+
+                               <select name="pokemones" id="txtSecundario">
+                                    <option value="">Seleccione el tipo del pokémon</option>
+                                </select>
+
+                                <img src="" alt="Foto" id="txtImagen">
+                                <button type="button" id="btnSeleccionarImagen">Subir foto</button>
+
+                                <button type="button" id="btnRegistrar">Registrar</button>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div id="div_listar">
+                    <h1>Ver pokemones</h1>
+                </div>
+                <div>
+                    <input type="text" id="txtFiltro" placeholder="Buscar">
+                </div>
+
+                <div id="main_container">
+                    <table id="tblPokemones">
+                        <thead>
+                            <th>Nombre</th>
+                            <th>Número</th>
+                            <th>Tipo Primario</th>
+                            <th>Tipo Secundario</th>
+                        </thead>
+
+                        <tbody>
+
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+        <footer></footer>
+        <script src="../js/jquery-3.3.1.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2"></script>
+        <script src='https://cdn.jsdelivr.net/jquery.cloudinary/1.0.18/jquery.cloudinary.js' type='text/javascript'></script>
+        <script src="https://widget.cloudinary.com/global/all.js" type="text/javascript"></script>
+        <script src="../js/servicio_imagen.js"></script>
+        <script src="../js/servicio_pokemon.js"></script>
+        <script src="../js/controlador_pokemon.js"></script>
 </body>
 
 </html>

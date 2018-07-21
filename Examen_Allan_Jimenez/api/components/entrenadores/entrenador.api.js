@@ -1,9 +1,7 @@
 'use strict';
 const entrenadorModel = require('./entrenador.model');
 
-//Función para registrar un usuario
 module.exports.registrar = function(req, res){
-    //Crea una variable nuevoUsuario utilizando como plantilla el userModel
     let nuevoentrenador = new entrenadorModel({
         nombre_entrenador : req.body.nombre_entrenador,
         numero_entrenador : req.body.numero_entrenador,

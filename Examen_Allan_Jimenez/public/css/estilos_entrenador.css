@@ -1,0 +1,138 @@
+html{
+    font-family: Arial;
+}
+#titulo{
+    width: 100%;
+    height: 95px;
+}
+#titulo h1{
+    text-align: center;
+    color: #fe9126;
+    font-size: 40px;
+    padding-top: 22px;
+    font-weight: bold;
+}
+#menu{
+    width: 100%;
+    height: 45px;
+    background: #fe9126;
+    -moz-background-image: linear-gradient(60deg, #222224 50%, #fe9126 50%);
+    -webkit-background-image: linear-gradient(60deg, #222224 50%, #fe9126 50%);
+    -o-background-image: linear-gradient(60deg, #222224 50%, #fe9126 50%);
+    -ms-background-image: linear-gradient(60deg, #222224 50%, #fe9126 50%);
+    background-image: linear-gradient(60deg, #222224 50%, #fe9126 50%);
+    color: #ffffff;
+}
+#menu nav{
+    text-align: center;
+    padding-top: 13px;
+}
+#menu nav a{
+    font-size: 20px;
+    color: #fff;
+    text-decoration: none;
+    margin-right: 20px;
+    letter-spacing: 1px;
+}
+.sct_fondo h1{
+    color: #fff;
+    font-size:40px;
+    text-align: center;
+    padding-top: 50px;
+}
+.sct_fondo{
+    background-image: url('../img/fondo.png');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+    height: 520px;
+    margin-top: 10px;
+    position: relative;
+}
+#container_formulario{
+    display:flow-root;
+    top: 1px;
+    position: absolute;
+    margin-top: 400px;
+    margin-left: 550px;
+}
+#formulario {
+    width: 50%;
+    float: left;
+}
+
+form {
+    width: 40%;
+    border: 1px solid #ccc;
+    margin: 40px;
+    margin-left: 80px;
+    padding: 20px;
+}
+input {
+    margin-bottom: 10px;
+    width: 90%;
+    padding: 10px;
+}
+form button{
+    width: 45%;
+    margin-left: 5px;
+}
+form select{
+    width: 97%;
+    height: 35px;
+}
+#txtImagen{
+    display: block;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+#div_listar{
+    width: 100%;
+    height: 65px;
+    margin-top: 10px;
+    background: #222224;
+}
+#div_listar h1{
+    text-align: center;
+    color: #fe9126;
+    font-size: 40px;
+    padding-top: 15px;
+    font-weight: bold;
+}
+#txtFiltro{
+    width: 300px;
+    margin-top: 10px;
+    margin-left: 130px;
+    margin-bottom: 10px;
+}
+#main_container{
+    margin-left: 130px;
+    font-size: 22px;
+}
+table{
+    background: #fff;
+    text-align: left;
+    border-collapse: collapse;
+    width: 90%;
+}
+thead{
+    background: #fe9126;
+    color: #fff;
+    border-bottom: 5px solid #fff;
+    height: 50px;
+}
+thead th{
+    padding-top: 15px;
+    padding-left: 10px;
+}
+tbody td{
+    padding: 10px;
+}
+tr:nth-child(even){
+    background-color: #fe9126;
+    opacity: 0.8;
+}
+.errorInput{
+    border : 1px solid red;
+}

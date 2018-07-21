@@ -6,7 +6,7 @@ let entrenadorSchema = new mongoose.Schema({
     numero_entrenador : {type : String, unique: true, required: true},
     edad_entrenador : {type : String, required : true},
     sexo_entrenador : {type : String},
-    foto : {type: String, required: true}
+    foto : {type: String}
 });
 
 module.exports = mongoose.model('Entrenador', entrenadorSchema);

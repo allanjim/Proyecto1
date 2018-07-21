@@ -143,22 +143,24 @@ function mostrarPokemon(pFiltro) {
 
         let fila = tbody.insertRow();
 
-        let cFoto = fila.insertCell();
         let cNombre_pokemon = fila.insertCell();
         let cNumero_pokemon = fila.insertCell();
         let cTipo_pokemon = fila.insertCell();
         let ctipoSecundario_pokemon = fila.insertCell();
+        let cFoto = fila.insertCell();
 
+        
+        cNombre_pokemon.innerHTML = listaPokemon[i]['nombre_pokemon'];
+        cNumero_pokemon.innerHTML = listaPokemon[i]['numero_pokemon'];
+        cTipo_pokemon.innerHTML = listaPokemon[i]['tipo_pokemon'];
+        ctipoSecundario_pokemon.innerHTML = listaPokemon[i]['tipoSecundario_pokemon'];
+        
         let imagen = document.createElement('img');
         imagen.src = listaPokemon[i]['foto'];
         imagen.classList.add('imageSettings');
 
         cFoto.appendChild(imagen);
 
-        cNombre_pokemon.innerHTML = listaPokemon[i]['nombre_pokemon'];
-        cNumero_pokemon.innerHTML = listaPokemon[i]['numero_pokemon'];
-        cTipo_pokemon.innerHTML = listaPokemon[i]['tipo_pokemon'];
-        ctipoSecundario_pokemon.innerHTML = listaPokemon[i]['tipoSecundario_pokemon'];
 
         }
     }

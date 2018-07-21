@@ -141,11 +141,10 @@ function mostrarEntrenador(pFiltro) {
         cSexo_entrenador.innerHTML = listaEntrenador[i]['sexo_entrenador'];
 
         let imagen = document.createElement('img');
-        imagen.src = listaEntrenador[i]['foto'];
+        imagen.src = listaPokemon[i]['foto'];
         imagen.classList.add('imageSettings');
 
         cFoto.appendChild(imagen);
-
         }
     }
 

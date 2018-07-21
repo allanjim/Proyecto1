@@ -136,3 +136,11 @@ tr:nth-child(even){
 .errorInput{
     border : 1px solid red;
 }
+.imageSettings{
+    width: 100px;
+    height: 100px;
+}
+#txtImagen{
+    width: 300px;
+    height: 100px;
+}

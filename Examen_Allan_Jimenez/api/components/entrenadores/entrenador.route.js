@@ -9,6 +9,10 @@ router.route('/registrar_entrenador')
     entrenador.registrar(req, res);
 });
 
+router.route('/agregar_pokemon')
+.post(function(req, res){
+entrenador.agregar_pokemon(req, res);
+});
 
 router.route('/listar_entrenador')
     .get(function(req, res){

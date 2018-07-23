@@ -12,9 +12,9 @@ const nodemon = require('nodemon');
 
 // Se establece la conexion y el puerto en el que la aplicación va a correr
 connect().use(serveStatic(__dirname)).listen(port, () => {
-  console.log('El servidor local está levantado dentro del puerto ' + port);
   nodemon({
     script: 'api/index.js',
     ext: 'js'
   });
+  console.log('El servidor local está levantado dentro del puerto ' + port);
 });

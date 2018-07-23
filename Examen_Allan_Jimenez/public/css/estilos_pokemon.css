@@ -106,6 +106,8 @@ form select{
     margin-top: 10px;
     margin-left: 130px;
     margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #fe9126;
 }
 #main_container{
     margin-left: 130px;

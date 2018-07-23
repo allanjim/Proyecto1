@@ -72,10 +72,6 @@ const entrenadores = require('./components/entrenadores/entrenador.route');
 app.use('/api', pokemones);
 app.use('/api', entrenadores);
 
-app.get('/', function (req, res) {
-  res.send('Hello World!');
-});
-
 
 // Se guarda todo lo que se ha realizado
 module.exports = app;

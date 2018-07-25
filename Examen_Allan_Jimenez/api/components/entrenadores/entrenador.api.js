@@ -30,7 +30,7 @@ module.exports.listar = function(req, res){
 };
 
 module.exports.agregar_pokemon = function(req, res){
-    pokemonModel.find({'_id': req.body.pokemon_id}).then(function(pokemon, error) {
+    pokemonModel.findOne({'_id': req.body.pokemon_id}).then(function(pokemon, error) {
         if (!pokemon || error) {
             res.json({success: false, msg: 'No existe el pokemon con id ' + req.body.pokemon_id});
         } else {

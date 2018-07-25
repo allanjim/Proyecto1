@@ -98,7 +98,7 @@ function validarDatos() {
     } else {
         inputNumero_entrenador.classList.remove('errorInput');
     }
-    if (regexSoloNumeros.test(nEdad_entrenador) == false && nEdad_entrenador >15 && nEdad_entrenador < 80) {
+    if (regexSoloNumeros.test(nEdad_entrenador) == false || nEdad_entrenador >15 || nEdad_entrenador < 80) {
         bError = true;
         inputEdad_entrenador.classList.add('errorInput');
     } else {
@@ -141,7 +141,7 @@ function mostrarEntrenador(pFiltro) {
         cSexo_entrenador.innerHTML = listaEntrenador[i]['sexo_entrenador'];
 
         let imagen = document.createElement('img');
-        imagen.src = listaPokemon[i]['foto'];
+        imagen.src = listaEntrenador[i]['foto'];
         imagen.classList.add('imageSettings');
 
         cFoto.appendChild(imagen);

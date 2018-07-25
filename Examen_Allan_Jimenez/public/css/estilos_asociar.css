@@ -51,22 +51,20 @@ html{
     position: relative;
 }
 #container_formulario{
-    display:flow-root;
     top: 1px;
+    width: 40%;
     position: absolute;
-    margin-top: 300px;
-    margin-left: 430px;
-}
-#formulario {
-    width: 50%;
-    float: left;
+    margin-top: 350px;
+    margin-left: 390px;
+    background: #fff;
+    opacity: 0.8;
 }
 
 form {
-    width: 40%;
+    width: 80%;
     border: 1px solid #ccc;
     margin: 40px;
-    margin-left: 80px;
+    margin-left: 40px;
     padding: 20px;
 }
 input {
@@ -76,10 +74,18 @@ input {
 }
 form button{
     width: 45%;
-    margin-left: 5px;
+    margin-left: 105px;
+    margin-top: 10px;
+    border-radius: 5px;
+    background: #fe9126;
+    border: 3px double #fe9126;
+    border-collapse: collapse;
 }
 form select{
     margin-top: 10px;
     width: 97%;
     height: 35px;
+}
+.errorInput{
+    border : 2px solid #d63031;
 }

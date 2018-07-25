@@ -67,7 +67,7 @@ function validarDatos() {
     sTipoSecundario_pokemon = inputTipoSecundario_pokemon.value;
 
     let regexSoloNumeros = /^[0-9]+$/;
-    let regexSoloLetras = /^[a-zA-Z0-9-]+$/;
+    let regexSoloLetras = /^[a-zA-Z0-9]+$/;
     let regexTipoSecundario = /^[- a-zA-Z]+$/;
 
     for (let i = 0; i < arregloInputs.length; i++) {
@@ -96,7 +96,7 @@ function validarDatos() {
     } else {
         inputTipo_pokemon.classList.remove('errorInput');
     }
-    if (regexTipoSecundario.test(sTipoSecundario_pokemon) == false) {
+    if (regexSoloLetras.test(sTipoSecundario_pokemon) == false) {
         inputTipoSecundario_pokemon.classList.add('errorInput');
     } else {
         inputTipoSecundario_pokemon.classList.remove('errorInput');

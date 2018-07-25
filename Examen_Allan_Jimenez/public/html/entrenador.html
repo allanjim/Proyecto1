@@ -19,8 +19,8 @@
             <div id="menu">
                 <nav>
                     <a href="../html/index.html">Inicio</a>
-                    <a href="../html/entrenador.html">Entrenador</a>
                     <a href="../html/pokemon.html">Pokémon</a>
+                    <a href="../html/asociar_pokemon.html">Asociar pokémon</a>
                 </nav>
             </div>
         </div>
@@ -34,11 +34,11 @@
         <section class="sct_registro">
             <div id="container_formulario">
 
-                <div id="cuadro_formulario">
-
                     <div class="formulario">
                         <form>
-
+                            <img src="../img/entrenador.jpg" alt="" id="txtImagen">
+                            <button type="button" id="btnSeleccionarImagen">Subir foto</button>
+                            
                             <input type="text" id="txtNombre" placeholder="Nombre del entrenador*" required>
 
                             <input type="text" id="txtNumero" placeholder="Número del entrenador*" required>
@@ -50,15 +50,13 @@
                                 <option value="Masculino">Masculino</option>
                                 <option value="Femenino">Femenino</option>
                             </select>
-                            <img src="" alt="Foto" id="txtImagen">
-                            <button type="button" id="btnSeleccionarImagen">Subir foto</button>
                             <button type="button" id="btnRegistrar">Registrar</button>
 
                         </form>
                     </div>
-                </div>
             </div>
-            <div id="div_listar">
+        </section>
+                <div id="div_listar">
                 <h1>Ver entrenadores</h1>
             </div>
             <div>
@@ -82,8 +80,6 @@
                 </table>
             </div>
 
-
-        </section>
     </main>
     <footer></footer>
     <script src="../js/jquery-3.3.1.js"></script>

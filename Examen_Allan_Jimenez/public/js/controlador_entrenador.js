@@ -98,7 +98,7 @@ function validarDatos() {
     } else {
         inputNumero_entrenador.classList.remove('errorInput');
     }
-    if (regexSoloNumeros.test(nEdad_entrenador) == false || nEdad_entrenador >15 || nEdad_entrenador < 80) {
+    if (regexSoloNumeros.test(nEdad_entrenador) == false || nEdad_entrenador <15 || nEdad_entrenador > 80) {
         bError = true;
         inputEdad_entrenador.classList.add('errorInput');
     } else {

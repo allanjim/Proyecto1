@@ -1,5 +1,5 @@
 html{
-    font-family: 'Open Sans', sans-serif;
+    font-family: Arial;
 }
 #titulo{
     width: 100%;
@@ -28,7 +28,7 @@ html{
     padding-top: 13px;
 }
 #menu nav a{
-    font-size: 16px;
+    font-size: 20px;
     color: #fff;
     text-decoration: none;
     margin-right: 20px;
@@ -59,6 +59,7 @@ html{
     margin-top: 250px;
     margin-left: 450px;
     background: #fff;
+    opacity: 0.9;
 }
 form {
     width: 80%;

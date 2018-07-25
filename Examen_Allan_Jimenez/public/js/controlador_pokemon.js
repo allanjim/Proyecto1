@@ -52,6 +52,7 @@ function obtenerDatos() {
         console.log(imagenUrl);
         registrarPokemon(aInfoPokemon);
     }
+    limpiarFormulario();
 
 };
 
@@ -68,7 +69,6 @@ function validarDatos() {
 
     let regexSoloNumeros = /^[0-9]+$/;
     let regexSoloLetras = /^[a-zA-Z0-9]+$/;
-    let regexTipoSecundario = /^[- a-zA-Z]+$/;
 
     for (let i = 0; i < arregloInputs.length; i++) {
         if (arregloInputs[i].value == '') {

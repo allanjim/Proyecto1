@@ -29,7 +29,7 @@ function obtenerDatos() {
         });
         agregarPokemon(id, spokemon);
     }
-
+        limpiarFormulario();
 }
 function listarEntrenadores() {
     let entrenadores = obtenerListaEntrenador();
@@ -70,4 +70,9 @@ function listarPokemones() {
         select_pokemon.options.add(opcion);
 
     }
+};
+function limpiarFormulario(){
+    selectEntrenadores.value = '';
+    select_pokemon.value = '';
+
 };

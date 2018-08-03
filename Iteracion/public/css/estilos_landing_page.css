@@ -1,0 +1,426 @@
+@font-face{
+    font-family: Montserrat;
+    src: url(../fonts/Montserrat-Regular.ttf);
+}
+html{
+    font-family: Montserrat;
+    background-color: rgba(230,227,234);
+}
+
+html p{
+    line-height: 1.5em;
+}
+
+ul li{
+    margin-bottom: 10px;
+}
+ul li::before{
+    content: "\2756"; color: rgba(30,33,66,0.8);
+    display: inline-block; 
+    width: 1em;
+    margin-left: -1.2em;
+}
+h3{
+    font-size: 1.5em;
+    color: #1e2142;
+    font-weight: bold;
+}
+
+button{
+    text-decoration: none;
+    text-align: center;
+
+    width: 150px;
+    border: none;
+
+    font-size: 18px;
+    padding: 10px;
+
+    color: white;
+    background-color: rgba(77,84,170, 0.7);
+    box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 10px;
+    cursor: pointer;
+}
+button:hover{
+    background-color: rgba(77,84,170);
+    box-shadow: rgba(50, 50, 50, 0.4) 0px 0px 20px;
+}
+/* Grid del main */
+/* Grid del main */
+/* Grid del main */
+
+.main-grid{
+    display: grid;
+    grid-gap: 0px 10px;
+    grid-template-columns: repeat(3,1fr);
+    grid-template-rows: 600px 800px 250px 500px;
+    grid-template-areas: 
+    "title title title"
+    "mvv mvv mvv"
+    "funciones funciones funciones"
+    "roles roles roles";
+}
+.main-grid img{
+    width: 375px;
+    height: 250px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 15px;
+    box-shadow: #1E2142 2px 2px 10px;
+}
+/* Estilos del header */
+/* Estilos del header */
+.main-grid-title{
+    grid-area: title;
+    background-image: url(../img/lp_img.jpeg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: top;
+
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: 0.5fr 1fr 0.5fr;
+    grid-template-rows:  0.5fr 1.5fr 1fr 0.5fr;
+    grid-template-areas: 
+    "img . ."
+    ". h1 ."
+    ". p ."
+    ". a .";
+    position: relative;
+}
+.title-grid-img{
+    grid-area: img;
+}
+.title-grid-img img{
+    margin-left: 45px;
+    width: 125px;
+    height: 55px;
+    box-shadow: none;
+}
+.title-grid-h1{
+    grid-area: h1;
+}
+.title-grid-p{
+    grid-area: p;
+}
+.title-grid-a{
+    grid-area: a;
+}
+
+.main-grid-title h1{
+    font-size: 3.8em;
+    width: 600px;
+    text-align: center;
+    font-weight: bold;
+    color: white;
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8);
+}
+.main-grid-title p{
+    font-size: 1.25em;
+    text-align: center;
+
+    color: white;
+    text-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
+
+    width: 400px;
+}
+/* Estilos del header */
+/* Estilos del header */
+
+/* Estos son los estilos de mvv */
+/* Estos son los estilos de mvv */
+#sct_mvv{
+    box-shadow: inset 0px 0px 100px 30px  rgb(197, 189, 209);
+}
+
+#sct_mvv h1{
+    font-size: 2em;
+
+    color: white;
+    text-shadow: #1e2142 1px 1px 2px
+}
+
+.main-grid-mvv{
+    grid-area: mvv;
+    display: grid;
+    grid-template-columns: 1.5fr 2.6fr;
+    grid-template-rows: repeat(3, 1fr);
+    grid-template-areas:
+    "mision box box" 
+    "vision box box" 
+    "valores box box";
+    text-align: justify;
+}
+
+.mvv-grid-mision{
+    grid-area: mision;
+    background-color: rgba(68,27,73,0.5);
+    color: white;
+}
+.mvv-grid-vision{
+    grid-area: vision;
+    background-color: rgba(68,27,73,0.35);
+    color: white;
+}
+.mvv-grid-valores{
+    grid-area: valores;
+    background-color: rgba(68,27,73,0.5);
+    text-align: left;
+    color: white;
+}
+
+/* Grid para la historia de cenfo */
+.mvv-grid-box{
+    grid-area: box;
+    display: grid;
+    grid-template-columns: 0.2fr 1fr 0.2fr;
+    grid-template-rows: 0.7fr 2fr 0.7fr 1fr;
+    grid-template-areas:
+    ". . ."
+    ". box-img ."
+    ". box-title ."
+    ". box-p .";
+    color: #1E2142;
+}
+.box-img{
+    background-image: url(../img/startup-photos.jpg);
+    background-attachment: initial;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    grid-area: box-img;
+}
+.box-title{
+    grid-area: box-title;
+    font-size: 2em;
+}
+.box-p{
+    grid-area: box-p;
+}
+
+
+/* Grid para cada cuadro del mvm */
+
+.mvv-side{
+    display: grid;
+    grid-template-columns: 0.5fr 1.8fr 0.5fr;
+    grid-template-rows: 1fr 2fr;
+    grid-template-areas:
+    ". t ."
+    ". p .";
+    position: relative;
+}
+.mvv-side-t{
+    grid-area: t;
+    text-align: center;
+    display: flex;
+    align-items: center;
+}
+.mvv-side-p{
+    grid-area: p;
+    text-align: inherit;
+}
+
+/* Grid para cada cuadro del mvm */
+
+/* Estos son los estilos de mvv */
+/* Estos son los estilos de mvv */
+
+
+
+.main-grid-funciones{
+    grid-area: funciones;
+    background: linear-gradient(45deg, #1E2142,#441B49);
+    color: white;
+}
+.main-grid-funciones>h1{
+    font-size: 2em;
+    margin: 40px;
+}
+.main-grid-funciones>p{
+    width: 70%;
+    text-align: justify;
+}
+
+
+.main-grid-roles{
+    grid-area: roles;
+    display: grid;
+    margin: 25px;
+    grid-gap: 25px;
+    grid-template-rows: 250px 50px 100px;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-areas:
+    "pimg aimg admimg"
+    "tprof tasist tadmin"
+    "profesores asistentes administrador";
+    text-align: center;
+}
+.main-grid-roles p{
+    color: #1E2142;
+}
+.roles-grid-profesores{
+    grid-area: profesores;
+}
+.roles-grid-profesores-img{
+    grid-area: pimg;
+    position: relative;
+}
+.roles-grid-profesores-title{
+    grid-area: tprof;
+}
+
+.roles-grid-asistentes{
+    grid-area: asistentes;
+}
+.roles-grid-asistentes-img{
+    grid-area: aimg;
+    position: relative;
+}
+.roles-grid-asistentes-title{
+    grid-area: tasist;
+}
+
+.roles-grid-administrador{
+    grid-area: administrador;
+}
+.roles-grid-administrador-img{
+    grid-area: admimg;
+    position: relative;
+}
+.roles-grid-administrador-title{
+    grid-area: tadmin;
+}
+
+/* Grid del main */
+/* Grid del main */
+/* Grid del main */
+
+/* Class Generales */
+/* Class Generales */
+/* Class Generales */
+
+/* Requiere que el padre tenga position: relative */
+.x-align{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.y-align{
+    display: flex;
+    position: relative;
+    align-items: center;
+}
+/* Class Generales */
+/* Class Generales */
+/* Class Generales */
+
+/* Esto es para el scroll */
+body::-webkit-scrollbar {
+    width: 1em;
+}
+ 
+body::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+ 
+body::-webkit-scrollbar-thumb {
+  background-color: rgba(68,27,73,0.5);
+  outline: 1px solid slategrey;
+}
+/* Esto es para el scroll */
+
+
+/* Todos los estilos de iniciar sesion */
+/* Todos los estilos de iniciar sesion */
+/* Todos los estilos de iniciar sesion */
+
+/* The popup (background) */
+.popup-bg {
+	display:none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.4);
+}
+
+/* popup Content Box */
+.popup-content {
+    background-color: #e6e3ea;
+    margin: 4% auto 15% auto;
+    width: 400px; 
+    height: 245px;
+    padding: 30px;
+    border-radius: 5px;
+    position: relative;
+}
+.popup-content h1{
+    text-align: center;
+    color: rgba(30,33,66,0.8);
+    position: relative;
+    font-size: 3em;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #b3b0b6;
+    margin-bottom: 30px;
+}
+.popup-content input{
+    margin: 0px auto;
+    margin-bottom: 2em;
+    width: 80%;
+    height: 34px;
+    display: block;
+    
+    border: none;
+    box-shadow: inset 0px 2px 3px 1.5px rgba(0, 0, 0, 0.2);
+    padding: 0px 10px;
+}
+.popup-content button{
+    background-color: rgba(77,84,170, .9);
+}
+.popup-content button:hover{
+    background-color: rgba(77,84,170, .7);
+}
+/* Add Zoom Animation */
+.animate {
+    transition: ease-in 4s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+/* Estilos del input de contrasenna */
+#divContrasenna{
+    margin: 0px auto;
+    margin-bottom: 2em;
+    width: 340px;
+    height: 34px;
+    border: none;
+    background-color: rgba(77,84,170, 0.7);;
+    box-shadow: inset 0px 2px 3px 1.5px rgba(0, 0, 0, 0.2);
+    display: grid;
+    grid-template-columns: 300px 40px;
+}
+#divContrasenna input{
+    background-color: none;
+    width: 280px;
+    margin: 0px;
+}
+#divContrasenna a{
+    color: rgba(0, 0, 0, 0.5);
+    font-size: 12px;
+    padding: 0px;
+    margin: 0px;
+    display: inline;
+    text-align: center;
+    line-height: 34px;
+    cursor: pointer;
+}
+#divContrasenna a:hover{
+    color: rgba(230,227,234);
+}
+input.errorInput {
+    border: 1px solid #D1254D;
+}

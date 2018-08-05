@@ -17,5 +17,9 @@ router.route('/agregar_carrera')
     .post(function (req, res) {
         users.agregar_titulo(req, res);
     });
+router.route('/agregar_curso')
+    .post(function (req, res ){
+        carrerasApi.agregar_curso(req, res);
+    });
 
 module.exports = router;

@@ -18,7 +18,8 @@ function mostrarListaSolicitudes(pFiltro) {
     }
     tbody.innerHTML = '';
     for (let i = 0; i < listaSolicitudes.length; i++) {
-        if (listaSolicitudes[i]['profesor_solicitud'].toLowerCase().includes(pFiltro.toLowerCase())) {
+        if (listaSolicitudes[i]['profesor_solicitud'].toLowerCase().includes(pFiltro.toLowerCase()) ||
+        listaSolicitudes[i]['nombre_solicitud'].toLowerCase().includes(pFiltro.toLowerCase())) {
             let fila = tbody.insertRow();
 
             let cProfesor_solicitud = fila.insertCell();
@@ -40,7 +41,7 @@ function mostrarListaSolicitudes(pFiltro) {
             cEstado_solicitud.innerHTML = listaSolicitudes[i]['estado_solicitud']
 
             // boton  editar
-            let botonEditar = document.createElement('a');
+            let botonEditar = document.createElement('span');
             botonEditar.href = '#'// path del html editar lab
             botonEditar.classList.add('fas');
             botonEditar.classList.add('fa-cogs');
@@ -61,7 +62,7 @@ function mostrarListaSolicitudes(pFiltro) {
 
 
             // boton eliminar
-            let botonEliminar = document.createElement('a');
+            let botonEliminar = document.createElement('span');
             botonEliminar.href = '#'//evento  eliminar lab
             botonEliminar.classList.add('fas');
             botonEliminar.classList.add('fa-trash-alt');
@@ -80,6 +81,7 @@ function mostrarListaSolicitudes(pFiltro) {
             botonAsociar.classList.add('fas');
             botonAsociar.classList.add('fa-link');
 
+            
             celdaOpciones.appendChild(botonAsociar);
 
             // Icono de editar: <i class="fas fa-cogs"></i>
@@ -144,12 +146,12 @@ botonRegistrar.addEventListener('click', obtenerDatos);
 botonActualizar.addEventListener('click', obtenerSolicitudActualizar);
 
 let popup;
-let inputProfesor = document.querySelector('#txtProfesor');
-let inputNombre = document.querySelector('#txtNombre');
-let inputCarrera = document.querySelector('#sltCarrera');
-let inputCurso = document.querySelector('#sltCurso');
-let inputPeriodo = document.querySelector('#sltPeriodo');
-let inputGrupo = document.querySelector('#sltGrupo');
+const inputProfesor = document.querySelector('#txtProfesor');
+const inputNombre = document.querySelector('#txtNombre');
+const inputCarrera = document.querySelector('#sltCarrera');
+const inputCurso = document.querySelector('#sltCurso');
+const inputPeriodo = document.querySelector('#sltPeriodo');
+const inputGrupo = document.querySelector('#sltGrupo');
 const inputEstado = document.querySelector('#sltEstado');
 const inputIdSolicitud = document.querySelector('#txtId');
 

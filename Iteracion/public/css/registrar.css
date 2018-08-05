@@ -46,9 +46,13 @@
 
 #sct_registrar .popup-content{
     margin-top: 2.5%;
-    height: 480px;
+    height: 495px;
+    overflow-y: scroll;
 }
-
+#sct_asociar .popup-content{
+    margin-top: 2.5%;
+    height: 300px;
+}
 input[type = date]::-webkit-inner-spin-button{
     display: none;
 }

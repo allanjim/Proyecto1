@@ -12,7 +12,8 @@ function registrarCurso(paInfoCursos){
             nombre_curso : paInfoCursos[1],
             codigo_curso : paInfoCursos[2],
             creditos_curso : paInfoCursos[3],
-            costo_curso : paInfoCursos[4]
+            costo_curso : paInfoCursos[4],
+            estado_curso : paInfoCursos[5]
         }
       });
     
@@ -88,7 +89,8 @@ function actualizarCurso (paInfoCursos){
             nombre_curso : paInfoCursos[1],
             codigo_curso : paInfoCursos[2],
             creditos_curso : paInfoCursos[3],
-            costo_curso : paInfoCursos[4]
+            costo_curso : paInfoCursos[4],
+            estado_curso : paInfoCursos[5]
         }
       });
     

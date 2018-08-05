@@ -56,3 +56,26 @@ module.exports.agregar_carrera = function (req, res) {
         }
     )
 };
+
+module.exports.agregar_curso= function (req, res) {
+
+    carreraModel.update(
+        { _id: req.body.id_carrera },
+        {
+            $push:
+            {
+                'cursos':
+                {
+                    _id: req.body.id_curso
+                }
+            }
+        },
+        function (error) {
+            if (error) {
+                res.json({ success: false, msg: 'No se pudo registrar el curso, ocurrió el siguiente error' + error });
+            } else {
+                res.json({ success: true, msg: 'El curso se registró con éxito' });
+            }
+        }
+    )
+};

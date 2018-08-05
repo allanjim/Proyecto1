@@ -9,10 +9,9 @@ let carreraSchema = new mongoose.Schema({
     fecha_carrera: { type: Date, required: true },
     sede_carrera: {type: String, required: true},
     estado_carrera: { type: String, required: true},
-    cursos_carrera : [
+    cursos : [
         {
-            nombre_curso:{type: String},
-            codigo_curso:{type: String}
+            nombre_curso:{type: String}
         }
     ]
 

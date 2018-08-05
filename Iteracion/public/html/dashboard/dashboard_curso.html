@@ -82,6 +82,7 @@
                         <th>Código</th>
                         <th>Creditos</th>
                         <th>Costo</th>
+                        <th>Estado</th>
                         <th>Opciones</th>
                     </tr>
                 </thead>
@@ -107,9 +108,32 @@
 
                     <input type="number" id="numCostoCurso" min="0" max="500000" placeholder="Costo del curso*" required>
 
-
+                    <select id="sltEstado">
+                        <option value="">Elija el estado del curso</option>
+                        <option value="Habilitado">Habilitado</option>
+                        <option value="Deshabilitado">Deshabilitado</option>
+                    </select>
                     <button type="button" class="button" id="btn_Actualizar">Actualizar</button>
                     <button type="button" class="button" id="btn_Registrar">Registrar</button>
+                </div>
+            </form>
+            <!-- Formulario que aparece -->
+        </section>
+
+        <section id="sct_asociar" class="popup-bg">
+            <!-- Formulario que aparece -->
+            <form class="popup-content">
+                <h1 class="title">Asociar cursos a carreras</h1>
+
+                <div class="form">
+                    <select id="sltCurso">
+                        <option value="">Seleccione el curso a asociar</option>
+                    </select>
+
+                    <select id="sltCarrera">
+                        <option value="">Seleccione la carrera</option>
+                    </select>
+                    <button type="button" class="button" id="btnAsociar">Asociar</button>
                 </div>
             </form>
             <!-- Formulario que aparece -->

@@ -36,12 +36,12 @@ function mostrarListaPostulantes(pFiltro) {
             let celdaOpciones = fila.insertCell();
 
             cProfesor_postulante.innerHTML = listaPostulantes[i]['profesor_postulante'],
-                cNombre_postulante.innerHTML = listaPostulantes[i]['nombre_postulante'],
-                cCedula_postulante.innerHTML = listaPostulantes[i]['cedula_postulante']
+            cNombre_postulante.innerHTML = listaPostulantes[i]['nombre_postulante'],
+            cCedula_postulante.innerHTML = listaPostulantes[i]['cedula_postulante']
             cCorreo_postulante.innerHTML = listaPostulantes[i]['correo_postulante'],
-                cFecha_ingreso_postulante.innerHTML = listaPostulantes[i]['fecha_ingreso_postulante'],
-                cTelefono_postulante.innerHTML = listaPostulantes[i]['telefono_postulante'],
-                cCarrera_postulante.innerHTML = listaPostulantes[i]['carrera_postulante']
+            cFecha_ingreso_postulante.innerHTML = listaPostulantes[i]['fecha_ingreso_postulante'],
+            cTelefono_postulante.innerHTML = listaPostulantes[i]['telefono_postulante'],
+            cCarrera_postulante.innerHTML = listaPostulantes[i]['carrera_postulante']
 
             // boton  editar
             let botonEditar = document.createElement('span');
@@ -50,8 +50,8 @@ function mostrarListaPostulantes(pFiltro) {
             botonEditar.classList.add('fa-cogs');
 
             botonEditar.dataset._id = listaSolicitudes[i]['_id'];
-
             botonEditar.addEventListener('click', buscar_por_solicitud_id);
+            
             botonEditar.addEventListener('click', function () {
                 popup = document.querySelector('#sct_modificar');
                 popup.style.display = "block";
@@ -100,11 +100,10 @@ function buscar_por_solicitud_id() {
     botonActualizar.hidden = false;
     let listaSolicitudes = buscar_solicitud_id(_id);
 
-        inputProfesor.value = listaSolicitudes['profesor_solicitud'],
+    inputProfesor.value = listaSolicitudes['profesor_solicitud'],
         inputCarrera.value = listaSolicitudes['carrera_solicitud'],
         inputCurso.value = listaSolicitudes['curso_solicitud'];
-        inputPeriodo.value = listaSolicitudes['periodo_solicitud'],
-        inputGrupo.value = listaSolicitudes['grupo_solicitud'],
+    inputPeriodo.value = listaSolicitudes['periodo_solicitud'],
         inputNombre.value = listaSolicitudes['nombre_solicitud'],
         inputEstado.value = listaSolicitudes['estado_solicitud'],
         inputIdSolicitud.value = listaSolicitudes['_id']
@@ -154,6 +153,7 @@ const inputTelefono = document.querySelector('#txtTelefono');
 const inputDireccion = document.querySelector('#txtDireccion');
 const inputCarrera_postulante = document.querySelector('#sltCarrera_Postulante');
 const inputFecha_ingreso = document.querySelector('#txtFecha_ingreso');
+const inputIdPostulante = document.querySelector('#txtIdPostulante')
 
 
 let sCedula = '';

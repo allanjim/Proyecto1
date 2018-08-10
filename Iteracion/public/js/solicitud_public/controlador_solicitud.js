@@ -1,149 +1,19 @@
 'use strict';
 
-mostrarListaSolicitudes();
-
-let inputBuscar = document.querySelector('#txtBusqueda');
-let listaSolicitudes = obtenerSolicitud();
-inputBuscar.addEventListener('keyup', function () {
-
-    mostrarListaSolicitudes(inputBuscar.value);
-});
-
-function mostrarListaSolicitudes(pFiltro) {
-    let listaSolicitudes = obtenerSolicitud();
-
-    let tbody = document.querySelector('section table tbody');
-    if (!pFiltro) {
-        pFiltro = '';
-    }
-    tbody.innerHTML = '';
-    for (let i = 0; i < listaSolicitudes.length; i++) {
-        if (listaSolicitudes[i]['profesor_solicitud'].toLowerCase().includes(pFiltro.toLowerCase()) ||
-        listaSolicitudes[i]['nombre_solicitud'].toLowerCase().includes(pFiltro.toLowerCase())) {
-            let fila = tbody.insertRow();
-
-            let cProfesor_solicitud = fila.insertCell();
-            let cCarrera_solicitud = fila.insertCell();
-            let cCurso_solicitud = fila.insertCell();
-            let cPeriodo_solicitud = fila.insertCell();
-            let cGrupo_solicitud = fila.insertCell();
-            let cNombre_solicitud = fila.insertCell();
-            let cEstado_solicitud = fila.insertCell();
-            
-            let celdaOpciones = fila.insertCell();
-
-            cProfesor_solicitud.innerHTML = listaSolicitudes[i]['profesor_solicitud'],
-            cCarrera_solicitud.innerHTML = listaSolicitudes[i]['carrera_solicitud'],
-            cCurso_solicitud.innerHTML = listaSolicitudes[i]['curso_solicitud']
-            cPeriodo_solicitud.innerHTML = listaSolicitudes[i]['periodo_solicitud'],
-            cGrupo_solicitud.innerHTML = listaSolicitudes[i]['grupo_solicitud'],
-            cNombre_solicitud.innerHTML = listaSolicitudes[i]['nombre_solicitud'],
-            cEstado_solicitud.innerHTML = listaSolicitudes[i]['estado_solicitud']
-
-            // boton  editar
-            let botonEditar = document.createElement('span');
-            botonEditar.href = '#'// path del html editar lab
-            botonEditar.classList.add('fas');
-            botonEditar.classList.add('fa-cogs');
-
-            botonEditar.dataset._id = listaSolicitudes[i]['_id'];
-
-            botonEditar.addEventListener('click', buscar_por_solicitud_id);
-            botonEditar.addEventListener('click', function () {
-                popup = document.querySelector('#sct_registrar');
-                popup.style.display = "block";
-                let titulo;
-                titulo = document.getElementById('h1');
-                titulo.innerHTML = 'Modificar solicitud';
-            });
-
-
-            celdaOpciones.appendChild(botonEditar);
-
-
-            // boton eliminar
-            let botonEliminar = document.createElement('span');
-            botonEliminar.href = '#'//evento  eliminar lab
-            botonEliminar.classList.add('fas');
-            botonEliminar.classList.add('fa-trash-alt');
-
-
-            botonEliminar.dataset._id = listaSolicitudes[i]['_id'];
-
-            botonEliminar.addEventListener('click', remover_solicitud);
-
-            celdaOpciones.appendChild(botonEliminar);
-
-            celdaOpciones.appendChild(botonEliminar);
-
-            // Este es el boton de asociar
-            let botonAsociar = document.createElement('span');
-            botonAsociar.classList.add('fas');
-            botonAsociar.classList.add('fa-link');
-
-            
-            celdaOpciones.appendChild(botonAsociar);
-
-            // Icono de editar: <i class="fas fa-cogs"></i>
-            // Icono de eliminar: <i class="fas fa-trash-alt"></i>
-        }
-    }
-};
-
-function buscar_por_solicitud_id() {
-
-    let _id = this.dataset._id;
-
-    botonRegistrar.hidden = true;
-    botonActualizar.hidden = false;
-    let listaSolicitudes = buscar_solicitud_id(_id);
-
-    inputProfesor.value = listaSolicitudes['profesor_solicitud'],
-    inputCarrera.value = listaSolicitudes['carrera_solicitud'],
-    inputCurso.value = listaSolicitudes['curso_solicitud'];
-    inputPeriodo.value = listaSolicitudes['periodo_solicitud'],
-    inputGrupo.value = listaSolicitudes['grupo_solicitud'],
-    inputNombre.value = listaSolicitudes['nombre_solicitud'],
-    inputEstado.value = listaSolicitudes['estado_solicitud'],
-    inputIdSolicitud.value = listaSolicitudes['_id']
-};
-
-function remover_solicitud() {
-    let _id = this.dataset._id;
-    swal({
-        title: 'Está seguro?',
-        text: "El curso se eliminará permanentemente",
-        type: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Eliminar!'
-    }).then((result) => {
-        if (result.value) {
-            eliminarSolicitud(_id);
-            listaSolicitudes = obtenerSolicitud();
-            mostrarListaSolicitudes();
-            swal(
-                'Eliminado!',
-                'La solicitud ha sido eliminado con éxito',
-                'success'
-            )
-        }
-    });
-
-};
 //////////////////Registrar
 mostrarCurso();
-mostrarGrupos();
 mostrarPeriodos();
 mostrarCarrera();
+// mostrarCarreraPostulante();
 
 const botonRegistrar = document.querySelector('#btn_Registrar');
 const botonActualizar = document.querySelector('#btn_Actualizar');
-
+const botonActualizarPostulante = document.querySelector('#btn_RegistrarPostulante');
 botonActualizar.hidden = true;
+
 botonRegistrar.addEventListener('click', obtenerDatos);
 botonActualizar.addEventListener('click', obtenerSolicitudActualizar);
+// botonActualizarPostulante.addEventListener('click', obtenerDatosPostulante);
 
 let popup;
 const inputProfesor = document.querySelector('#txtProfesor');
@@ -151,18 +21,32 @@ const inputNombre = document.querySelector('#txtNombre');
 const inputCarrera = document.querySelector('#sltCarrera');
 const inputCurso = document.querySelector('#sltCurso');
 const inputPeriodo = document.querySelector('#sltPeriodo');
-const inputGrupo = document.querySelector('#sltGrupo');
 const inputEstado = document.querySelector('#sltEstado');
 const inputIdSolicitud = document.querySelector('#txtId');
+
+const inputCedula = document.querySelector('#txtCedula');
+const inputCorreo = document.querySelector('#txtCorreo');
+const inputTelefono = document.querySelector('#txtTelefono');
+const inputDireccion = document.querySelector('#txtDireccion');
+const inputCarrera_postulante = document.querySelector('#sltCarrera_Postulante');
+const inputFecha_ingreso = document.querySelector('#txtFecha_ingreso');
+const inputIdPostulante = document.querySelector('#txtIdPostulante');
 
 let sProfesor = '';
 let sCarrera = '';
 let sCurso = '';
 let sPeriodo = '';
-let sGrupo = '';
 let sNombre = '';
 let sEstado = '';
 let sIdCurso = '';
+
+let sCedula = '';
+let sCorreo = '';
+let sTelefono = '';
+let sDireccion = '';
+let sCarrera_Postulante = '';
+let sFecha_ingreso = '';
+let idSolicitud = '';
 
 function obtenerDatos() {
     let bError = false;
@@ -172,10 +56,10 @@ function obtenerDatos() {
     sCarrera = inputCarrera.value;
     sCurso = inputCurso.value;
     sPeriodo = inputPeriodo.value;
-    sGrupo = inputGrupo.value;
     sNombre = inputNombre.value;
+    debugger;
     sEstado = inputEstado.value;
-    aInfoSolicitud.push(sProfesor, sCarrera, sCurso, sPeriodo, sGrupo, sNombre, sEstado);
+    aInfoSolicitud.push(sProfesor, sCarrera, sCurso, sPeriodo, sNombre, sEstado);
 
     bError = validarSolicitudes();
     if (bError == true) {
@@ -201,6 +85,109 @@ function obtenerDatos() {
     }
 };
 
+
+///////////POSTULANTES A ASISTENTES
+// function obtenerDatosPostulante(){
+//     let bError = false;
+//     let aInfoPostulante = [];
+
+//     sCedula = inputCedula.value;
+//     sCorreo = inputCorreo.value;
+//     sTelefono = inputTelefono.value;
+//     sDireccion = inputDireccion.value;
+//     sCarrera_Postulante = inputCarrera_postulante.value;
+//     sFecha_ingreso = inputFecha_ingreso.value;
+//     idSolicitud = inputIdSolicitud.value;
+
+//     aInfoPostulante.push(sCedula, sCorreo, sTelefono, sDireccion, sCarrera_Postulante, sFecha_ingreso, idSolicitud);
+
+//     bError = validarPostulantes();
+//     if (bError == true) {
+//         swal({
+//             type: 'error',
+//             title: 'Registro incorrecto',
+//             text: 'Revise los espacios marcados en rojo!',
+//             confirmButtonText: 'Entendido'
+//         })
+//     } else {
+//         registrarPostulante(aInfoPostulante);
+//         swal({
+//             title: 'Registro completado!',
+//             text: 'El registro se ha completado exitosamente!',
+//             type: 'success',
+//             confirmButtonText: 'Entendido'
+//         })
+//         $('.swal2-confirm').click(function () {
+//             clean();
+//             reload();
+//         });
+//         limpiarFormulario();
+//     }
+
+// };
+// function validarPostulantes() {
+//     let bError = false;
+//     let arregloInputs = document.querySelector('input:required');
+
+//     let regexSoloLetras = /^[a-z A-ZáéíóúÁÉÍÓÚñÑ]+$/;
+//     let regexSoloNumeros = /^[0-9-]+$/;
+//     let regexCodigo = /^[a-zA-Z0-9/-]+$/;
+//     let regexEmail = /^[a-zA-Z0-9._]+@ucenfotec.ac.cr+$/;
+
+
+//     sCedula = inputCedula.value;
+//     sCorreo = inputCorreo.value;
+//     sTelefono = inputTelefono.value;
+//     sDireccion = inputDireccion.value;
+//     sCarrera_Postulante = inputCarrera_postulante.value;
+//     sFecha_ingreso = inputFecha_ingreso.value;
+
+//     for (let i = 0; i <= arregloInputs.length; i++) {
+//         if (arregloInputs[i].value == '') {
+//             bError = true;
+//             arregloInputs[i].classList.add('errorInput');
+//         } else {
+//             arregloInputs[i].classList.remove('errorInput');
+//         }
+//     };
+
+
+//     if (regexEmail.test(sCorreo) == false) {
+//         bError = true;
+//         inputCorreo.classList.add('errorInput');
+//     } else {
+//         inputCorreo.classList.remove('errorInput');
+//     }
+//     if (regexSoloNumeros.test(sCedula) == false) {
+//         bError = true;
+//         inputCedula.classList.add('errorInput');
+//     } else {
+//         inputCedula.classList.remove('errorInput');
+//     }
+//     if (regexSoloNumeros.test(sTelefono) == false) {
+//         bError = true;
+//         inputTelefono.classList.add('errorInput');
+//     } else {
+//         inputTelefono.classList.remove('errorInput');
+//     }
+//     if (regexSoloLetras.test(sDireccion) == false) {
+//         bError = true;
+//         inputDireccion.classList.add('errorInput');
+//     } else {
+//         inputDireccion.classList.remove('errorInput');
+//     }
+//     if (regexSoloLetras.test(sCarrera_Postulante) == false) {
+//         bError = true;
+//         inputCarrera_postulante.classList.add('errorInput');
+//     } else {
+//         inputCarrera_postulante.classList.remove('errorInput');
+//     }
+
+//     return bError;
+// };
+
+
+//////////////MODIFICAR
 function obtenerSolicitudActualizar() {
     let bError = false;
     let aInfoSolicitud = [];
@@ -209,12 +196,11 @@ function obtenerSolicitudActualizar() {
     sCarrera = inputCarrera.value;
     sCurso = inputCurso.value;
     sPeriodo = inputPeriodo.value;
-    sGrupo = inputGrupo.value;
     sNombre = inputNombre.value;
     sEstado = inputEstado.value;
     sIdCurso = inputIdSolicitud.value;
 
-    aInfoSolicitud.push(sIdCurso, sProfesor, sCarrera, sCurso, sPeriodo, sGrupo, sNombre, sEstado);
+    aInfoSolicitud.push(sIdCurso, sProfesor, sCarrera, sCurso, sPeriodo, sNombre, sEstado);
 
     bError = validarSolicitudes();
     if (bError == true) {
@@ -251,7 +237,6 @@ function validarSolicitudes() {
     let regexCodigo = /^[a-zA-Z0-9/-]+$/;
     sProfesor = inputProfesor.value;
     sPeriodo = inputPeriodo.value;
-    sGrupo = inputGrupo.value;
     sNombre = inputNombre.value;
 
     for (let i = 0; i <= arregloInputs.length; i++) {
@@ -287,12 +272,6 @@ function validarSolicitudes() {
     } else {
         inputPeriodo.classList.remove('errorInput');
     }
-    if (regexCodigo.test(sGrupo) == false) {
-        bError = true;
-        inputGrupo.classList.add('errorInput');
-    } else {
-        inputGrupo.classList.remove('errorInput');
-    }
     if (regexSoloLetras.test(sNombre) == false) {
         bError = true;
         inputNombre.classList.add('errorInput');
@@ -316,6 +295,7 @@ function mostrarCarrera() {
         selectCarrera.appendChild(nuevaOpcion);
     }
 };
+// ;
 function mostrarCurso() {
     let listaCursos = obtenerCursos();
     let selectCurso = document.querySelector('#sltCurso');
@@ -334,22 +314,145 @@ function mostrarPeriodos() {
         selectPeriodo.appendChild(nuevaOpcion);
     }
 };
-function mostrarGrupos() {
-    let listaGrupos = obtenerListaGrupos();
-    let selectGrupo = document.querySelector('#sltGrupo');
-    for (let i = 0; i < listaGrupos.length; i++) {
-        let nuevaOpcion = new Option(listaGrupos[i]['curso_grupo']);
-        nuevaOpcion.value = listaGrupos[i]['curso_grupo'];
-        selectGrupo.appendChild(nuevaOpcion);
+/////Listar
+mostrarListaSolicitudes();
+
+let inputBuscar = document.querySelector('#txtBusqueda');
+let listaSolicitudes = obtenerSolicitud();
+inputBuscar.addEventListener('keyup', function () {
+
+    mostrarListaSolicitudes(inputBuscar.value);
+});
+
+function mostrarListaSolicitudes(pFiltro) {
+    let listaSolicitudes = obtenerSolicitud();
+    // let listaPostulantes = obtenerPostulante();
+    let tbody = document.querySelector('section table tbody');
+    if (!pFiltro) {
+        pFiltro = '';
+    }
+    tbody.innerHTML = '';
+    for (let i = 0; i < listaSolicitudes.length; i++) {
+        if (listaSolicitudes[i]['profesor_solicitud'].toLowerCase().includes(pFiltro.toLowerCase()) ||
+        listaSolicitudes[i]['nombre_solicitud'].toLowerCase().includes(pFiltro.toLowerCase())) {
+            let fila = tbody.insertRow();
+
+            let cProfesor_solicitud = fila.insertCell();
+            let cCarrera_solicitud = fila.insertCell();
+            let cCurso_solicitud = fila.insertCell();
+            let cPeriodo_solicitud = fila.insertCell();
+            let cNombre_solicitud = fila.insertCell();
+            let cEstado_solicitud = fila.insertCell();
+            
+            let celdaOpciones = fila.insertCell();
+
+            cProfesor_solicitud.innerHTML = listaSolicitudes[i]['profesor_solicitud'],
+            cCarrera_solicitud.innerHTML = listaSolicitudes[i]['carrera_solicitud'],
+            cCurso_solicitud.innerHTML = listaSolicitudes[i]['curso_solicitud']
+            cPeriodo_solicitud.innerHTML = listaSolicitudes[i]['periodo_solicitud'],
+            cNombre_solicitud.innerHTML = listaSolicitudes[i]['nombre_solicitud'],
+            cEstado_solicitud.innerHTML = listaSolicitudes[i]['estado_solicitud']
+
+            // boton  editar
+            let botonEditar = document.createElement('span');
+            botonEditar.href = '#'// path del html editar lab
+            botonEditar.classList.add('fas');
+            botonEditar.classList.add('fa-cogs');
+
+            botonEditar.dataset._id = listaSolicitudes[i]['_id'];
+
+            botonEditar.addEventListener('click', buscar_por_solicitud_id);
+            if(listaSolicitudes[i]['estado_solicitud'].toLowerCase() == 'Pendiente de Decanatura'.toLowerCase()){
+                botonEditar.addEventListener('click', function () {
+                    popup = document.querySelector('#sct_modificar');
+                    popup.style.display = "block";
+                    let titulo;
+                    titulo = document.getElementById('h1');
+                    titulo.innerHTML = 'Modificar solicitud';
+                });
+            }else{
+                botonEditar.addEventListener('click', function () {
+                    popup = document.querySelector('#sct_registrar');
+                    popup.style.display = "block";
+                    let titulo;
+                    titulo = document.getElementById('h1');
+                    titulo.innerHTML = 'Modificar solicitud';
+                });
+            }
+
+            celdaOpciones.appendChild(botonEditar);
+
+
+            // boton eliminar
+            let botonEliminar = document.createElement('span');
+            botonEliminar.href = '#'//evento  eliminar lab
+            botonEliminar.classList.add('fas');
+            botonEliminar.classList.add('fa-trash-alt');
+
+
+            botonEliminar.dataset._id = listaSolicitudes[i]['_id'];
+
+            botonEliminar.addEventListener('click', remover_solicitud);
+
+            celdaOpciones.appendChild(botonEliminar);
+
+            celdaOpciones.appendChild(botonEliminar);
+
+            // Icono de editar: <i class="fas fa-cogs"></i>
+            // Icono de eliminar: <i class="fas fa-trash-alt"></i>
+        }
     }
 };
+
+function buscar_por_solicitud_id() {
+
+    let _id = this.dataset._id;
+
+    botonRegistrar.hidden = true;
+    botonActualizar.hidden = false;
+    let listaSolicitudes = buscar_solicitud_id(_id);
+
+    inputProfesor.value = listaSolicitudes['profesor_solicitud'],
+    inputCarrera.value = listaSolicitudes['carrera_solicitud'],
+    inputCurso.value = listaSolicitudes['curso_solicitud'];
+    inputPeriodo.value = listaSolicitudes['periodo_solicitud'],
+    inputNombre.value = listaSolicitudes['nombre_solicitud'],
+    inputEstado.value = listaSolicitudes['estado_solicitud'],
+    inputIdSolicitud.value = listaSolicitudes['_id']
+};
+
+////////////ELIMINAR
+function remover_solicitud() {
+    let _id = this.dataset._id;
+    swal({
+        title: 'Está seguro?',
+        text: "El curso se eliminará permanentemente",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Eliminar!'
+    }).then((result) => {
+        if (result.value) {
+            eliminarSolicitud(_id);
+            listaSolicitudes = obtenerSolicitud();
+            mostrarListaSolicitudes();
+            swal(
+                'Eliminado!',
+                'La solicitud ha sido eliminado con éxito',
+                'success'
+            )
+        }
+    });
+
+};
+
 function limpiarFormulario() {
 
     inputProfesor.value = '';
     inputCarrera.value = '';
     inputCurso.value = '';
     inputPeriodo.value = '';
-    inputGrupo.value = '';
     inputNombre.value = '';
     inputEstado.value = '';
 };

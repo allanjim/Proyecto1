@@ -11,7 +11,8 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
         crossorigin="anonymous">
     <link rel="stylesheet" href="../../css/dashboard.css">
-    <link rel="stylesheet" href="../../css/registrar.css">
+    <link rel="stylesheet" href="../../css/formulario.css"> 
+    <link rel="shortcut icon" href="../../img/cenfotec.ico">
     <!-- Si otra hoja de estilos se necesita, se agrega aqui -->
 
 </head>
@@ -69,20 +70,18 @@
                 <img class="x-align" src="../../img/logo.png" alt="Logo de Cenfotec">
             </div>
             <a class="side-agregar" id="btnAgregar">
-                <h1>Agregar</h1>
-                <span class="fas fa-plus"></span>
+
             </a>
         </section>
         <section id="sct_main_content">
             <!-- Como ejemplo los datos estan quemados -->
-            <table id="tblSolicitud" class="scroll">
+            <table id="tblPostulante" class="scroll">
                 <thead>
                     <tr>
                         <th>Profesor</th>
                         <th>Carrera</th>
                         <th>Curso</th>
                         <th>Período</th>
-                        <th>Grupo</th>
                         <th>Nombre del postulante</th>
                         <th>Estado</th>
                         <th>Opciones</th>
@@ -95,7 +94,7 @@
         </section>
         <section id="sct_registrar" class="popup-bg">
             <!-- Formulario que aparece -->
-            <form class="popup-content">
+            <form class="popup-content" id = "form_registrar">
                 <h1 class="title" id="h1">Registrar solicitud</h1>
 
                 <div class="form">
@@ -117,13 +116,24 @@
                         <option value="">Seleccione el período</option>
                     </select>
 
-                    <select id="sltGrupo">
-                        <option value="">Seleccione el grupo a asistir</option>
+                    <select id="sltEstado" >
+                        <option value="Pendiente de Decanatura">Pendiente de Decanatura</option>
                     </select>
 
-                    <select id="sltEstado" >
-                        <option value="Pendiente de rectoría">Pendiente de Decanatura</option>
-                    </select>
+                    <button type="button" class="button" id="btn_Actualizar">Actualizar</button>
+                    <button type="button" class="button" id="btn_Registrar">Registrar</button>
+                </div>
+            </form>
+            <!-- Formulario que aparece -->
+        </section>
+
+        <section id="sct_modificar" class="popup-bg">
+            <!-- Formulario que aparece -->
+            <form class="popup-content">
+                <h1 class="title" id="h1">Modificar solicitud</h1>
+
+                <div class="form">
+                    <input type="hidden" id="txtIdPostulante">
                     
                     <input type="text" id="txtCedula"  placeholder = "Cedúla del postulante" required>
 
@@ -133,14 +143,14 @@
 
                     <input type="text" id="txtDireccion" placeholder =  "Dirección del postulante" required>
 
-                    <select id="sltCarrera">
+                    <select id="sltCarrera_Postulante" required>
                         <option value="">Seleccione la carrera que cursa el postulante</option>
                     </select>
 
-                    <input type="date" id="txtFecha_ingreso">
+                    <input type="date" id="txtFecha_ingreso" required>
 
-                    <button type="button" class="button" id="btn_Actualizar">Actualizar</button>
-                    <button type="button" class="button" id="btn_Registrar">Registrar</button>
+                    <button type="button" class="button" id="btn_ActualizarPostulante">Actualizar</button>
+                    <button type="button" class="button" id="btn_RegistrarPostulante">Registrar</button>
                 </div>
             </form>
             <!-- Formulario que aparece -->
@@ -155,6 +165,7 @@
 
     <!-- Todos los servicios necesarios -->
     <script src="../../js/solicitud_public/servicio_solicitud.js"></script>
+    <script src="../../js/postulantes_public/servicio_postulantes.js"></script>
     <script src="../../js/cursos_public/servicio_cursos.js"></script>
     <script src="../../js/carreras_public/servicio_carreras.js"></script>
     <script src="../../js/periodos_public/servicio_periodos.js"></script>

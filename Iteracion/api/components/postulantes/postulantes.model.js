@@ -2,13 +2,7 @@
 let mongoose = require('mongoose');
 
 let postulanteSchema = new mongoose.Schema({
-    profesor_postulante : {type : String, required : true},
-    carrera_postulante : {type : String, required : true},
-    curso_postulante : {type : String, required : true},
-    periodo_postulante : {type : String, required : true},
-    grupo_postulante : {type : String, required : true},
-    nombre_postulante : {type : String, required : true},
-    estado_postulante : {type : String},
+    
     cedula_postulante: { type: Number, required: true },
     fecha_ingreso_postulante: { type: String, required: true },
     correo_postulante: { type: String, required: true },

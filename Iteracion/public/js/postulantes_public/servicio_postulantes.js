@@ -16,6 +16,7 @@ function registrarPostulante(paInfoSolicitud){
             direccion_postulante : paInfoSolicitud[3],
             carrera_postulante : paInfoSolicitud[4],
             fecha_ingreso_postulante : paInfoSolicitud[5],
+            solicitud_id : paInfoSolicitud [6]
 
         }
       });

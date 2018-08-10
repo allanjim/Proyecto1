@@ -14,9 +14,8 @@ function registrarSolicitud(paInfoSolicitud){
             carrera_solicitud : paInfoSolicitud[1],
             curso_solicitud : paInfoSolicitud[2],
             periodo_solicitud : paInfoSolicitud[3],
-            grupo_solicitud : paInfoSolicitud[4],
-            nombre_solicitud : paInfoSolicitud[5],
-            estado_solicitud : paInfoSolicitud[7]
+            nombre_solicitud : paInfoSolicitud[4],
+            estado_solicitud : paInfoSolicitud[5]
         }
       });
     
@@ -93,9 +92,8 @@ function actualizarSolicitud (paInfoSolicitud){
             carrera_solicitud : paInfoSolicitud[2],
             curso_solicitud : paInfoSolicitud[3],
             periodo_solicitud : paInfoSolicitud[4],
-            grupo_solicitud : paInfoSolicitud[5],
-            nombre_solicitud : paInfoSolicitud[6],
-            estado_solicitud : paInfoSolicitud[7]
+            nombre_solicitud : paInfoSolicitud[5],
+            estado_solicitud : paInfoSolicitud[6]
         }
       });
     

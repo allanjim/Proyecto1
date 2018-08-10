@@ -70,7 +70,7 @@ const periodos = require('./components/periodos/periodos.route');
 const solicitud = require('./components/solicitud/solicitud.route');
 const carreras = require('./components/carreras/carreras.route');
 const usuarios = require('./components/users/users.route');
-
+const postulantes = require('./components/postulantes/postulantes.route')
 
 /**
  * Le indicamos que le de acceso externo a las rutas inicializadas
@@ -83,6 +83,7 @@ app.use('/api', periodos);
 app.use('/api', solicitud);
 app.use('/api', usuarios);
 app.use('/api', carreras);
+app.use('/api', postulantes);
 
 
 

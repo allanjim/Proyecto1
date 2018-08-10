@@ -1,16 +1,16 @@
 'use strict';
 
 const solicitudModel = require('./solicitud.model');
+let nuevoSolicitud;
 
 module.exports.registrar = function(req, res) {
    
-    let nuevoSolicitud = new solicitudModel({
+    nuevoSolicitud = new solicitudModel({
         
        profesor_solicitud : req.body.profesor_solicitud,
-       carrera_solicitud : req.body.profesor_solicitud,
+       carrera_solicitud : req.body.carrera_solicitud,
        curso_solicitud : req.body.curso_solicitud,
        periodo_solicitud : req.body.periodo_solicitud,
-       grupo_solicitud : req.body.grupo_solicitud,
        nombre_solicitud : req.body.nombre_solicitud,
        estado_solicitud : req.body.estado_solicitud
     });
@@ -22,9 +22,10 @@ module.exports.registrar = function(req, res) {
             res.json({success : true, msg: 'La solicitud se registró con éxito'}); 
         }
     });
+    return nuevoSolicitud;
 };
 module.exports.listar = function(req , res){
-    solicitudModel.find().sort({titulo: 'asc'}).then(
+    solicitudModel.find().sort({ nombre_solicitud: 'asc' }).then(
         function(solicitudes){
             res.send(solicitudes);
         }

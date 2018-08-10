@@ -32,4 +32,9 @@ router.route('/periodo_activo')
     .post(function (req, res) {
         cursosApi.periodo_activo(req, res);
     });
+
+router.route('/agregar_requisito')
+    .post(function (req, res) {
+        cursosApi.agregar_requisito_curso(req, res);
+    });
 module.exports = router;

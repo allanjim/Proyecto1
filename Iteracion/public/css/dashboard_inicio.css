@@ -168,6 +168,7 @@ header nav img{
     display: grid;
     grid-template-columns: 2fr 1fr;
     align-items: center;
+    height: 150px;
 }
 .side-agregar h1{
     font-size: 1.6em;

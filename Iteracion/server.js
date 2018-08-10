@@ -7,8 +7,8 @@ const nodemon = require('nodemon');
 connect().use(serveStatic(__dirname)).listen(port, () =>
 {
     console.log('El servidor esta levantado dentro del puerto ' + port);
-    nodemon({
+     nodemon({
         script: 'api/index.js',
-        ext: 'js'
-    });
+         ext: 'js'
+     });
 });

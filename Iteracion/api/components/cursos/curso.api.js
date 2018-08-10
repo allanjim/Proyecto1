@@ -9,7 +9,7 @@ module.exports.registrar = function (req, res) {
         nombre_curso: req.body.nombre_curso,
         codigo_curso: req.body.codigo_curso,
         creditos_curso: req.body.creditos_curso,
-        estado_curso : req.body.estado_curso,
+        estado_curso: req.body.estado_curso,
         costo_curso: req.body.costo_curso
     })
 
@@ -22,7 +22,7 @@ module.exports.registrar = function (req, res) {
     });
 };
 module.exports.listar = function (req, res) {
-    cursoModel.find().sort({ titulo: 'asc' }).then(
+    cursoModel.find().sort({ nombre_curso: 'asc' }).then(
         function (cursos) {
             res.send(cursos);
         }
@@ -40,8 +40,10 @@ module.exports.modificar_curso = function (req, res) {
     cursoModel.findByIdAndUpdate(req.body._id, { $set: req.body },
         function (err) {
             if (err) {
-                res.json({ success: false, msg: 'El curso no se ha podido modificar. ' 
-                + err });
+                res.json({
+                    success: false, msg: 'El curso no se ha podido modificar. '
+                        + err
+                });
 
             } else {
                 res.json({ success: true, msg: 'Se ha actualizado correctamente. ' + res });
@@ -72,3 +74,28 @@ module.exports.periodo_activo = function (req, res) {
             }
         })
 };
+
+module.exports.agregar_requisito_curso = function (req, res) {
+
+    cursoModel.update(
+        { _id: req.body.id_curso },
+        {
+            $push : {
+                'requisitos_curso' : {
+                    nombre_curso: req.body.nombre_curso,
+                    codigo_curso: req.body.codigo_curso
+                }
+            }
+        },
+        function (error) {
+            if (error) {
+                res.json({ success: false, msg: 'No se pudo registrar el requisito del curso, ocurrió el siguiente error' + error });
+            } else {
+                res.json({ success: true, msg: 'El requisito se registró con éxito' });
+            }
+
+        }
+    )
+
+}
+

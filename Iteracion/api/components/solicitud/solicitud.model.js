@@ -8,7 +8,6 @@ let solicitudSchema = new mongoose.Schema({
     carrera_solicitud : {type : String, required : true},
     curso_solicitud : {type : String, required : true},
     periodo_solicitud : {type : String, required : true},
-    grupo_solicitud : {type : String, required : true},
     nombre_solicitud : {type : String, required : true},
     estado_solicitud : {type : String}
 });

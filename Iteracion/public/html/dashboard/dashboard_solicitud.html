@@ -11,7 +11,8 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
         crossorigin="anonymous">
     <link rel="stylesheet" href="../../css/dashboard.css">
-    <link rel="stylesheet" href="../../css/registrar.css">
+    <link rel="stylesheet" href="../../css/formulario.css">
+    <link rel="shortcut icon" href="../../img/cenfotec.ico">
     <!-- Si otra hoja de estilos se necesita, se agrega aqui -->
 
 </head>
@@ -82,7 +83,6 @@
                         <th>Carrera</th>
                         <th>Curso</th>
                         <th>Período</th>
-                        <th>Grupo</th>
                         <th>Nombre del postulante</th>
                         <th>Estado</th>
                         <th>Opciones</th>
@@ -95,36 +95,36 @@
         </section>
         <section id="sct_registrar" class="popup-bg">
             <!-- Formulario que aparece -->
-            <form class="popup-content scroll">
+            <form id="sct_registrar_solicitud" class="popup-content scroll">
                 <h1 class="title" id="h1">Registrar solicitud</h1>
 
                 <div class="form">
 
-                        <input type="hidden" id="txtId">
-                        
-                        <input type="text" id="txtProfesor" placeholder="Nombre completo del profesor*" required>
-    
-                        <input type="text" id="txtNombre" placeholder="Nombre completo del postulante*" required>
+                    <input type="hidden" id="txtId">
 
-                        <select id="sltCarrera">
-                            <option value="">Seleccione la carrera</option>
-                        </select>
+                    <label for="txtProfesor">Profesor solicitante:</label>
+                    <input type="text" id="txtProfesor" placeholder="Nombre completo del profesor*" required>
 
-                        <select id="sltCurso">
-                            <option value="">Seleccione el curso a asistir</option>
-                        </select>
-    
-                        <select id="sltPeriodo">
-                            <option value="">Seleccione el período</option>
-                        </select>
+                    <input type="text" id="txtNombre" placeholder="Nombre completo del postulante*" required>
 
-                        <select id="sltGrupo">
-                            <option value="">Seleccione el grupo a asistir</option>
-                        </select>
+                    <select id="sltCarrera">
+                        <option value="">Seleccione la carrera</option>
+                    </select>
 
-                        <select id="sltEstado" >
-                            <option value="Pendiente de rectoría">Pendiente de Decanatura</option>
+                    <select id="sltCurso">
+                        <option value="">Seleccione el curso a asistir</option>
+                    </select>
+
+                    <select id="sltPeriodo">
+                        <option value="">Seleccione el período</option>
+                    </select>
+
+                    <div hidden>
+                        <select id="sltEstado">
+                            <option value="Pendiente de Decanatura">Pendiente de Decanatura</option>
                         </select>
+                    </div>
+
 
                     <button type="button" class="button" id="btn_Actualizar">Actualizar</button>
                     <button type="button" class="button" id="btn_Registrar">Registrar</button>

@@ -11,7 +11,8 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
         crossorigin="anonymous">
     <link rel="stylesheet" href="../../css/dashboard.css">
-    <link rel="stylesheet" href="../../css/registrar.css">
+    <link rel="stylesheet" href="../../css/formulario.css">
+    <link rel="shortcut icon" href="../../img/cenfotec.ico">
     <!-- Si otra hoja de estilos se necesita, se agrega aqui -->
 
 </head>
@@ -93,21 +94,26 @@
         </section>
         <section id="sct_registrar" class="popup-bg">
             <!-- Formulario que aparece -->
-            <form class="popup-content">
+            <form id = "sct_registrar_curso" class="popup-content">
                 <h1 class="title" id="h1">Registrar cursos</h1>
 
                 <div class="form">
 
                     <input type="hidden" id="txtId">
 
-                    <input type="text" id="txtNombreCurso" placeholder="Nombre del curso*" required>
+                    <label for="txtNombreCurso">Nombre del curso:</label>
+                    <input type="text" id="txtNombreCurso" placeholder="Ejemplo : Procedimientos de Programación" required>
 
-                    <input type="text" id="txtCodigoCurso" placeholder="Código del curso*" required>
+                    <label for="txtCodigoCurso">Código del curso:</label>
+                    <input type="text" id="txtCodigoCurso" placeholder="Ejemplo : BISOFT-45" required>
 
-                    <input type="number" id="numCreditosCurso" min="0" max="10" placeholder="Créditos del curso*" required>
+                    <label for="numCreditosCurso">Créditos del curso:</label>
+                    <input type="number" id="numCreditosCurso" min="0" max="10" placeholder="Ejemplo : 7" required>
 
-                    <input type="number" id="numCostoCurso" min="0" max="500000" placeholder="Costo del curso*" required>
+                    <label for="numCostoCurso">Costo de curso:</label>
+                    <input type="number" id="numCostoCurso" min="0" max="500000" placeholder="Ejemplo : 150000 " required>
 
+                    <label for="sltEstado">Estado del curso:</label>
                     <select id="sltEstado">
                         <option value="">Elija el estado del curso</option>
                         <option value="Habilitado">Habilitado</option>
@@ -122,17 +128,13 @@
 
         <section id="sct_asociar" class="popup-bg">
             <!-- Formulario que aparece -->
-            <form class="popup-content">
-                <h1 class="title">Asociar cursos a carreras</h1>
+            <form id = "sct_asociar_requisitos" class="popup-content">
+                <h1 class="title">Asocie los requisitos del curso</h1>
 
                 <div class="form">
-                    <select id="sltCurso">
-                        <option value="">Seleccione el curso a asociar</option>
-                    </select>
-
-                    <select id="sltCarrera">
-                        <option value="">Seleccione la carrera</option>
-                    </select>
+                    <label for="txtRequsitoAsociar">Asocie los requisitos del curso</label>
+                    <div class="asociar" id="divRequisitoAsociar">
+                    </div>
                     <button type="button" class="button" id="btnAsociar">Asociar</button>
                 </div>
             </form>
@@ -148,6 +150,7 @@
     <!-- Todos los servicios necesarios -->
     <script src="../../js/carreras_public/servicio_carreras.js"></script>
     <script src="../../js/cursos_public/servicio_cursos.js"></script>
+    <script src="../../js/periodos_public/servicio_periodos.js"></script>
     <!-- Todos los servicios necesarios -->
 
     <!-- Todos los controladores necesarios -->

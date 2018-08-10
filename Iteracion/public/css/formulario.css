@@ -20,7 +20,6 @@ input, select {
 .popup-content {
     background-color: #e6e3ea;
     width: 400px;
-    height: auto;
     margin: 0px auto;
     padding: 30px;
     border-radius: 5px;
@@ -28,7 +27,18 @@ input, select {
     top: 50%;
     transform: translateY(-50%);
 }
-
+#sct_registrar_curso{
+    height: 420px;
+}
+#sct_asociar_requisitos{
+    height: 270px;
+}
+#sct_registrar_solicitud{
+    height: 310px;
+}
+#form_registrar{
+    height: 370px;
+}
 .popup-content h1 {
     text-align: center;
     color: rgba(30, 33, 66, 0.8);

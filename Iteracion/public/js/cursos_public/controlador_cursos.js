@@ -1,8 +1,7 @@
 'use strict';
 
 mostrarListaCursos();
-mostrarCursosAsociar();
-mostrarCarrerasAsociar();
+mostrarRequisitosAsociar();
 
 let inputBuscar = document.querySelector('#txtBusqueda');
 let listaCursos = obtenerCursos();
@@ -15,6 +14,7 @@ inputBuscar.addEventListener('keyup', function () {
 function mostrarListaCursos(pFiltro) {
     debugger;
     let listaCursos = obtenerCursos();
+    let listaCarreras = obtenerListaCarreras();
 
     if (!pFiltro) {
         pFiltro = '';
@@ -77,8 +77,11 @@ function mostrarListaCursos(pFiltro) {
             botonAsociar.classList.add('fa-link');
 
             botonAsociar.addEventListener('click', function () {
-                popup = document.querySelector('#sct_asociar');
-                popup.style.display = "block";
+                ppAsociar.style.display = "block";
+                ppAsociar.dataset.nombre_carrera = listaCarreras[i]['nombre_carrera'];
+                ppAsociar.dataset.codigo_carrera = listaCarreras[i]['codigo_carrera'];
+                ppAsociar.dataset._id = listaCarreras[i]['_id'];
+                btnAsociar.dataset._id = botonAsociar.dataset._id;
             });
 
             celdaOpciones.appendChild(botonAsociar);
@@ -94,10 +97,13 @@ function mostrarListaCursos(pFiltro) {
 ///////////////////Registrar
 const botonRegistrar = document.querySelector('#btn_Registrar');
 const botonActualizar = document.querySelector('#btn_Actualizar');
+const botonAsociar = document.querySelector('#btnAsociar');
+
 let popup;
 botonActualizar.hidden = true;
 
 botonRegistrar.addEventListener('click', obtenerDatosCursos);
+botonAsociar.addEventListener('click', obtenerDatosAsociar)
 botonActualizar.addEventListener('click', obtenerCursosActualizar);
 
 const inputNombreCurso = document.querySelector('#txtNombreCurso');
@@ -258,8 +264,6 @@ function limpiarFormulario() {
     inputCreditosCurso.value = '';
     inputCostoCurso.value = '';
     selectEstado.value = '';
-    select_carrera.value = '';
-    select_curso.value = '';
     inputIdCurso.value = '';
 };
 
@@ -303,40 +307,38 @@ function remover_curso() {
 
 };
 ///////////// Asociar cursos a carreras
-const select_curso = document.querySelector('#sltCurso');
-const select_carrera = document.querySelector('#sltCarrera');
-const botonAsocie = document.querySelector('#btnAsociar')
-botonAsocie.addEventListener('click', obtenerDatosAsociar);
 
-function obtenerDatosAsociar(){
-    let bError = false;
-    debugger;
+function obtenerDatosAsociar() {
 
-    let curso = select_curso.value;
-    let carrera = select_carrera.value;
+    let requisitosElegidos = document.querySelectorAll('#divRequisitoAsociar input[type=checkbox]:checked');
+    let divRequisitoAsociar = document.querySelector('#divRequisitoAsociar');
 
-    bError = validarDatosAsociar();
-    if (bError == true) {
+    let nombre_curso = ppAsociar.dataset.nombre_curso;
+    let codigo_curso = ppAsociar.dataset.codigo_curso;
+    let id_curso = ppAsociar.dataset._id;
+
+
+    if (requisitosElegidos.length > 0) {
+
+        if (requisitosElegidos.length > 0) {
+            for (let i = 0; i < requisitosElegidos.length; i++) {
+                let infoCurso = getInfoCurso(requisitosElegidos[i].id);
+                agregarRequisitoCurso(id_curso, infoCurso['nombre_curso'], infoCurso['codigo_curso']);
+            }
+        }
         swal({
-            title: 'Asociación incorrecta',
-            text: 'No se pudo hacer la asociación, verifique que completó correctamente la información que se le solicita',
-            type: 'warning',
-            confirmButtonText: 'Entendido'
-        });
-    } else {
-        swal({
-            title: 'Asociación correcto',
-            text: 'Asociación se completó de manera correcta.',
+            title: 'Asociación correcta',
+            text: 'La información se asoció correctamente',
             type: 'success',
             confirmButtonText: 'Entendido'
         });
         $('.swal2-confirm').click(function () {
-            clean();
             reload();
         });
-        agregarCurso(curso, carrera);
+    } else {
+        ppAsociar.style.display = "none";
     }
-        limpiarFormulario();
+    limpiarFormulario();
 };
 
 function validarDatosAsociar() {
@@ -359,28 +361,35 @@ function validarDatosAsociar() {
 
     return bError;
 };
-
-//funcion que llama los cursos
-function mostrarCursosAsociar() {
-    let listaCursos = obtenerCursos();
-    let selectCurso = document.querySelector('#sltCurso');
-
-    for (let i = 0; i < listaCursos.length; i++) {
-        let nuevaOpcion = new Option(listaCursos[i]['nombre_curso']);
-        nuevaOpcion.value = listaCursos[i]['_id'];
-        selectCurso.appendChild(nuevaOpcion);
+function getInfoCurso(pCursoNombre) {
+    let listaCurso = obtenerCursos();
+    let informacionCurso = "";
+    for (let i = 0; i < listaCurso.length; i++) {
+        if (listaCurso[i]['nombre_curso'] == pCursoNombre) {
+            let cursoId = listaCurso[i]['_id'];
+            informacionCurso = buscar_curso_id(cursoId);
+        }
     }
-
+    return informacionCurso;
 };
-//funcion que llama las carreras
-function mostrarCarrerasAsociar() {
-    let listaCarreras = obtenerListaCarreras();
-    let selectCarrera = document.querySelector('#sltCarrera');
+//funcion que llama los cursos
+function mostrarRequisitosAsociar() {
+    let divRequisitoAsociar = document.querySelector('#divRequisitoAsociar');
+    let listaCursos = obtenerCursos();
+    for (let i = 0; i < listaCursos.length; i++) {
 
-    for (let i = 0; i < listaCarreras.length; i++) {
-        let nuevaOpcion = new Option(listaCarreras[i]['nombre_carrera']);
-        nuevaOpcion.value = listaCarreras[i]['_id'];
-        selectCarrera.appendChild(nuevaOpcion);
+        let newInput = document.createElement('input');
+        newInput.type = 'checkbox';
+        newInput.id = listaCursos[i]['nombre_curso'];
+
+        let newLabel = document.createElement('label');
+        newLabel.htmlFor = newInput.id;
+        let newSpan = document.createElement('span');
+        newSpan.textContent = listaCursos[i]['nombre_curso'];
+
+        divRequisitoAsociar.appendChild(newInput);
+        divRequisitoAsociar.appendChild(newLabel);
+        newLabel.appendChild(newSpan);
     }
 
 };
@@ -397,12 +406,25 @@ botonAgregar.addEventListener('click', function () {
     titulo.innerHTML = 'Registrar cursos';
 });
 
+let ppRegistrar = document.querySelector('#sct_registrar');
+let ppAsociar = document.querySelector('#sct_asociar');
+let ppActualizar = document.querySelector('#sct_modificar');
+let ppCursosAsociados = document.querySelector('#sct_cursos_asociados');
+
+botonAgregar.addEventListener('click', function () {
+    ppRegistrar.style.display = "block";
+});
 // Esto es para que se salga del formulario si toca fuera del contenido
 window.onclick = function (event) {
-    if (event.target == popup) {
-        popup.style.display = "none";
-        botonRegistrar.hidden = false;
-        botonActualizar.hidden = true;
+    if (event.target == ppRegistrar) {
+        ppRegistrar.style.display = "none";
+        limpiarFormulario();
+    }
+    if (event.target == ppAsociar) {
+        ppAsociar.style.display = "none";
+    }
+    if (event.target == ppActualizar) {
+        ppActualizar.style.display = "none";
         limpiarFormulario();
     }
 }
@@ -412,5 +434,8 @@ function clean() {
 }
 function reload() {
     location.reload();
+    ppRegistrar.style.display = "none";
+    ppAsociar.style.display = "none";
+    ppActualizar.style.display = "none";
 }
 // Esto es para que despliegue el formulario

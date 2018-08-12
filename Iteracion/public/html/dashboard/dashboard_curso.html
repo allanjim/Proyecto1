@@ -26,25 +26,28 @@
             <a href="../landing_page.html">Inicio</a>
             <a href="#">Perfil</a>
             <div>
+                <a id="btnBeca">Beca
+                    <span class="fas fa-caret-down"></span>
+                </a>
+                <!-- Agregar esta parte nueva y cambiar el controlador menu -->
+                <ul id="menuBeca" class="menu">
+
+                </ul>
+            </div>
+            <div>
+                <a id="btnReportes">Reportes
+                    <span class="fas fa-caret-down"></span>
+                </a>
+                <ul id="menuReportes" class="menu">
+
+                </ul>
+            </div>
+            <div id="divOpciones">
                 <a id="btnOpciones">Opciones
                     <span class="fas fa-caret-down"></span>
                 </a>
                 <ul id="menuOpciones" class="menu">
-                    <li>
-                        <a href="#">Carreras</a>
-                    </li>
-                    <li>
-                        <a href="#">Períodos</a>
-                    </li>
-                    <li>
-                        <a href="#">Grupos</a>
-                    </li>
-                    <li>
-                        <a href="#">Sedes</a>
-                    </li>
-                    <li>
-                        <a href="#">Laboratorios</a>
-                    </li>
+
                 </ul>
             </div>
             <a id="btnCerrarSesion">Cerrar sesión</a>
@@ -83,6 +86,7 @@
                         <th>Código</th>
                         <th>Creditos</th>
                         <th>Costo</th>
+                        <th>Requisitos</th>
                         <th>Estado</th>
                         <th>Opciones</th>
                     </tr>
@@ -94,7 +98,7 @@
         </section>
         <section id="sct_registrar" class="popup-bg">
             <!-- Formulario que aparece -->
-            <form id = "sct_registrar_curso" class="popup-content">
+            <form id="sct_registrar_curso" class="popup-content">
                 <h1 class="title" id="h1">Registrar cursos</h1>
 
                 <div class="form">
@@ -128,7 +132,7 @@
 
         <section id="sct_asociar" class="popup-bg">
             <!-- Formulario que aparece -->
-            <form id = "sct_asociar_requisitos" class="popup-content">
+            <form id="sct_asociar_requisitos" class="popup-content">
                 <h1 class="title">Asocie los requisitos del curso</h1>
 
                 <div class="form">
@@ -139,6 +143,37 @@
                 </div>
             </form>
             <!-- Formulario que aparece -->
+        </section>
+
+        <section id="sct_cursos_requisitos" class="popup-bg">
+            <div class="popup-content">
+                <h1 class="title">Requisitos del curso</h1>
+                <div id="div_tabla_cursos">
+                    <table id="tblRequisitos">
+                        <thead>
+                            <th>Nombre del curso</th>
+                            <th>Código del curso</th>
+                        </thead>
+                        <tbody>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Todos deben tener esta seccion de perfil -->
+        <section id="sct_perfil" class="popup-bg">
+            <div class="popup-content">
+                <h1 id="nombrePerfil"></h1>
+                <div class="perfil">
+                    <div id="img">
+                    </div>
+                    <div class="perfil-info">
+
+                    </div>
+                </div>
+            </div>
         </section>
     </main>
     <!-- SCRIPTS FIJOS PARA TODOS Dashboards -->

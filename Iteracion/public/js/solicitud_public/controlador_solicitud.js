@@ -4,19 +4,24 @@
 mostrarCurso();
 mostrarPeriodos();
 mostrarCarrera();
-// mostrarCarreraPostulante();
+mostrarCarreraPostulante();
 
 const botonRegistrar = document.querySelector('#btn_Registrar');
 const botonActualizar = document.querySelector('#btn_Actualizar');
 const botonActualizarPostulante = document.querySelector('#btn_RegistrarPostulante');
+let rol = localStorage.getItem('rolUsuario');
 botonActualizar.hidden = true;
 
 botonRegistrar.addEventListener('click', obtenerDatos);
 botonActualizar.addEventListener('click', obtenerSolicitudActualizar);
-// botonActualizarPostulante.addEventListener('click', obtenerDatosPostulante);
+
+if(rol.toLowerCase() == 'Administrador'.toLowerCase()){
+    botonActualizarPostulante.addEventListener('click', obtenerDatosPostulante);
+};
+
 
 let popup;
-const inputProfesor = document.querySelector('#txtProfesor');
+const inputProfesor = localStorage.getItem('correo_usuario');
 const inputNombre = document.querySelector('#txtNombre');
 const inputCarrera = document.querySelector('#sltCarrera');
 const inputCurso = document.querySelector('#sltCurso');
@@ -48,6 +53,7 @@ let sCarrera_Postulante = '';
 let sFecha_ingreso = '';
 let idSolicitud = '';
 
+
 function obtenerDatos() {
     let bError = false;
     let aInfoSolicitud = [];
@@ -57,9 +63,17 @@ function obtenerDatos() {
     sCurso = inputCurso.value;
     sPeriodo = inputPeriodo.value;
     sNombre = inputNombre.value;
-    debugger;
-    sEstado = inputEstado.value;
-    aInfoSolicitud.push(sProfesor, sCarrera, sCurso, sPeriodo, sNombre, sEstado);
+
+    if (rol.toLowerCase() == 'Administrador'.toLowerCase()) {
+        sProfesor = inputProfesor.value
+    }
+
+    if (rol.toLowerCase() == 'Administrador'.toLowerCase()) {
+        sEstado = 'Pendiente de decanatura'
+    } else {
+        sEstado = inputEstado.value;
+    }
+    aInfoSolicitud.push(inputProfesor, sCarrera, sCurso, sPeriodo, sNombre, sEstado);
 
     bError = validarSolicitudes();
     if (bError == true) {
@@ -87,104 +101,104 @@ function obtenerDatos() {
 
 
 ///////////POSTULANTES A ASISTENTES
-// function obtenerDatosPostulante(){
-//     let bError = false;
-//     let aInfoPostulante = [];
+function obtenerDatosPostulante() {
+    let bError = false;
+    let aInfoPostulante = [];
 
-//     sCedula = inputCedula.value;
-//     sCorreo = inputCorreo.value;
-//     sTelefono = inputTelefono.value;
-//     sDireccion = inputDireccion.value;
-//     sCarrera_Postulante = inputCarrera_postulante.value;
-//     sFecha_ingreso = inputFecha_ingreso.value;
-//     idSolicitud = inputIdSolicitud.value;
+    sCedula = inputCedula.value;
+    sCorreo = inputCorreo.value;
+    sTelefono = inputTelefono.value;
+    sDireccion = inputDireccion.value;
+    sCarrera_Postulante = inputCarrera_postulante.value;
+    sFecha_ingreso = inputFecha_ingreso.value;
+    idSolicitud = inputIdSolicitud.value;
 
-//     aInfoPostulante.push(sCedula, sCorreo, sTelefono, sDireccion, sCarrera_Postulante, sFecha_ingreso, idSolicitud);
+    aInfoPostulante.push(sCedula, sCorreo, sTelefono, sDireccion, sCarrera_Postulante, sFecha_ingreso, idSolicitud);
 
-//     bError = validarPostulantes();
-//     if (bError == true) {
-//         swal({
-//             type: 'error',
-//             title: 'Registro incorrecto',
-//             text: 'Revise los espacios marcados en rojo!',
-//             confirmButtonText: 'Entendido'
-//         })
-//     } else {
-//         registrarPostulante(aInfoPostulante);
-//         swal({
-//             title: 'Registro completado!',
-//             text: 'El registro se ha completado exitosamente!',
-//             type: 'success',
-//             confirmButtonText: 'Entendido'
-//         })
-//         $('.swal2-confirm').click(function () {
-//             clean();
-//             reload();
-//         });
-//         limpiarFormulario();
-//     }
+    bError = validarPostulantes();
+    if (bError == true) {
+        swal({
+            type: 'error',
+            title: 'Registro incorrecto',
+            text: 'Revise los espacios marcados en rojo!',
+            confirmButtonText: 'Entendido'
+        })
+    } else {
+        registrarPostulante(aInfoPostulante);
+        swal({
+            title: 'Registro completado!',
+            text: 'El registro se ha completado exitosamente!',
+            type: 'success',
+            confirmButtonText: 'Entendido'
+        })
+        $('.swal2-confirm').click(function () {
+            clean();
+            reload();
+        });
+        limpiarFormulario();
+    }
 
-// };
-// function validarPostulantes() {
-//     let bError = false;
-//     let arregloInputs = document.querySelector('input:required');
+};
+function validarPostulantes() {
+    let bError = false;
+    let arregloInputs = document.querySelector('input:required');
 
-//     let regexSoloLetras = /^[a-z A-ZáéíóúÁÉÍÓÚñÑ]+$/;
-//     let regexSoloNumeros = /^[0-9-]+$/;
-//     let regexCodigo = /^[a-zA-Z0-9/-]+$/;
-//     let regexEmail = /^[a-zA-Z0-9._]+@ucenfotec.ac.cr+$/;
-
-
-//     sCedula = inputCedula.value;
-//     sCorreo = inputCorreo.value;
-//     sTelefono = inputTelefono.value;
-//     sDireccion = inputDireccion.value;
-//     sCarrera_Postulante = inputCarrera_postulante.value;
-//     sFecha_ingreso = inputFecha_ingreso.value;
-
-//     for (let i = 0; i <= arregloInputs.length; i++) {
-//         if (arregloInputs[i].value == '') {
-//             bError = true;
-//             arregloInputs[i].classList.add('errorInput');
-//         } else {
-//             arregloInputs[i].classList.remove('errorInput');
-//         }
-//     };
+    let regexSoloLetras = /^[a-z A-ZáéíóúÁÉÍÓÚñÑ]+$/;
+    let regexSoloNumeros = /^[0-9-]+$/;
+    let regexCodigo = /^[a-zA-Z0-9/-]+$/;
+    let regexEmail = /^[a-zA-Z0-9._]+@ucenfotec.ac.cr+$/;
 
 
-//     if (regexEmail.test(sCorreo) == false) {
-//         bError = true;
-//         inputCorreo.classList.add('errorInput');
-//     } else {
-//         inputCorreo.classList.remove('errorInput');
-//     }
-//     if (regexSoloNumeros.test(sCedula) == false) {
-//         bError = true;
-//         inputCedula.classList.add('errorInput');
-//     } else {
-//         inputCedula.classList.remove('errorInput');
-//     }
-//     if (regexSoloNumeros.test(sTelefono) == false) {
-//         bError = true;
-//         inputTelefono.classList.add('errorInput');
-//     } else {
-//         inputTelefono.classList.remove('errorInput');
-//     }
-//     if (regexSoloLetras.test(sDireccion) == false) {
-//         bError = true;
-//         inputDireccion.classList.add('errorInput');
-//     } else {
-//         inputDireccion.classList.remove('errorInput');
-//     }
-//     if (regexSoloLetras.test(sCarrera_Postulante) == false) {
-//         bError = true;
-//         inputCarrera_postulante.classList.add('errorInput');
-//     } else {
-//         inputCarrera_postulante.classList.remove('errorInput');
-//     }
+    sCedula = inputCedula.value;
+    sCorreo = inputCorreo.value;
+    sTelefono = inputTelefono.value;
+    sDireccion = inputDireccion.value;
+    sCarrera_Postulante = inputCarrera_postulante.value;
+    sFecha_ingreso = inputFecha_ingreso.value;
 
-//     return bError;
-// };
+    for (let i = 0; i <= arregloInputs.length; i++) {
+        if (arregloInputs[i].value == '') {
+            bError = true;
+            arregloInputs[i].classList.add('errorInput');
+        } else {
+            arregloInputs[i].classList.remove('errorInput');
+        }
+    };
+
+
+    if (regexEmail.test(sCorreo) == false) {
+        bError = true;
+        inputCorreo.classList.add('errorInput');
+    } else {
+        inputCorreo.classList.remove('errorInput');
+    }
+    if (regexSoloNumeros.test(sCedula) == false) {
+        bError = true;
+        inputCedula.classList.add('errorInput');
+    } else {
+        inputCedula.classList.remove('errorInput');
+    }
+    if (regexSoloNumeros.test(sTelefono) == false) {
+        bError = true;
+        inputTelefono.classList.add('errorInput');
+    } else {
+        inputTelefono.classList.remove('errorInput');
+    }
+    if (regexSoloLetras.test(sDireccion) == false) {
+        bError = true;
+        inputDireccion.classList.add('errorInput');
+    } else {
+        inputDireccion.classList.remove('errorInput');
+    }
+    if (regexSoloLetras.test(sCarrera_Postulante) == false) {
+        bError = true;
+        inputCarrera_postulante.classList.add('errorInput');
+    } else {
+        inputCarrera_postulante.classList.remove('errorInput');
+    }
+
+    return bError;
+};
 
 
 //////////////MODIFICAR
@@ -248,12 +262,6 @@ function validarSolicitudes() {
         }
     };
 
-    if (regexSoloLetras.test(sProfesor) == false) {
-        bError = true;
-        inputProfesor.classList.add('errorInput');
-    } else {
-        inputProfesor.classList.remove('errorInput');
-    }
     if (regexSoloLetras.test(sCarrera) == false) {
         bError = true;
         inputCarrera.classList.add('errorInput');
@@ -295,6 +303,19 @@ function mostrarCarrera() {
         selectCarrera.appendChild(nuevaOpcion);
     }
 };
+
+function mostrarCarreraPostulante() {
+    let listaCarreras = obtenerListaCarreras();
+    let selectCarrera = document.querySelector('#sltCarrera_Postulante');
+    for (let i = 0; i < listaCarreras.length; i++) {
+        let nuevaOpcion = new Option(listaCarreras[i]['nombre_carrera']);
+        nuevaOpcion.value = listaCarreras[i]['nombre_carrera'];
+
+        if (selectCarrera != null) {
+            selectCarrera.appendChild(nuevaOpcion);
+        }
+    }
+};
 // ;
 function mostrarCurso() {
     let listaCursos = obtenerCursos();
@@ -319,6 +340,7 @@ mostrarListaSolicitudes();
 
 let inputBuscar = document.querySelector('#txtBusqueda');
 let listaSolicitudes = obtenerSolicitud();
+
 inputBuscar.addEventListener('keyup', function () {
 
     mostrarListaSolicitudes(inputBuscar.value);
@@ -326,7 +348,9 @@ inputBuscar.addEventListener('keyup', function () {
 
 function mostrarListaSolicitudes(pFiltro) {
     let listaSolicitudes = obtenerSolicitud();
-    // let listaPostulantes = obtenerPostulante();
+    let correoProfesor = localStorage.getItem('correo_usuario');
+
+    let listaPostulantes = obtenerPostulante();
     let tbody = document.querySelector('section table tbody');
     if (!pFiltro) {
         pFiltro = '';
@@ -334,43 +358,54 @@ function mostrarListaSolicitudes(pFiltro) {
     tbody.innerHTML = '';
     for (let i = 0; i < listaSolicitudes.length; i++) {
         if (listaSolicitudes[i]['profesor_solicitud'].toLowerCase().includes(pFiltro.toLowerCase()) ||
-        listaSolicitudes[i]['nombre_solicitud'].toLowerCase().includes(pFiltro.toLowerCase())) {
-            let fila = tbody.insertRow();
+            listaSolicitudes[i]['nombre_solicitud'].toLowerCase().includes(pFiltro.toLowerCase())) {
 
-            let cProfesor_solicitud = fila.insertCell();
-            let cCarrera_solicitud = fila.insertCell();
-            let cCurso_solicitud = fila.insertCell();
-            let cPeriodo_solicitud = fila.insertCell();
-            let cNombre_solicitud = fila.insertCell();
-            let cEstado_solicitud = fila.insertCell();
-            
-            let celdaOpciones = fila.insertCell();
+            if (inputProfesor == correoProfesor) {
+                if(inputProfesor == listaSolicitudes[i]['profesor_solicitud']){
+                let fila = tbody.insertRow();
 
-            cProfesor_solicitud.innerHTML = listaSolicitudes[i]['profesor_solicitud'],
-            cCarrera_solicitud.innerHTML = listaSolicitudes[i]['carrera_solicitud'],
-            cCurso_solicitud.innerHTML = listaSolicitudes[i]['curso_solicitud']
-            cPeriodo_solicitud.innerHTML = listaSolicitudes[i]['periodo_solicitud'],
-            cNombre_solicitud.innerHTML = listaSolicitudes[i]['nombre_solicitud'],
-            cEstado_solicitud.innerHTML = listaSolicitudes[i]['estado_solicitud']
+                let cProfesor_solicitud = fila.insertCell();
+                let cCarrera_solicitud = fila.insertCell();
+                let cCurso_solicitud = fila.insertCell();
+                let cPeriodo_solicitud = fila.insertCell();
+                let cNombre_solicitud = fila.insertCell();
+                let cEstado_solicitud = fila.insertCell();
 
-            // boton  editar
-            let botonEditar = document.createElement('span');
-            botonEditar.href = '#'// path del html editar lab
-            botonEditar.classList.add('fas');
-            botonEditar.classList.add('fa-cogs');
+                let celdaOpciones = fila.insertCell();
 
-            botonEditar.dataset._id = listaSolicitudes[i]['_id'];
+                cProfesor_solicitud.innerHTML = listaSolicitudes[i]['profesor_solicitud'],
+                    cCarrera_solicitud.innerHTML = listaSolicitudes[i]['carrera_solicitud'],
+                    cCurso_solicitud.innerHTML = listaSolicitudes[i]['curso_solicitud'],
+                    cPeriodo_solicitud.innerHTML = listaSolicitudes[i]['periodo_solicitud'],
+                    cNombre_solicitud.innerHTML = listaSolicitudes[i]['nombre_solicitud'],
+                    cEstado_solicitud.innerHTML = listaSolicitudes[i]['estado_solicitud']
 
-            botonEditar.addEventListener('click', buscar_por_solicitud_id);
-            if(listaSolicitudes[i]['estado_solicitud'].toLowerCase() == 'Pendiente de Decanatura'.toLowerCase()){
-                botonEditar.addEventListener('click', function () {
-                    popup = document.querySelector('#sct_modificar');
-                    popup.style.display = "block";
-                    let titulo;
-                    titulo = document.getElementById('h1');
-                    titulo.innerHTML = 'Modificar solicitud';
-                });
-            }else{
+                // boton  editar
+                let botonEditar = document.createElement('span');
+                botonEditar.href = '#'// path del html editar lab
+                botonEditar.classList.add('fas');
+                botonEditar.classList.add('fa-cogs');
+
+                botonEditar.dataset._id = listaSolicitudes[i]['_id'];
+
+                botonEditar.addEventListener('click', buscar_por_solicitud_id);
+
+
+                if(rol.toLowerCase() == 'Administrador'.toLowerCase() && 
+                inputEstado.value.toLowerCase() == 'Pendiente de Decanatura'.toLowerCase()){
+                    botonEditar.addEventListener('click', function () {
+                        popup = document.querySelector('#sct_modificar');
+                        popup.style.display = "block";
+                        let titulo;
+                        titulo = document.getElementById('h1');
+                        titulo.innerHTML = 'Modificar solicitud';
+                        botonEditar.dataset._id = listaPostulantes[i]['_id'];
+
+                        botonEditar.addEventListener('click', buscar_por_postulante_id);
+                    });
+                    celdaOpciones.appendChild(botonEditar);
+                }
+                else{
                 botonEditar.addEventListener('click', function () {
                     popup = document.querySelector('#sct_registrar');
                     popup.style.display = "block";
@@ -379,27 +414,46 @@ function mostrarListaSolicitudes(pFiltro) {
                     titulo.innerHTML = 'Modificar solicitud';
                 });
             }
-
-            celdaOpciones.appendChild(botonEditar);
-
-
-            // boton eliminar
-            let botonEliminar = document.createElement('span');
-            botonEliminar.href = '#'//evento  eliminar lab
-            botonEliminar.classList.add('fas');
-            botonEliminar.classList.add('fa-trash-alt');
+                celdaOpciones.appendChild(botonEditar);
 
 
-            botonEliminar.dataset._id = listaSolicitudes[i]['_id'];
+                // boton eliminar
+                let botonEliminar = document.createElement('span');
+                botonEliminar.href = '#'//evento  eliminar lab
+                botonEliminar.classList.add('fas');
+                botonEliminar.classList.add('fa-trash-alt');
 
-            botonEliminar.addEventListener('click', remover_solicitud);
 
-            celdaOpciones.appendChild(botonEliminar);
+                botonEliminar.dataset._id = listaSolicitudes[i]['_id'];
 
-            celdaOpciones.appendChild(botonEliminar);
+                botonEliminar.addEventListener('click', remover_solicitud);
+
+                celdaOpciones.appendChild(botonEliminar);
+
+                celdaOpciones.appendChild(botonEliminar);
+
+                let botonVer = document.createElement('span');
+                botonVer.href = '#'// path del html editar lab
+                botonVer.classList.add('fas');
+                botonVer.classList.add('fa-eye');
+
+                botonVer.addEventListener('click', function () {
+                    popup = document.querySelector('#sct_info_solicitud');
+                    popup.style.display = "block";
+                    let titulo;
+                    titulo = document.getElementById('h1');
+                    titulo.innerHTML = 'Información de solicitud';
+                });
+                celdaOpciones.appendChild(botonEditar);
+
+                celdaOpciones.appendChild(botonVer);
+            }
+        }
 
             // Icono de editar: <i class="fas fa-cogs"></i>
+            // Icono de visualizar: <i class="fas fa-eye"></i>
             // Icono de eliminar: <i class="fas fa-trash-alt"></i>
+
         }
     }
 };
@@ -412,26 +466,41 @@ function buscar_por_solicitud_id() {
     botonActualizar.hidden = false;
     let listaSolicitudes = buscar_solicitud_id(_id);
 
-    inputProfesor.value = listaSolicitudes['profesor_solicitud'],
-    inputCarrera.value = listaSolicitudes['carrera_solicitud'],
-    inputCurso.value = listaSolicitudes['curso_solicitud'];
-    inputPeriodo.value = listaSolicitudes['periodo_solicitud'],
-    inputNombre.value = listaSolicitudes['nombre_solicitud'],
-    inputEstado.value = listaSolicitudes['estado_solicitud'],
-    inputIdSolicitud.value = listaSolicitudes['_id']
+        inputCarrera.value = listaSolicitudes['carrera_solicitud'],
+        inputCurso.value = listaSolicitudes['curso_solicitud'];
+        inputPeriodo.value = listaSolicitudes['periodo_solicitud'],
+        inputNombre.value = listaSolicitudes['nombre_solicitud'],
+        inputEstado.value = listaSolicitudes['estado_solicitud'],
+        inputIdSolicitud.value = listaSolicitudes['_id']
 };
 
+function buscar_por_postulante_id() {
+
+    let _id = this.dataset._id;
+
+    botonRegistrar.hidden = true;
+    botonActualizar.hidden = false;
+    let listaPostulantes = buscar_postulante_id(_id);
+
+        inputCorreo.value = listaPostulantes['correo_postulante'],
+        inputCedula.value = listaPostulantes['cedula_postulante'];
+        inputTelefono.value = listaPostulantes['telefono_postulante'],
+        inputDireccion.value = listaPostulantes['direccion_postulante'],
+        inputCarrera_postulante.value = listaPostulantes['carrera_postulante'],
+
+        inputIdPostulante.value = listaPostulantes['_id']
+};
 ////////////ELIMINAR
 function remover_solicitud() {
     let _id = this.dataset._id;
     swal({
         title: 'Está seguro?',
-        text: "El curso se eliminará permanentemente",
+        text: "La solicitud se eliminará permanentemente",
         type: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'Eliminar!'
+        confirmButtonText: 'Eliminar'
     }).then((result) => {
         if (result.value) {
             eliminarSolicitud(_id);
@@ -449,7 +518,6 @@ function remover_solicitud() {
 
 function limpiarFormulario() {
 
-    inputProfesor.value = '';
     inputCarrera.value = '';
     inputCurso.value = '';
     inputPeriodo.value = '';

@@ -34,10 +34,13 @@ input, select {
     height: 270px;
 }
 #sct_registrar_solicitud{
-    height: 310px;
+    height: 360px;
 }
 #form_registrar{
     height: 370px;
+}
+#asistente_registro{
+    height: 360px;
 }
 .popup-content h1 {
     text-align: center;
@@ -82,6 +85,7 @@ input, select {
 
 #sct_asociar form {
     position: relative;
+    width: 50%;
 }
 
 #sct_cursos_asociados>div.popup-content {
@@ -94,6 +98,7 @@ input, select {
 
 #sct_cursos_asociados h1.title {
     font-size: 1.3em;
+    line-height: 1.5em;
 }
 
 #div_tabla_cursos {
@@ -131,6 +136,11 @@ input.errorInput, select.errorInput {
 .asociar input {
     display: none;
 }
+
+.asociar label{
+    padding: 50px;
+}
+
 #sct_asociar form.popup-content div.form>label{
     margin-bottom: 10px;
 }
@@ -173,15 +183,24 @@ input.errorInput, select.errorInput {
 
 #sct_perfil .popup-content {
     width: 500px;
+    height: auto;
+    line-height: 1.5em;
+    padding-bottom: 50px;
 }
 
 .perfil {
     display: grid;
     grid-template-columns: 1fr 3fr;
-    grid-gap: 20px;
+    grid-gap: 20px 30px;
+    height: 200px;
+    position: relative;
 }
 
 .perfil #img {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+
     background-image: url(../img/admin.jpeg);
     background-position: center;
     background-size: cover;
@@ -193,13 +212,18 @@ input.errorInput, select.errorInput {
 }
 .perfil h2{
     margin: 0px;
+    color: #494949;
 }
 
 .perfil-info {
     display: grid;
     grid-template-columns: 0.5fr 2fr;
-    grid-gap: 10px;
+    grid-gap: 10px 30px;
     grid-template-rows: 1fr 1fr 1fr;
 }
 
+.perfil-info h2:nth-child(odd){
+    font-weight: bold;
+    color: #494949;
+}
 /*  Todos deben tener esta seccion de perfil */

@@ -50,24 +50,26 @@ function verificarCredenciales(sCorreo, sContrasenna) {
     let bError = true;
     for (let i = 0; i < listaUsuarios.length; i++) {
         if (sCorreo === listaUsuarios[i]['correo_usuario']) {
-            if (sContrasenna == listaUsuarios[i]['cedula_usuario']) {
+            if (sContrasenna == listaUsuarios[i]['contrasenna_usuario']) {
+
+                let nombreCompleto = listaUsuarios[i]['nombre_usuario']+' '+listaUsuarios[i]['primer_apellido_usuario']+' '+listaUsuarios[i]['segundo_apellido_usuario']
                 localStorage.setItem('idUsuario', listaUsuarios[i]['_id']);
                 localStorage.setItem('rolUsuario', listaUsuarios[i]['rol_usuario']);
+                localStorage.setItem('nombreCompletoUsuario', nombreCompleto);
+
+
                 inputContrasenna.classList.remove('errorInput');
                 bError = false;
                 break;
             }
         }
     }
-    return bError;
+};
 
-
-    return bError;
-}
 function accionRol(psRol) {
     switch (psRol) {
         case 'Administrador':
-            window.location.href = "../html/dashboard/dashboard_carrera.html";
+            window.location.href = "../html/dashboard/dashboard_solicitud.html";
             break;
         case 'Rector':
             window.location.href = "../html/dashboard/dashboard_carrera.html";
@@ -75,33 +77,33 @@ function accionRol(psRol) {
         case 'Decanatura':
             window.location.href = "../html/dashboard/dashboard_carrera.html";
             break;
-        case 'Asistente decanatura':
+        case 'Asistente de decanatura':
             window.location.href = "../html/dashboard/dashboard_carrera.html";
             break;
         case 'Profesor':
-            window.location.href = "../html/dashboard/dashboard_carrera.html";
+            window.location.href = "../html/dashboard/dashboard_soli_asistente_decanatura.html";
             break;
         case 'Asistente':
             window.location.href = "../html/dashboard/dashboard_carrera.html";
             break;
 
     }
-}
+};
 
 // Contrasenna visible o no
 let botonVer = document.querySelector('#btnVerContrasenna');
 botonVer.addEventListener('click', function () {
-    let isOpen = botonVer.classList.contains('fa-lock-open');
+    let isOpen = botonVer.classList.contains('fa-eye');
     if (isOpen) {
-        botonVer.classList.remove('fa-lock-open');
-        botonVer.classList.add('fa-lock');
+        botonVer.classList.remove('fa-eye');
+        botonVer.classList.add('fa-eye-slash');
         inputContrasenna.type = 'password';
     } else {
-        botonVer.classList.remove('fa-lock');
-        botonVer.classList.add('fa-lock-open');
+        botonVer.classList.remove('fa-eye-slash');
+        botonVer.classList.add('fa-eye');
         inputContrasenna.type = 'text';
     }
-});
+})
 
 // Fin iniciar sesion
 
@@ -121,5 +123,5 @@ window.onclick = function (event) {
         inputCorreo.classList.remove('errorInput');
         inputContrasenna.classList.remove('errorInput');
     }
-}
+};
 // Esto es para que despliegue el formulario

@@ -92,17 +92,19 @@
                 </tbody>
             </table>
         </section>
-        <section id="sct_registrar" class="popup-bg">
-            <!-- Formulario que aparece -->
-            <form class="popup-content">
-                <h1 class="title" id="h1">Registrar solicitud</h1>
 
-                <div class="form">
+        <div hidden>
+            <section id="sct_registrar" class="popup-bg">
+                <!-- Formulario que aparece -->
+                <form class="popup-content">
+                    <h1 class="title" id="h1">Registrar solicitud</h1>
 
-                    <input type="hidden" id="txtId">
+                    <div class="form">
+
+                        <input type="hidden" id="txtId">
 
                         <input type="text" id="txtProfesor" placeholder="Nombre completo del profesor*" required>
-    
+
                         <input type="text" id="txtNombre" placeholder="Nombre completo del postulante*" required>
 
                         <select id="sltCarrera">
@@ -112,7 +114,7 @@
                         <select id="sltCurso">
                             <option value="">Seleccione el curso a asistir</option>
                         </select>
-    
+
                         <select id="sltPeriodo">
                             <option value="">Seleccione el período</option>
                         </select>
@@ -120,18 +122,34 @@
                         <select id="sltGrupo">
                             <option value="">Seleccione el grupo a asistir</option>
                         </select>
-                    <select id="sltEstado">
-                        <option value="Aprobado por rectoría">Aprobado por rectoría</option>
-                        <option value="Reprobado por rectoría">Reprobado por rectoría</option>
-                        <option value="Pendiente de rectoría">Pendiente de rectoría</option>
-                    </select>
+                        <select id="sltEstado">
+                            <option value="Aprobado por rectoría">Aprobado por rectoría</option>
+                            <option value="Reprobado por rectoría">Reprobado por rectoría</option>
+                            <option value="Pendiente de rectoría">Pendiente de rectoría</option>
+                        </select>
 
-                    <button type="button" class="button" id="btn_Actualizar">Actualizar</button>
-                    <button type="button" class="button" id="btn_Registrar">Registrar</button>
+                        <button type="button" class="button" id="btn_Actualizar">Actualizar</button>
+                        <button type="button" class="button" id="btn_Registrar">Registrar</button>
+                    </div>
+                </form>
+                <!-- Formulario que aparece -->
+            </section>
+
+        </div>
+        <!-- Todos deben tener esta seccion de perfil -->
+        <section id="sct_perfil" class="popup-bg">
+            <div class="popup-content">
+                <h1 id="nombrePerfil"></h1>
+                <div class="perfil">
+                    <div id="img">
+                    </div>
+                    <div class="perfil-info">
+
+                    </div>
                 </div>
-            </form>
-            <!-- Formulario que aparece -->
+            </div>
         </section>
+
     </main>
     <!-- SCRIPTS FIJOS PARA TODOS Dashboards -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2"></script>

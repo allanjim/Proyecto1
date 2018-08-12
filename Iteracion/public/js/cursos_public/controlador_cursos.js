@@ -21,6 +21,7 @@ function mostrarListaCursos(pFiltro) {
     }
     let tbody = document.querySelector('#tblCursos tbody');
     tbody.innerHTML = '';
+    
     for (let i = 0; i < listaCursos.length; i++) {
         if (listaCursos[i]['nombre_curso'].toLowerCase().includes(pFiltro.toLowerCase())) {
             let fila = tbody.insertRow();
@@ -29,6 +30,7 @@ function mostrarListaCursos(pFiltro) {
             let cCodigo_curso = fila.insertCell();
             let cCosto_curso = fila.insertCell();
             let cCreditos_curso = fila.insertCell();
+            let cRequisitos_curso = fila.insertCell();
             let cEstado_curso = fila.insertCell();
             let celdaOpciones = fila.insertCell();
 
@@ -38,6 +40,40 @@ function mostrarListaCursos(pFiltro) {
             cEstado_curso.innerHTML = listaCursos[i]['estado_curso'];
             cCreditos_curso.innerHTML = listaCursos[i]['creditos_curso'];
 
+            let aRequisitos = listaCursos[i]['requisitos_curso'];
+            if (aRequisitos.length > 0 && aRequisitos != null) {
+
+                let btnVerCursos = document.createElement('button');
+                // Le asigna el name para darle los estilos
+                btnVerCursos.name = 'btnTabla';
+                btnVerCursos.dataset.nombre_curso = listaCursos[i]['nombre_curso'];
+                // Esto le asigna un id al boton usando el codigo del curso
+                btnVerCursos.id = 'btn' + listaCursos[i]['codigo_curso'];
+                // Escribe en el boton
+                btnVerCursos.textContent = 'Ver requisitos';
+
+
+                // Por cada boton como evento, genera la informacion en tabla
+                btnVerCursos.addEventListener('click', function () {
+
+
+                    let listaRequisitosAsociados = [];
+                    for (let j = 0; j < aRequisitos.length; j++) {
+                        let infoRequisitoActual = [];
+                        infoRequisitoActual.push(aRequisitos[j]['nombre_curso'], aRequisitos[j]['codigo_curso']);
+                        listaRequisitosAsociados.push(infoRequisitoActual);
+                    }
+
+                    ppCursosAsociados.style.display = "block";
+                    let tblCursos = document.querySelector('#tblRequisitos tbody');
+                    mostrarListaRequisitos(listaRequisitosAsociados, tblCursos);
+                    displayCursosScroll();
+
+                });
+                cRequisitos_curso.appendChild(btnVerCursos);
+            } else {
+                cRequisitos_curso.innerHTML = "-";
+            }
             // boton  editar
             let botonEditar = document.createElement('span');
             botonEditar.href = '#'// path del html editar lab
@@ -78,10 +114,25 @@ function mostrarListaCursos(pFiltro) {
 
             botonAsociar.addEventListener('click', function () {
                 ppAsociar.style.display = "block";
-                ppAsociar.dataset.nombre_carrera = listaCarreras[i]['nombre_carrera'];
-                ppAsociar.dataset.codigo_carrera = listaCarreras[i]['codigo_carrera'];
-                ppAsociar.dataset._id = listaCarreras[i]['_id'];
+                ppAsociar.dataset.nombre_curso = listaCursos[i]['nombre_curso'];
+                ppAsociar.dataset.codigo_curso = listaCursos[i]['codigo_curso'];
+                ppAsociar.dataset._id = listaCursos[i]['_id'];
                 btnAsociar.dataset._id = botonAsociar.dataset._id;
+
+                let aCursos = document.querySelectorAll('#divRequisitoAsociar input[type=checkbox]');
+                deselectOptions();
+                let aRequisitos = getRequisitos(ppAsociar.dataset._id);
+
+                if (aRequisitos.length > 0 && !null) {
+                    for (let j = 0; j < aRequisitos.length; j++) {
+                        // Compare los que tiene registrados con los cursos en la base de datos
+                        for (let k = 0; k < aCursos.length; k++) {
+                            if (aRequisitos[j] == aCursos[k].id) {
+                                aCursos[k].checked = true;
+                            }
+                        }
+                    }
+                }
             });
 
             celdaOpciones.appendChild(botonAsociar);
@@ -157,6 +208,15 @@ function obtenerDatosCursos() {
         limpiarFormulario();
     }
 };
+
+function limpiarSubdocumentosRequisito(idCurso) {
+    let infoCurso = buscar_curso_id(idCurso);
+    for (let i = 0; i < infoCurso['requisitos_curso'].length; i++) {
+        eliminarCursoRequisito(idCurso, infoCurso['requisitos_curso'][i]['_id']);
+    }
+};
+
+
 function obtenerCursosActualizar() {
     let aInfoCursos = [];
     let bError = false;
@@ -308,59 +368,79 @@ function remover_curso() {
 };
 ///////////// Asociar cursos a carreras
 
+// function obtenerDatosAsociar() {
+
+//     let requisitosElegidos = document.querySelectorAll('#divRequisitoAsociar input[type=checkbox]:checked');
+//     let divRequisitoAsociar = document.querySelector('#divRequisitoAsociar');
+
+//     let nombre_curso = ppAsociar.dataset.nombre_curso;
+//     let codigo_curso = ppAsociar.dataset.codigo_curso;
+//     let id_curso = ppAsociar.dataset._id;
+
+
+//     if (requisitosElegidos.length > 0) {
+
+//         if (requisitosElegidos.length > 0) {
+//             for (let i = 0; i < requisitosElegidos.length; i++) {
+//                 let infoCurso = getInfoCurso(requisitosElegidos[i].id);
+//                 agregarRequisitoCurso(id_curso, infoCurso['nombre_curso'], infoCurso['codigo_curso']);
+//             }
+//         }
+//         swal({
+//             title: 'Asociación correcta',
+//             text: 'La información se asoció correctamente',
+//             type: 'success',
+//             confirmButtonText: 'Entendido'
+//         });
+//         $('.swal2-confirm').click(function () {
+//             reload();
+//         });
+//     } else {
+//         ppAsociar.style.display = "none";
+//     }
+//     limpiarFormulario();
+// };
+
 function obtenerDatosAsociar() {
 
-    let requisitosElegidos = document.querySelectorAll('#divRequisitoAsociar input[type=checkbox]:checked');
-    let divRequisitoAsociar = document.querySelector('#divRequisitoAsociar');
+    swal({
+        title: '¿Desea realizar estos cambios?',
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si'
+    }).then((result) => {
+        if (result.value) {
 
-    let nombre_curso = ppAsociar.dataset.nombre_curso;
-    let codigo_curso = ppAsociar.dataset.codigo_curso;
-    let id_curso = ppAsociar.dataset._id;
+            let nombre_curso = ppAsociar.dataset.nombre_curso;
+            let codigo_curso = ppAsociar.dataset.codigo_curso;
+            let id_curso = ppAsociar.dataset._id;
 
+            limpiarSubdocumentosRequisito(id_curso);
 
-    if (requisitosElegidos.length > 0) {
+            let requisitosElegidos = document.querySelectorAll('#divRequisitoAsociar input[type=checkbox]:checked');
 
-        if (requisitosElegidos.length > 0) {
-            for (let i = 0; i < requisitosElegidos.length; i++) {
-                let infoCurso = getInfoCurso(requisitosElegidos[i].id);
-                agregarRequisitoCurso(id_curso, infoCurso['nombre_curso'], infoCurso['codigo_curso']);
+            if (requisitosElegidos.length > 0) {
+                for (let i = 0; i < requisitosElegidos.length; i++) {
+                    let infoCurso = getInfoCurso(requisitosElegidos[i].id);
+                    agregarRequisitoCurso(id_curso, infoCurso['nombre_curso'], infoCurso['codigo_curso']);
+                }
             }
-        }
-        swal({
-            title: 'Asociación correcta',
-            text: 'La información se asoció correctamente',
-            type: 'success',
-            confirmButtonText: 'Entendido'
-        });
-        $('.swal2-confirm').click(function () {
             reload();
-        });
-    } else {
-        ppAsociar.style.display = "none";
+        }
+
+    });
+}
+function getRequisitos(id_curso) {
+    let infoCurso = buscar_curso_id(id_curso);
+    let aCursos = [];
+    for (let i = 0; i < infoCurso['requisitos_curso'].length; i++) {
+        aCursos.push(infoCurso['requisitos_curso'][i]['nombre_curso']);
     }
-    limpiarFormulario();
+    return aCursos;
 };
 
-function validarDatosAsociar() {
-    let bError = false;
-    let select_carrera = document.querySelector('#sltCarrera');
-    debugger;
-    if (select_carrera.value == '') {
-        bError = true;
-        select_carrera.classList.add('errorInput');
-    } else {
-        select_carrera.classList.remove('errorInput');
-    }
-
-    if (select_curso.value == '') {
-        bError = true;
-        select_curso.classList.add('errorInput');
-    } else {
-        select_curso.classList.remove('errorInput');
-    }
-
-    return bError;
-};
 function getInfoCurso(pCursoNombre) {
     let listaCurso = obtenerCursos();
     let informacionCurso = "";
@@ -394,7 +474,36 @@ function mostrarRequisitosAsociar() {
 
 };
 
-//Funciones que se van a utilizar para la asociación respectiva
+function mostrarListaRequisitos(pArreglo, tbody) {
+
+    tbody.innerHTML = '';
+
+    for (let i = 0; i < pArreglo.length; i++) {
+        let fila = tbody.insertRow();
+        let celdaNombre = fila.insertCell();
+        let celdaCodigo = fila.insertCell();
+
+        let sNombreCurso = pArreglo[i][0];
+        let sCodigoCurso = pArreglo[i][1];
+
+        celdaNombre.innerHTML = sNombreCurso;
+        celdaCodigo.innerHTML = sCodigoCurso;
+
+    }
+    $(".scroll").animate({ scrollTop: 0 }, "fast");
+};
+
+function displayCursosScroll() {
+    let scrollTblCursos = document.querySelector('#div_tabla_cursos');
+    let tblCursos = document.querySelector('#tblCursos');
+    let alturaTablaCursos = tblCursos.scrollHeight;
+
+    if (alturaTablaCursos < 250) {
+        scrollTblCursos.classList.remove('scroll');
+    } else {
+        scrollTblCursos.classList.add('scroll');
+    }
+};
 
 // Display formulario registrar
 let botonAgregar = document.querySelector('#btnAgregar');
@@ -409,7 +518,7 @@ botonAgregar.addEventListener('click', function () {
 let ppRegistrar = document.querySelector('#sct_registrar');
 let ppAsociar = document.querySelector('#sct_asociar');
 let ppActualizar = document.querySelector('#sct_modificar');
-let ppCursosAsociados = document.querySelector('#sct_cursos_asociados');
+let ppCursosAsociados = document.querySelector('#sct_cursos_requisitos');
 
 botonAgregar.addEventListener('click', function () {
     ppRegistrar.style.display = "block";
@@ -422,20 +531,34 @@ window.onclick = function (event) {
     }
     if (event.target == ppAsociar) {
         ppAsociar.style.display = "none";
+        deselectOptions();
     }
     if (event.target == ppActualizar) {
         ppActualizar.style.display = "none";
         limpiarFormulario();
     }
+    if (event.target == ppCursosAsociados) {
+        ppCursosAsociados.style.display = "none";
+    }
 }
 function clean() {
     popup.style.display = "none";
     limpiarFormulario();
-}
+};
+
+function deselectOptions() {
+    let selected = document.querySelectorAll('#sct_asociar input[type=checkbox]:checked');
+    for (let i = 0; i < selected.length; i++) {
+        selected[i].checked = false;
+    }
+};
+
 function reload() {
-    location.reload();
+    deselectOptions();
+    mostrarListaCursos();
+    limpiarFormulario();
     ppRegistrar.style.display = "none";
     ppAsociar.style.display = "none";
     ppActualizar.style.display = "none";
-}
+};
 // Esto es para que despliegue el formulario

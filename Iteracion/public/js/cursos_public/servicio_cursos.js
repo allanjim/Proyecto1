@@ -132,7 +132,7 @@ function eliminarCurso (_pid){
 function agregarRequisitoCurso(_id_curso, pnombre_curso, pcodigo_curso){
     let respuesta = '';
     let peticion = $.ajax({
-        url : 'http://localhost:4000/api/agregar_requisito_curso',
+        url : 'http://localhost:4000/api/agregar_requisito',
         type : 'post',
         contentType : 'application/x-www-form-urlencoded; charset=utf-8',
         dataType : 'json',
@@ -154,3 +154,28 @@ function agregarRequisitoCurso(_id_curso, pnombre_curso, pcodigo_curso){
 
       return respuesta;
 };
+
+function eliminarCursoRequisito(_pid, pIdRequisito ){
+    let respuesta = '';
+    let peticion = $.ajax({
+        url : 'http://localhost:4000/api/eliminar_requisito',
+        type : 'post',
+        contentType : 'application/x-www-form-urlencoded; charset=utf-8',
+        dataType : 'json',
+        async : false,
+        data:{
+            _id : _pid,
+            id_requisito : pIdRequisito
+        }
+      });
+    
+      peticion.done(function(response){
+       respuesta = response;
+      });
+    
+      peticion.fail(function(response){
+       
+      });
+
+      return respuesta;
+}

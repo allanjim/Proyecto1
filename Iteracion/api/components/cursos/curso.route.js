@@ -37,4 +37,9 @@ router.route('/agregar_requisito')
     .post(function (req, res) {
         cursosApi.agregar_requisito_curso(req, res);
     });
+
+router.route('/eliminar_requisito')
+    .post(function (req, res) {
+        cursosApi.eliminar_requisito_curso(req, res);
+    });
 module.exports = router;

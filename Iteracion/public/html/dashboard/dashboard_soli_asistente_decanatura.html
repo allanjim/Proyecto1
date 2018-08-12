@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
         crossorigin="anonymous">
     <link rel="stylesheet" href="../../css/dashboard.css">
-    <link rel="stylesheet" href="../../css/formulario.css"> 
+    <link rel="stylesheet" href="../../css/formulario.css">
     <link rel="shortcut icon" href="../../img/cenfotec.ico">
     <!-- Si otra hoja de estilos se necesita, se agrega aqui -->
 
@@ -26,25 +26,28 @@
             <a href="../landing_page.html">Inicio</a>
             <a href="#">Perfil</a>
             <div>
+                <a id="btnBeca">Beca
+                    <span class="fas fa-caret-down"></span>
+                </a>
+                <!-- Agregar esta parte nueva y cambiar el controlador menu -->
+                <ul id="menuBeca" class="menu">
+
+                </ul>
+            </div>
+            <div>
+                <a id="btnReportes">Reportes
+                    <span class="fas fa-caret-down"></span>
+                </a>
+                <ul id="menuReportes" class="menu">
+
+                </ul>
+            </div>
+            <div id="divOpciones">
                 <a id="btnOpciones">Opciones
                     <span class="fas fa-caret-down"></span>
                 </a>
                 <ul id="menuOpciones" class="menu">
-                    <li>
-                        <a href="#">Carreras</a>
-                    </li>
-                    <li>
-                        <a href="#">Períodos</a>
-                    </li>
-                    <li>
-                        <a href="#">Grupos</a>
-                    </li>
-                    <li>
-                        <a href="#">Sedes</a>
-                    </li>
-                    <li>
-                        <a href="#">Laboratorios</a>
-                    </li>
+
                 </ul>
             </div>
             <a id="btnCerrarSesion">Cerrar sesión</a>
@@ -69,9 +72,10 @@
             <div class="side-elementos y-align">
                 <img class="x-align" src="../../img/logo.png" alt="Logo de Cenfotec">
             </div>
-            <a class="side-agregar" id="btnAgregar">
 
+            <a class="side-agregar" id="btnAgregar">
             </a>
+
         </section>
         <section id="sct_main_content">
             <!-- Como ejemplo los datos estan quemados -->
@@ -92,56 +96,59 @@
                 </tbody>
             </table>
         </section>
-        <section id="sct_registrar" class="popup-bg">
-            <!-- Formulario que aparece -->
-            <form class="popup-content" id = "form_registrar">
-                <h1 class="title" id="h1">Registrar solicitud</h1>
+        <div hidden>
+            <section id="sct_registrar" class="popup-bg">
+                <!-- Formulario que aparece -->
 
-                <div class="form">
-                    <input type="hidden" id="txtId">
-                        
-                    <input type="text" id="txtProfesor" placeholder="Nombre completo del profesor*" required>
+                <form class="popup-content" id="form_registrar">
+                    <h1 class="title" id="h1">Registrar solicitud</h1>
 
-                    <input type="text" id="txtNombre" placeholder="Nombre completo del postulante*" required>
 
-                    <select id="sltCarrera">
-                        <option value="">Seleccione la carrera</option>
-                    </select>
+                    <div class="form">
 
-                    <select id="sltCurso">
-                        <option value="">Seleccione el curso a asistir</option>
-                    </select>
+                        <input type="hidden" id="txtId">
 
-                    <select id="sltPeriodo">
-                        <option value="">Seleccione el período</option>
-                    </select>
 
-                    <select id="sltEstado" >
-                        <option value="Pendiente de Decanatura">Pendiente de Decanatura</option>
-                    </select>
+                        <input type="text" id="txtNombre" placeholder="Nombre completo del postulante*" required>
 
-                    <button type="button" class="button" id="btn_Actualizar">Actualizar</button>
-                    <button type="button" class="button" id="btn_Registrar">Registrar</button>
-                </div>
-            </form>
-            <!-- Formulario que aparece -->
-        </section>
+                        <select id="sltCarrera">
+                            <option value="">Seleccione la carrera</option>
+                        </select>
+
+                        <select id="sltCurso">
+                            <option value="">Seleccione el curso a asistir</option>
+                        </select>
+
+                        <select id="sltPeriodo">
+                            <option value="">Seleccione el período</option>
+                        </select>
+
+                        <select id="sltEstado">
+                            <option value="Pendiente de Decanatura">Pendiente de Decanatura</option>
+                        </select>
+                        <button type="button" class="button" id="btn_Actualizar">Actualizar</button>
+                        <button type="button" class="button" id="btn_Registrar">Registrar</button>
+                    </div>
+                </form>
+                <!-- Formulario que aparece -->
+            </section>
+        </div>
 
         <section id="sct_modificar" class="popup-bg">
             <!-- Formulario que aparece -->
             <form class="popup-content">
                 <h1 class="title" id="h1">Modificar solicitud</h1>
 
-                <div class="form">
+                <div class="form" id="asistente_registro">
                     <input type="hidden" id="txtIdPostulante">
-                    
-                    <input type="text" id="txtCedula"  placeholder = "Cedúla del postulante" required>
 
-                    <input type="text" id="txtCorreo" placeholder = "Correo del postulante" required>
+                    <input type="text" id="txtCedula" placeholder="Cedúla del postulante" required>
 
-                    <input type="text" id="txtTelefono"  placeholder = "Teléfono del postulante" required>
+                    <input type="text" id="txtCorreo" placeholder="Correo del postulante" required>
 
-                    <input type="text" id="txtDireccion" placeholder =  "Dirección del postulante" required>
+                    <input type="text" id="txtTelefono" placeholder="Teléfono del postulante" required>
+
+                    <input type="text" id="txtDireccion" placeholder="Dirección del postulante" required>
 
                     <select id="sltCarrera_Postulante" required>
                         <option value="">Seleccione la carrera que cursa el postulante</option>
@@ -153,9 +160,42 @@
                     <button type="button" class="button" id="btn_RegistrarPostulante">Registrar</button>
                 </div>
             </form>
-            <!-- Formulario que aparece -->
         </section>
 
+        <section id="sct_info_solicitud" class="popup-bg">
+            <div class="popup-content">
+                <h1 class="title"></h1>
+                <div id="div_tabla_cursos">
+                    <table id="tblCursos">
+                        <thead>
+                            <th>Correo del profesor</th>
+                            <th>Carrera</th>
+                            <th>Curso</th>
+                            <th>Período</th>
+                            <th>Nombre del postulante</th>
+                            <th>Estado</th>
+                        </thead>
+                        <tbody>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- Formulario que aparece -->
+        </section>
+        <!-- Todos deben tener esta seccion de perfil -->
+        <section id="sct_perfil" class="popup-bg">
+            <div class="popup-content">
+                <h1 id="nombrePerfil"></h1>
+                <div class="perfil">
+                    <div id="img">
+                    </div>
+                    <div class="perfil-info">
+
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
     <!-- SCRIPTS FIJOS PARA TODOS Dashboards -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2"></script>

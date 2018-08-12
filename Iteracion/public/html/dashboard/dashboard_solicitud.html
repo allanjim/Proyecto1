@@ -31,20 +31,9 @@
                 </a>
                 <ul id="menuOpciones" class="menu">
                     <li>
-                        <a href="#">Carreras</a>
+                        <a href="#">Bitácora</a>
                     </li>
                     <li>
-                        <a href="#">Períodos</a>
-                    </li>
-                    <li>
-                        <a href="#">Grupos</a>
-                    </li>
-                    <li>
-                        <a href="#">Sedes</a>
-                    </li>
-                    <li>
-                        <a href="#">Laboratorios</a>
-                    </li>
                 </ul>
             </div>
             <a id="btnCerrarSesion">Cerrar sesión</a>
@@ -79,7 +68,7 @@
             <table id="tblSolicitud" class="scroll">
                 <thead>
                     <tr>
-                        <th>Profesor</th>
+                        <th>Correo del profesor</th>
                         <th>Carrera</th>
                         <th>Curso</th>
                         <th>Período</th>
@@ -102,29 +91,31 @@
 
                     <input type="hidden" id="txtId">
 
-                    <label for="txtProfesor">Profesor solicitante:</label>
-                    <input type="text" id="txtProfesor" placeholder="Nombre completo del profesor*" required>
+                    <input type="hidden" id="txtProfesor" placeholder="Nombre completo del profesor*" required>
 
+                    <label for="txtNombre">Nombre postulante:</label>
                     <input type="text" id="txtNombre" placeholder="Nombre completo del postulante*" required>
 
+                    <label for="sltCarrera">Carrera del curso a asistir:</label>
                     <select id="sltCarrera">
                         <option value="">Seleccione la carrera</option>
                     </select>
 
+                    <label for="sltCurso">Curso a asistir:</label>
                     <select id="sltCurso">
                         <option value="">Seleccione el curso a asistir</option>
                     </select>
 
+                    <label for="sltPeriodo">Período de la postulación:</label>
                     <select id="sltPeriodo">
                         <option value="">Seleccione el período</option>
                     </select>
 
-                    <div hidden>
+                    <div id="div_estado" hidden>
                         <select id="sltEstado">
                             <option value="Pendiente de Decanatura">Pendiente de Decanatura</option>
                         </select>
                     </div>
-
 
                     <button type="button" class="button" id="btn_Actualizar">Actualizar</button>
                     <button type="button" class="button" id="btn_Registrar">Registrar</button>
@@ -132,6 +123,21 @@
             </form>
             <!-- Formulario que aparece -->
         </section>
+
+        <!-- Todos deben tener esta seccion de perfil -->
+        <section id="sct_perfil" class="popup-bg">
+            <div class="popup-content">
+                <h1 id="nombrePerfil"></h1>
+                <div class="perfil">
+                    <div id="img">
+                    </div>
+                    <div class="perfil-info">
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
     </main>
     <!-- SCRIPTS FIJOS PARA TODOS Dashboards -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2"></script>
@@ -145,6 +151,7 @@
     <script src="../../js/carreras_public/servicio_carreras.js"></script>
     <script src="../../js/periodos_public/servicio_periodos.js"></script>
     <script src="../../js/grupos_public/servicio_grupos.js"></script>
+    <script src="../../js/usuarios_public/servicio_usuarios.js"></script>
     <!-- Todos los servicios necesarios -->
 
     <!-- Todos los controladores necesarios -->

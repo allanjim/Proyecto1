@@ -1,7 +1,7 @@
 'use strict';
 const postulanteSchema = require('./postulantes.model');
-const solicitudModel = require ('../solicitud/solicitud.model');
-const nodemailer = require ('nodemailer');
+const solicitudModel = require('../solicitud/solicitud.model');
+const nodemailer = require('nodemailer');
 
 const transporter = nodemailer.createTransport({
     service: 'gmail',
@@ -13,16 +13,16 @@ const transporter = nodemailer.createTransport({
 
 
 let mailOptions = {
-    from : 'standasama@gmail.com',
-    to : '',
-    subject : 'Bienvenido a la universidad Cenfotec',
-    html : ''
+    from: 'standasama@gmail.com',
+    to: '',
+    subject: 'Bienvenido a la universidad Cenfotec',
+    html: ''
 };
 
 module.exports.registrar_postulante = function (req, res) {
 
     let nuevoPostulante = new postulanteSchema({
-        
+
         cedula_postulante: req.body.cedula_postulante,
         fecha_ingreso_postulante: req.body.fecha_ingreso_postulante,
         correo_postulante: req.body.correo_postulante,
@@ -36,10 +36,10 @@ module.exports.registrar_postulante = function (req, res) {
         if (error) {
             res.json({ success: false, msg: 'No se pudo registrar el postulante, ocurrio el siguiente error ' + error });
         } else {
-            solicitudModel.findOne({"_id": idSolicitud}, function(error, solicitudDatos) {
+            solicitudModel.findOne({ "_id": idSolicitud }, function (error, solicitudDatos) {
                 if (error) {
-                    res.json({ success: false, msg: 'No se pudo encontrar la solicitud, ocurrio el siguiente error ' + error });    
-                } else {
+                    res.json({ success: false, msg: 'No se pudo encontrar la solicitud, ocurrio el siguiente error ' + error });
+                }
                     mailOptions.to = nuevoPostulante.correo_postulante;
                     mailOptions.html = `
                     <html>   
@@ -55,8 +55,7 @@ module.exports.registrar_postulante = function (req, res) {
                     <body>
                         <h1>Buen día ${solicitudDatos.nombre_solicitud} </h1>
                         <h2>Estado de la postulación:</h2>
-                        <p>Le contactamos para informarle de su postulación para asistente del curso ${solicitudDatos.curso_solicitud} con 
-                        el profesor ${solicitudDatos.profesor_solicitud}.</p>
+                        <p>Le contactamos para informarle de su postulación para asistente del curso ${solicitudDatos.curso_solicitud}.</p>
                         <p>En este momento se encuentra el fase de revisión, en los próximos días se le informará de su estado 
                         final, por lo tanto estar atento al buzón de correos.</p>
 
@@ -72,7 +71,6 @@ module.exports.registrar_postulante = function (req, res) {
                         }
                     });
                     res.json({ success: true, msg: 'El postulante se ha registro con exito' })
-                }
             });
         }
     });

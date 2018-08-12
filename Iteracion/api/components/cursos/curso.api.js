@@ -78,7 +78,7 @@ module.exports.periodo_activo = function (req, res) {
 module.exports.agregar_requisito_curso = function (req, res) {
 
     cursoModel.update(
-        { _id: req.body.id_curso },
+        { _id: req.body._id},
         {
             $push : {
                 'requisitos_curso' : {
@@ -97,5 +97,28 @@ module.exports.agregar_requisito_curso = function (req, res) {
         }
     )
 
-}
+};
+
+module.exports.eliminar_requisito_curso = function (req, res) {
+
+    cursoModel.update(
+        { _id: req.body._id },
+        {
+            $pull:
+            {
+                'requisitos_curso':
+                {
+                    id_requisito: req.body.id_requisito
+                }
+            }
+        },
+        function (error) {
+            if (error) {
+                res.json({ success: false, msg: 'No se pudo eliminar el requisito, ocurrió el siguiente error' + error });
+            } else {
+               res.json({ success: true, msg: 'Se ha actualizado correctamente. ' + res });
+            }
+        }
+    )
+};
 

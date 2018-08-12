@@ -209,53 +209,53 @@ function obtenerDatos() {
     }
 };
 
-function obtenerSolicitudActualizar() {
-    let bError = false;
-    let aInfoPostulante = [];
+// function obtenerSolicitudActualizar() {
+//     let bError = false;
+//     let aInfoPostulante = [];
 
-    sProfesor = inputProfesor.value;
-    sCarrera = inputCarrera.value;
-    sCurso = inputCurso.value;
-    sPeriodo = inputPeriodo.value;
-    sGrupo = inputGrupo.value;
-    sNombre = inputNombre.value;
-    sEstado = inputEstado.value;
+//     sProfesor = inputProfesor.value;
+//     sCarrera = inputCarrera.value;
+//     sCurso = inputCurso.value;
+//     sPeriodo = inputPeriodo.value;
+//     sGrupo = inputGrupo.value;
+//     sNombre = inputNombre.value;
+//     sEstado = inputEstado.value;
 
-    sCedula = inputCedula.value;
-    sCorreo = inputCorreo.value;
-    sTelefono = inputTelefono.value;
-    sDireccion = inputDireccion.value;
-    sCarrera_Postulante = inputCarrera_postulante.value;
-    sFecha_ingreso = inputFecha_ingreso.value;
+//     sCedula = inputCedula.value;
+//     sCorreo = inputCorreo.value;
+//     sTelefono = inputTelefono.value;
+//     sDireccion = inputDireccion.value;
+//     sCarrera_Postulante = inputCarrera_postulante.value;
+//     sFecha_ingreso = inputFecha_ingreso.value;
 
-    aInfoPostulante.push(sProfesor, sCarrera, sCurso, sPeriodo, sGrupo, sNombre, sEstado, sCedula, sCorreo, sTelefono,
-        sDireccion, sCarrera_Postulante, sFecha_ingreso);
+//     aInfoPostulante.push(sProfesor, sCarrera, sCurso, sPeriodo, sGrupo, sNombre, sEstado, sCedula, sCorreo, sTelefono,
+//         sDireccion, sCarrera_Postulante, sFecha_ingreso);
 
-    bError = validarPostulantes();
-    if (bError == true) {
-        swal({
-            type: 'error',
-            title: 'Actualización incorrecta!',
-            text: 'No se pudo actualizar la solicitud, verifique que completó correctamente la información que se le solicita',
-            confirmButtonText: 'Entendido'
-        })
-    } else {
-        actualizarPostulante(aInfoPostulante);
-        swal({
-            title: 'Actualización correcto!',
-            text: 'La solicitud se actualizó correctamente',
-            type: 'success',
-            confirmButtonText: 'Entendido'
-        })
-        $('.swal2-confirm').click(function () {
-            clean();
-            reload();
-        });
-        limpiarFormulario();
-        botonRegistrar.hidden = false;
-        botonActualizar.hidden = true;
-    }
-};
+//     bError = validarPostulantes();
+//     if (bError == true) {
+//         swal({
+//             type: 'error',
+//             title: 'Actualización incorrecta!',
+//             text: 'No se pudo actualizar la solicitud, verifique que completó correctamente la información que se le solicita',
+//             confirmButtonText: 'Entendido'
+//         })
+//     } else {
+//         actualizarPostulante(aInfoPostulante);
+//         swal({
+//             title: 'Actualización correcto!',
+//             text: 'La solicitud se actualizó correctamente',
+//             type: 'success',
+//             confirmButtonText: 'Entendido'
+//         })
+//         $('.swal2-confirm').click(function () {
+//             clean();
+//             reload();
+//         });
+//         limpiarFormulario();
+//         botonRegistrar.hidden = false;
+//         botonActualizar.hidden = true;
+//     }
+// };
 
 function validarPostulantes() {
     let bError = false;

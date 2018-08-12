@@ -31,20 +31,9 @@
                 </a>
                 <ul id="menuOpciones" class="menu">
                     <li>
-                        <a href="#">Carreras</a>
+                        <a href="#">Bitácora</a>
                     </li>
                     <li>
-                        <a href="#">Períodos</a>
-                    </li>
-                    <li>
-                        <a href="#">Grupos</a>
-                    </li>
-                    <li>
-                        <a href="#">Sedes</a>
-                    </li>
-                    <li>
-                        <a href="#">Laboratorios</a>
-                    </li>
                 </ul>
             </div>
             <a id="btnCerrarSesion">Cerrar sesión</a>
@@ -93,46 +82,47 @@
             </table>
         </section>
 
-        <div hidden>
+        <div hidden id="div_registrar">
 
-        <section id="sct_registrar" class="popup-bg">
-            <!-- Formulario que aparece -->
-            <form class="popup-content">
-                <h1 class="title" id="h1">Registrar solicitud</h1>
+            <section id="sct_registrar" class="popup-bg">
+                <!-- Formulario que aparece -->
+                <form class="popup-content">
+                    <h1 class="title" id="h1">Registrar solicitud</h1>
 
-                <div class="form">
+                    <div class="form">
 
-                    <input type="hidden" id="txtId">
+                        <input type="hidden" id="txtId">
 
-                    <input type="text" id="txtNombre" placeholder="Nombre completo del postulante*" required>
+                        <input type="hidden" id="txtNombre" placeholder="Nombre completo del postulante*" required>
 
-                    <select id="sltCarrera">
-                        <option value="">Seleccione la carrera</option>
-                    </select>
+                        <select id="sltCarrera" class="hidden">
+                            <option value="">Seleccione la carrera</option>
+                        </select>
 
-                    <select id="sltCurso">
-                        <option value="">Seleccione el curso a asistir</option>
-                    </select>
+                        <select id="sltCurso" class="hidden">
+                            <option value="">Seleccione el curso a asistir</option>
+                        </select>
 
-                    <select id="sltPeriodo">
-                        <option value="">Seleccione el período</option>
-                    </select>
+                        <select id="sltPeriodo" class="hidden">
+                            <option value="">Seleccione el período</option>
+                        </select>
 
-                    <select id="sltEstado">
-                        <option value="">Seleccione el estado de la solicitud</option>
-                        <option value="Aprobado por decanatura">Aprobado por decanatura</option>
-                        <option value="Reprobado por decanatura">Reprobado por decanatura</option>
-                        <option value="Pendiente de rectoría">Pendiente de rectoría</option>
-                        <option value="Pendiente de decanatura" hidden>Pendiente de decanatura</option>
-                    </select>
+                        <label for="sltEstado">Seleccione el estado de la solicitud</label>
+                        <select id="sltEstado">
+                            <option value="">Seleccione el estado de la solicitud</option>
+                            <option value="Aprobado por decanatura">Aprobado por decanatura</option>
+                            <option value="Reprobado por decanatura">Reprobado por decanatura</option>
+                            <option value="Pendiente de rectoría">Pendiente de rectoría</option>
+                            <option value="Pendiente de decanatura" hidden>Pendiente de decanatura</option>
+                        </select>
 
-                    <button type="button" class="button" id="btn_Actualizar">Actualizar</button>
-                    <button type="button" class="button" id="btn_Registrar">Registrar</button>
-                </div>
-            </form>
-            <!-- Formulario que aparece -->
-        </section>
-    </div>
+                        <button type="button" class="button" id="btn_Actualizar">Actualizar</button>
+                        <button type="button" class="button" id="btn_Registrar">Registrar</button>
+                    </div>
+                </form>
+                <!-- Formulario que aparece -->
+            </section>
+        </div>
         <!-- Todos deben tener esta seccion de perfil -->
         <section id="sct_perfil" class="popup-bg">
             <div class="popup-content">
@@ -151,10 +141,10 @@
     <!-- SCRIPTS FIJOS PARA TODOS Dashboards -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2"></script>
     <script src="../../js/jquery-3.3.1.js"></script>
-    <script src="../../js/controlador_menu.js"></script>
     <!-- SCRIPTS FIJOS PARA TODOS -->
 
     <!-- Todos los servicios necesarios -->
+    <script src="../../js/postulantes_public/servicio_postulantes.js"></script>
     <script src="../../js/solicitud_public/servicio_solicitud.js"></script>
     <script src="../../js/cursos_public/servicio_cursos.js"></script>
     <script src="../../js/carreras_public/servicio_carreras.js"></script>

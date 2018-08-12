@@ -93,7 +93,7 @@
             </table>
         </section>
 
-        <div hidden>
+        <div hidden id="div_registrar">
             <section id="sct_registrar" class="popup-bg">
                 <!-- Formulario que aparece -->
                 <form class="popup-content">
@@ -103,34 +103,36 @@
 
                         <input type="hidden" id="txtId">
 
-                        <input type="text" id="txtProfesor" placeholder="Nombre completo del profesor*" required>
+                        <div>
 
-                        <input type="text" id="txtNombre" placeholder="Nombre completo del postulante*" required>
+                        <input type="hidden" id="txtProfesor" placeholder="Nombre completo del profesor*" required>
 
-                        <select id="sltCarrera">
+                        <input type="hidden" id="txtNombre" placeholder="Ejemplo: José Andres Salvatierra Hernandez*" required>
+.
+                        <select id="sltCarrera" class="hidden">
                             <option value="">Seleccione la carrera</option>
                         </select>
 
-                        <select id="sltCurso">
+                        <select id="sltCurso" class="hidden">
                             <option value="">Seleccione el curso a asistir</option>
                         </select>
 
-                        <select id="sltPeriodo">
+                        <select id="sltPeriodo" class="hidden">
                             <option value="">Seleccione el período</option>
                         </select>
 
-                        <select id="sltGrupo">
-                            <option value="">Seleccione el grupo a asistir</option>
-                        </select>
+                        <label for="sltEstado">Seleccione el estado de la solicitud</label>
                         <select id="sltEstado">
                             <option value="Aprobado por rectoría">Aprobado por rectoría</option>
                             <option value="Reprobado por rectoría">Reprobado por rectoría</option>
                             <option value="Pendiente de rectoría">Pendiente de rectoría</option>
+                            <option value="Pendiente de decanatura" hidden>Pendiente de decanatura</option>
                         </select>
 
                         <button type="button" class="button" id="btn_Actualizar">Actualizar</button>
                         <button type="button" class="button" id="btn_Registrar">Registrar</button>
                     </div>
+                    
                 </form>
                 <!-- Formulario que aparece -->
             </section>
@@ -154,11 +156,11 @@
     <!-- SCRIPTS FIJOS PARA TODOS Dashboards -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2"></script>
     <script src="../../js/jquery-3.3.1.js"></script>
-    <script src="../../js/controlador_menu.js"></script>
     <!-- SCRIPTS FIJOS PARA TODOS -->
 
     <!-- Todos los servicios necesarios -->
     <script src="../../js/solicitud_public/servicio_solicitud.js"></script>
+    <script src="../../js/postulantes_public/servicio_postulantes.js"></script>
     <script src="../../js/cursos_public/servicio_cursos.js"></script>
     <script src="../../js/carreras_public/servicio_carreras.js"></script>
     <script src="../../js/periodos_public/servicio_periodos.js"></script>

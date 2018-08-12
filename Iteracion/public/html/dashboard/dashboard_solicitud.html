@@ -69,7 +69,7 @@
                 <thead>
                     <tr>
                         <th>Correo del profesor</th>
-                        <th>Carrera</th>
+                        <th>Carrera del curso a asistir</th>
                         <th>Curso</th>
                         <th>Período</th>
                         <th>Nombre del postulante</th>
@@ -82,46 +82,77 @@
                 </tbody>
             </table>
         </section>
-        <section id="sct_registrar" class="popup-bg">
-            <!-- Formulario que aparece -->
-            <form id="sct_registrar_solicitud" class="popup-content scroll">
-                <h1 class="title" id="h1">Registrar solicitud</h1>
 
-                <div class="form">
 
-                    <input type="hidden" id="txtId">
+            <section id="sct_registrar" class="popup-bg">
+                <!-- Formulario que aparece -->
+                <form id="sct_registrar_solicitud" class="popup-content scroll">
+                    <h1 class="title" id="h1">Registrar solicitud</h1>
 
-                    <input type="hidden" id="txtProfesor" placeholder="Nombre completo del profesor*" required>
+                    <div class="form">
 
-                    <label for="txtNombre">Nombre postulante:</label>
-                    <input type="text" id="txtNombre" placeholder="Nombre completo del postulante*" required>
+                        <input type="hidden" id="txtId">
 
-                    <label for="sltCarrera">Carrera del curso a asistir:</label>
-                    <select id="sltCarrera">
-                        <option value="">Seleccione la carrera</option>
-                    </select>
+                        <input type="hidden" id="txtProfesor" placeholder="Nombre completo del profesor*" required>
 
-                    <label for="sltCurso">Curso a asistir:</label>
-                    <select id="sltCurso">
-                        <option value="">Seleccione el curso a asistir</option>
-                    </select>
+                        <label for="txtNombre">Nombre postulante:</label>
+                        <input type="text" id="txtNombre" placeholder="Nombre completo del postulante*" required>
 
-                    <label for="sltPeriodo">Período de la postulación:</label>
-                    <select id="sltPeriodo">
-                        <option value="">Seleccione el período</option>
-                    </select>
-
-                    <div id="div_estado" hidden>
-                        <select id="sltEstado">
-                            <option value="Pendiente de Decanatura">Pendiente de Decanatura</option>
+                        <label for="sltCarrera">Carrera del curso a asistir:</label>
+                        <select id="sltCarrera">
+                            <option value="">Seleccione la carrera</option>
                         </select>
-                    </div>
 
-                    <button type="button" class="button" id="btn_Actualizar">Actualizar</button>
-                    <button type="button" class="button" id="btn_Registrar">Registrar</button>
+                        <label for="sltCurso">Curso a asistir:</label>
+                        <select id="sltCurso">
+                            <option value="">Seleccione el curso a asistir</option>
+                        </select>
+
+                        <label for="sltPeriodo">Período de la postulación:</label>
+                        <select id="sltPeriodo">
+                            <option value="">Seleccione el período</option>
+                        </select>
+
+                        <div hidden>
+
+                            <select id="sltEstado">
+                                <option value="Pendiente de Decanatura">Pendiente de Decanatura</option>
+                            </select>
+                        </div>
+
+                        <button type="button" class="button" id="btn_Actualizar">Actualizar</button>
+                        <button type="button" class="button" id="btn_Registrar">Registrar</button>
+                    </div>
+                </form>
+                <!-- Formulario que aparece -->
+            </section>
+
+
+        <section id="sct_solicitud" class="popup-bg">
+            <div class="popup-content">
+                <h1 class="title">Información de la solicitud</h1>
+                <div id="div_tabla_solicitud">
+                    <table id="tblRequisitos">
+                        <thead>
+                            <th>Correo del profesor</th>
+                            <th>Carrera del curso</th>
+                            <th>Curso a asistir</th>
+                            <th>Período</th>
+                            <th>Estado</th>
+                            <th>Nombre del postulante</th>
+                            <th>Cedúla del postulante</th>
+                            <th>Correo del postulante</th>
+                            <th>Teléfono del postulante</th>
+                            <th>Dirección del postulante</th>
+                            <th>Carrera que cursa el postulante</th>
+                            <th>Fecha ingreso del postulante</th>
+                        </thead>
+                        <tbody>
+
+                        </tbody>
+                    </table>
                 </div>
-            </form>
-            <!-- Formulario que aparece -->
+            </div>
         </section>
 
         <!-- Todos deben tener esta seccion de perfil -->
@@ -142,16 +173,16 @@
     <!-- SCRIPTS FIJOS PARA TODOS Dashboards -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2"></script>
     <script src="../../js/jquery-3.3.1.js"></script>
-    <script src="../../js/controlador_menu.js"></script>
     <!-- SCRIPTS FIJOS PARA TODOS -->
 
     <!-- Todos los servicios necesarios -->
+    <script src="../../js/usuarios_public/servicio_usuarios.js"></script>
     <script src="../../js/solicitud_public/servicio_solicitud.js"></script>
     <script src="../../js/cursos_public/servicio_cursos.js"></script>
     <script src="../../js/carreras_public/servicio_carreras.js"></script>
     <script src="../../js/periodos_public/servicio_periodos.js"></script>
+    <script src="../../js/postulantes_public/servicio_postulantes.js"></script>
     <script src="../../js/grupos_public/servicio_grupos.js"></script>
-    <script src="../../js/usuarios_public/servicio_usuarios.js"></script>
     <!-- Todos los servicios necesarios -->
 
     <!-- Todos los controladores necesarios -->

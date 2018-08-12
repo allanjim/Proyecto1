@@ -55,6 +55,7 @@ function verificarCredenciales(sCorreo, sContrasenna) {
                 let nombreCompleto = listaUsuarios[i]['nombre_usuario']+' '+listaUsuarios[i]['primer_apellido_usuario']+' '+listaUsuarios[i]['segundo_apellido_usuario']
                 localStorage.setItem('idUsuario', listaUsuarios[i]['_id']);
                 localStorage.setItem('rolUsuario', listaUsuarios[i]['rol_usuario']);
+                localStorage.setItem('correo_usuario', listaUsuarios[i]['correo_usuario']);
                 localStorage.setItem('nombreCompletoUsuario', nombreCompleto);
 
 
@@ -64,12 +65,12 @@ function verificarCredenciales(sCorreo, sContrasenna) {
             }
         }
     }
-};
-
+    return bError;
+}
 function accionRol(psRol) {
     switch (psRol) {
         case 'Administrador':
-            window.location.href = "../html/dashboard/dashboard_solicitud.html";
+            window.location.href = "../html/dashboard/dashboard_soli_decanatura.html";
             break;
         case 'Rector':
             window.location.href = "../html/dashboard/dashboard_carrera.html";
@@ -81,14 +82,14 @@ function accionRol(psRol) {
             window.location.href = "../html/dashboard/dashboard_carrera.html";
             break;
         case 'Profesor':
-            window.location.href = "../html/dashboard/dashboard_soli_asistente_decanatura.html";
+            window.location.href = "../html/dashboard/dashboard_bitacora.html";
             break;
         case 'Asistente':
-            window.location.href = "../html/dashboard/dashboard_carrera.html";
+            window.location.href = "../html/dashboard/dashboard_bitacora.html";
             break;
 
     }
-};
+}
 
 // Contrasenna visible o no
 let botonVer = document.querySelector('#btnVerContrasenna');
@@ -103,7 +104,7 @@ botonVer.addEventListener('click', function () {
         botonVer.classList.add('fa-eye');
         inputContrasenna.type = 'text';
     }
-})
+});
 
 // Fin iniciar sesion
 
@@ -123,5 +124,5 @@ window.onclick = function (event) {
         inputCorreo.classList.remove('errorInput');
         inputContrasenna.classList.remove('errorInput');
     }
-};
+}
 // Esto es para que despliegue el formulario

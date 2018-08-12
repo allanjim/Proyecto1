@@ -12,13 +12,9 @@ const botonActualizarPostulante = document.querySelector('#btn_RegistrarPostulan
 let rol = localStorage.getItem('rolUsuario');
 botonActualizar.hidden = true;
 
+
 botonRegistrar.addEventListener('click', obtenerDatos);
 botonActualizar.addEventListener('click', obtenerSolicitudActualizar);
-
-if(rol.toLowerCase() == 'Administrador'.toLowerCase()){
-    botonActualizarPostulante.addEventListener('click', obtenerDatosPostulante);
-};
-
 
 let popup;
 const inputProfesor = localStorage.getItem('correo_usuario');
@@ -36,6 +32,12 @@ const inputDireccion = document.querySelector('#txtDireccion');
 const inputCarrera_postulante = document.querySelector('#sltCarrera_Postulante');
 const inputFecha_ingreso = document.querySelector('#txtFecha_ingreso');
 const inputIdPostulante = document.querySelector('#txtIdPostulante');
+
+// if(rol.toLowerCase() == 'Administrador'.toLowerCase()){
+//     botonActualizarPostulante.addEventListener('click', obtenerDatosPostulante);
+// };
+
+
 
 let sProfesor = '';
 let sCarrera = '';
@@ -144,7 +146,7 @@ function validarPostulantes() {
     let arregloInputs = document.querySelector('input:required');
 
     let regexSoloLetras = /^[a-z A-ZáéíóúÁÉÍÓÚñÑ]+$/;
-    let regexSoloNumeros = /^[0-9-]+$/;
+    let regexSoloNumeros = /^[0-9-/]+$/;
     let regexCodigo = /^[a-zA-Z0-9/-]+$/;
     let regexEmail = /^[a-zA-Z0-9._]+@ucenfotec.ac.cr+$/;
 
@@ -195,6 +197,12 @@ function validarPostulantes() {
         inputCarrera_postulante.classList.add('errorInput');
     } else {
         inputCarrera_postulante.classList.remove('errorInput');
+    }
+    if (regexSoloNumeros.test(sFecha_ingreso) == false) {
+        bError = true;
+        inputFecha_ingreso.classList.add('errorInput');
+    } else {
+        inputFecha_ingreso.classList.remove('errorInput');
     }
 
     return bError;
@@ -253,6 +261,8 @@ function validarSolicitudes() {
     sPeriodo = inputPeriodo.value;
     sNombre = inputNombre.value;
 
+    if(rol.toLowerCase() == 'Asistente decanatura'.toLowerCase()){
+
     for (let i = 0; i <= arregloInputs.length; i++) {
         if (arregloInputs[i].value == '') {
             bError = true;
@@ -261,6 +271,8 @@ function validarSolicitudes() {
             arregloInputs[i].classList.remove('errorInput');
         }
     };
+
+    }
 
     if (regexSoloLetras.test(sCarrera) == false) {
         bError = true;
@@ -399,14 +411,16 @@ function mostrarListaSolicitudes(pFiltro) {
                         let titulo;
                         titulo = document.getElementById('h1');
                         titulo.innerHTML = 'Modificar solicitud';
-                        botonEditar.dataset._id = listaPostulantes[i]['_id'];
-
-                        botonEditar.addEventListener('click', buscar_por_postulante_id);
                     });
                     celdaOpciones.appendChild(botonEditar);
                 }
                 else{
                 botonEditar.addEventListener('click', function () {
+
+
+                    let ocultar = document.querySelector('#div_registrar');
+                    ocultar.hidden = false;
+
                     popup = document.querySelector('#sct_registrar');
                     popup.style.display = "block";
                     let titulo;
@@ -430,7 +444,6 @@ function mostrarListaSolicitudes(pFiltro) {
 
                 celdaOpciones.appendChild(botonEliminar);
 
-                celdaOpciones.appendChild(botonEliminar);
 
                 let botonVer = document.createElement('span');
                 botonVer.href = '#'// path del html editar lab
@@ -440,14 +453,95 @@ function mostrarListaSolicitudes(pFiltro) {
                 botonVer.addEventListener('click', function () {
                     popup = document.querySelector('#sct_info_solicitud');
                     popup.style.display = "block";
-                    let titulo;
-                    titulo = document.getElementById('h1');
-                    titulo.innerHTML = 'Información de solicitud';
                 });
                 celdaOpciones.appendChild(botonEditar);
 
                 celdaOpciones.appendChild(botonVer);
             }
+        }else{
+            let fila = tbody.insertRow();
+
+            let cProfesor_solicitud = fila.insertCell();
+            let cCarrera_solicitud = fila.insertCell();
+            let cCurso_solicitud = fila.insertCell();
+            let cPeriodo_solicitud = fila.insertCell();
+            let cNombre_solicitud = fila.insertCell();
+            let cEstado_solicitud = fila.insertCell();
+
+            let celdaOpciones = fila.insertCell();
+
+            cProfesor_solicitud.innerHTML = listaSolicitudes[i]['profesor_solicitud'],
+                cCarrera_solicitud.innerHTML = listaSolicitudes[i]['carrera_solicitud'],
+                cCurso_solicitud.innerHTML = listaSolicitudes[i]['curso_solicitud'],
+                cPeriodo_solicitud.innerHTML = listaSolicitudes[i]['periodo_solicitud'],
+                cNombre_solicitud.innerHTML = listaSolicitudes[i]['nombre_solicitud'],
+                cEstado_solicitud.innerHTML = listaSolicitudes[i]['estado_solicitud']
+
+            // boton  editar
+            let botonEditar = document.createElement('span');
+            botonEditar.href = '#'// path del html editar lab
+            botonEditar.classList.add('fas');
+            botonEditar.classList.add('fa-cogs');
+
+            botonEditar.dataset._id = listaSolicitudes[i]['_id'];
+
+            botonEditar.addEventListener('click', buscar_por_solicitud_id);
+
+
+            if(rol.toLowerCase() == 'Administrador'.toLowerCase() && 
+            inputEstado.value.toLowerCase() == 'Pendiente de Decanatura'.toLowerCase()){
+                botonEditar.addEventListener('click', function () {
+                    popup = document.querySelector('#sct_registrar');
+                    popup.style.display = "block";
+                    let titulo;
+                    titulo = document.getElementById('h1');
+                    titulo.innerHTML = 'Modificar solicitud';
+                });
+                celdaOpciones.appendChild(botonEditar);
+            }
+            else{
+            botonEditar.addEventListener('click', function () {
+
+                let ocultar = document.querySelector('#div_registrar');
+                ocultar.hidden = false;
+
+                popup = document.querySelector('#sct_registrar');
+                popup.style.display = "block";
+                let titulo;
+                titulo = document.getElementById('h1');
+                titulo.innerHTML = 'Modificar solicitud';
+            });
+        }
+            celdaOpciones.appendChild(botonEditar);
+
+
+            // boton eliminar
+            let botonEliminar = document.createElement('span');
+            botonEliminar.href = '#'//evento  eliminar lab
+            botonEliminar.classList.add('fas');
+            botonEliminar.classList.add('fa-trash-alt');
+
+
+            botonEliminar.dataset._id = listaSolicitudes[i]['_id'];
+
+            botonEliminar.addEventListener('click', remover_solicitud);
+
+            celdaOpciones.appendChild(botonEliminar);
+
+            celdaOpciones.appendChild(botonEliminar);
+
+            let botonVer = document.createElement('span');
+            botonVer.href = '#'// path del html editar lab
+            botonVer.classList.add('fas');
+            botonVer.classList.add('fa-eye');
+
+            botonVer.addEventListener('click', function () {
+                popup = document.querySelector('#sct_info_solicitud');
+                popup.style.display = "block";
+            });
+            celdaOpciones.appendChild(botonEditar);
+
+            celdaOpciones.appendChild(botonVer);
         }
 
             // Icono de editar: <i class="fas fa-cogs"></i>

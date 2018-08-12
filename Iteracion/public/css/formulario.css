@@ -40,7 +40,10 @@ input, select {
     height: 370px;
 }
 #asistente_registro{
-    height: 360px;
+    height: 480px;
+}
+#div_solicitud{
+    width: 500px;
 }
 .popup-content h1 {
     text-align: center;

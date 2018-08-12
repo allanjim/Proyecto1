@@ -40,13 +40,24 @@
     box-shadow: inset 0px 2px 3px 1.5px rgba(0, 0, 0, 0.2);
     padding: 0px 10px;
 }
+
+.popup-content label {
+    margin: 0px auto;
+    margin-bottom: 5px;
+    width: 80%;
+    padding: 0px 20px 0px 0px;
+    display: block;
+    color: rgba(30, 33, 66, 0.8);
+    font-weight: 300;
+}
+
 .popup-content select{
     width: 85%;
 }
 
 #sct_registrar .popup-content{
-    margin-top: 2.5%;
-    height: 530px;
+    margin-top: 180px;
+    height: 200px;
 }
 
 input[type = date]::-webkit-inner-spin-button{
@@ -60,4 +71,8 @@ input[type = date]::-webkit-calendar-picker-indicator:hover{
 
 input.errorInput,select.errorInput {
     border: 1px solid #D1254D;
+}
+
+.hidden{
+    display: none;
 }

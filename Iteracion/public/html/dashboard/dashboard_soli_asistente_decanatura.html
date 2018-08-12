@@ -82,9 +82,9 @@
             <table id="tblPostulante" class="scroll">
                 <thead>
                     <tr>
-                        <th>Profesor</th>
-                        <th>Carrera</th>
-                        <th>Curso</th>
+                        <th>Correo del profesor</th>
+                        <th>Carrera del curso a asistir</th>
+                        <th>Curso a asistir</th>
                         <th>Período</th>
                         <th>Nombre del postulante</th>
                         <th>Estado</th>
@@ -136,34 +136,39 @@
 
         <section id="sct_modificar" class="popup-bg">
             <!-- Formulario que aparece -->
-            <form class="popup-content">
-                <h1 class="title" id="h1">Modificar solicitud</h1>
+            <form class="popup-content" id="asistente_registro">
+                <h1 class="title" id="h1">Información del postulante</h1>
 
-                <div class="form" id="asistente_registro">
+                <div class="form">
                     <input type="hidden" id="txtIdPostulante">
 
-                    <input type="text" id="txtCedula" placeholder="Cedúla del postulante" required>
+                    <label for="txtCedula">Cedúla del postulante</label>
+                    <input type="text" id="txtCedula" placeholder="Ejemplo: 1-0715-1130" required>
 
-                    <input type="text" id="txtCorreo" placeholder="Correo del postulante" required>
+                    <label for="txtCorreo">Correo del postulante</label>
+                    <input type="text" id="txtCorreo" placeholder="mhernandez@ucenfotec.ac.cr" required>
 
-                    <input type="text" id="txtTelefono" placeholder="Teléfono del postulante" required>
+                    <label for="txtTelefono">Teléfono del postulante</label>
+                    <input type="text" id="txtTelefono" placeholder="8864-7541" required>
 
-                    <input type="text" id="txtDireccion" placeholder="Dirección del postulante" required>
+                    <label for="txtDireccion">Dirección del postulante</label>
+                    <input type="text" id="txtDireccion" placeholder="" required>
 
+                    <label for="sltCarrera_Postulante">Carrera que cursa el postulante</label>
                     <select id="sltCarrera_Postulante" required>
                         <option value="">Seleccione la carrera que cursa el postulante</option>
                     </select>
 
-                    <input type="date" id="txtFecha_ingreso" required>
+                    <label for="txtFecha_ingreso">Fecha de ingreso</label>
+                    <input type="date" id="txtFecha_ingreso" placeholder ="Fecha de ingreso del postulante a la universidad" required>
 
-                    <button type="button" class="button" id="btn_ActualizarPostulante">Actualizar</button>
-                    <button type="button" class="button" id="btn_RegistrarPostulante">Registrar</button>
+                    <button type="button" class="button" id="btn_RegistrarPostulante">Enviar</button>
                 </div>
             </form>
         </section>
 
         <section id="sct_info_solicitud" class="popup-bg">
-            <div class="popup-content">
+            <div class="popup-content" id="div_solicitud">
                 <h1 class="title"></h1>
                 <div id="div_tabla_cursos">
                     <table id="tblCursos">
@@ -200,12 +205,12 @@
     <!-- SCRIPTS FIJOS PARA TODOS Dashboards -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2"></script>
     <script src="../../js/jquery-3.3.1.js"></script>
-    <script src="../../js/controlador_menu.js"></script>
     <!-- SCRIPTS FIJOS PARA TODOS -->
 
     <!-- Todos los servicios necesarios -->
-    <script src="../../js/solicitud_public/servicio_solicitud.js"></script>
+    <script src="../../js/usuarios_public/servicio_usuarios.js"></script>
     <script src="../../js/postulantes_public/servicio_postulantes.js"></script>
+    <script src="../../js/solicitud_public/servicio_solicitud.js"></script>
     <script src="../../js/cursos_public/servicio_cursos.js"></script>
     <script src="../../js/carreras_public/servicio_carreras.js"></script>
     <script src="../../js/periodos_public/servicio_periodos.js"></script>

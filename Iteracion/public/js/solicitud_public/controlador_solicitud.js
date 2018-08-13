@@ -261,16 +261,16 @@ function validarSolicitudes() {
     sPeriodo = inputPeriodo.value;
     sNombre = inputNombre.value;
 
-    if(rol.toLowerCase() == 'Asistente decanatura'.toLowerCase()){
+    if (rol.toLowerCase() == 'Asistente decanatura'.toLowerCase()) {
 
-    for (let i = 0; i <= arregloInputs.length; i++) {
-        if (arregloInputs[i].value == '') {
-            bError = true;
-            arregloInputs[i].classList.add('errorInput');
-        } else {
-            arregloInputs[i].classList.remove('errorInput');
-        }
-    };
+        for (let i = 0; i <= arregloInputs.length; i++) {
+            if (arregloInputs[i].value == '') {
+                bError = true;
+                arregloInputs[i].classList.add('errorInput');
+            } else {
+                arregloInputs[i].classList.remove('errorInput');
+            }
+        };
 
     }
 
@@ -373,7 +373,105 @@ function mostrarListaSolicitudes(pFiltro) {
             listaSolicitudes[i]['nombre_solicitud'].toLowerCase().includes(pFiltro.toLowerCase())) {
 
             if (inputProfesor == correoProfesor) {
-                if(inputProfesor == listaSolicitudes[i]['profesor_solicitud']){
+                if (inputProfesor == listaSolicitudes[i]['profesor_solicitud']) {
+                    let fila = tbody.insertRow();
+
+                    let cProfesor_solicitud = fila.insertCell();
+                    let cCarrera_solicitud = fila.insertCell();
+                    let cCurso_solicitud = fila.insertCell();
+                    let cPeriodo_solicitud = fila.insertCell();
+                    let cNombre_solicitud = fila.insertCell();
+                    let cEstado_solicitud = fila.insertCell();
+
+                    let celdaOpciones = fila.insertCell();
+
+                    cProfesor_solicitud.innerHTML = listaSolicitudes[i]['profesor_solicitud'],
+                        cCarrera_solicitud.innerHTML = listaSolicitudes[i]['carrera_solicitud'],
+                        cCurso_solicitud.innerHTML = listaSolicitudes[i]['curso_solicitud'],
+                        cPeriodo_solicitud.innerHTML = listaSolicitudes[i]['periodo_solicitud'],
+                        cNombre_solicitud.innerHTML = listaSolicitudes[i]['nombre_solicitud'],
+                        cEstado_solicitud.innerHTML = listaSolicitudes[i]['estado_solicitud']
+
+                    // boton  editar
+                    let botonEditar = document.createElement('span');
+                    botonEditar.href = '#'// path del html editar lab
+                    botonEditar.classList.add('fas');
+                    botonEditar.classList.add('fa-cogs');
+
+                    botonEditar.dataset._id = listaSolicitudes[i]['_id'];
+
+                    botonEditar.addEventListener('click', buscar_por_solicitud_id);
+
+
+                    if (rol.toLowerCase() == 'Decanatura'.toLowerCase() &&
+                    inputEstado.value.toLowerCase() == 'Reprobado por rectoría'.toLowerCase()) {
+                    botonEditar.addEventListener('click', function () {
+                        popup = document.querySelector('#sct_modificar');
+                        popup.style.display = "block";
+                    });
+                    celdaOpciones.appendChild(botonEditar);
+                }
+
+                    if (rol.toLowerCase() == 'Administrador'.toLowerCase() &&
+                        inputEstado.value.toLowerCase() == 'Pendiente de Decanatura'.toLowerCase()) {
+                        botonEditar.addEventListener('click', function () {
+                            popup = document.querySelector('#sct_registrar');
+                            popup.style.display = "block";
+                            let titulo;
+                            titulo = document.getElementById('h1');
+                            titulo.innerHTML = 'Modificar solicitud';
+                        });
+                        celdaOpciones.appendChild(botonEditar);
+                    }
+                    else {
+                        botonEditar.addEventListener('click', function () {
+
+
+                            let ocultar = document.querySelector('#div_registrar');
+                            ocultar.hidden = false;
+
+                            popup = document.querySelector('#sct_registrar');
+                            popup.style.display = "block";
+                            let titulo;
+                            titulo = document.getElementById('h1');
+                            titulo.innerHTML = 'Modificar solicitud';
+                        });
+                    }
+                    celdaOpciones.appendChild(botonEditar);
+
+
+                    // boton eliminar
+                    let botonEliminar = document.createElement('span');
+                    botonEliminar.href = '#'//evento  eliminar lab
+                    botonEliminar.classList.add('fas');
+                    botonEliminar.classList.add('fa-trash-alt');
+
+
+                    botonEliminar.dataset._id = listaSolicitudes[i]['_id'];
+
+                    botonEliminar.addEventListener('click', remover_solicitud);
+
+                    celdaOpciones.appendChild(botonEliminar);
+
+
+
+                    let botonVer = document.createElement('span');
+                    botonVer.href = '#'// path del html editar lab
+                    botonVer.classList.add('fas');
+                    botonVer.classList.add('fa-eye');
+
+                    botonVer.dataset._id = listaPostulantes[i]['_id'];
+                    debugger;
+                    botonVer.addEventListener('click', buscar_por_postulante_id);
+
+                    botonVer.addEventListener('click', function () {
+                        popup = document.querySelector('#sct_postulante');
+                        popup.style.display = "block";
+                    });
+
+                    celdaOpciones.appendChild(botonVer);
+                }
+            } else {
                 let fila = tbody.insertRow();
 
                 let cProfesor_solicitud = fila.insertCell();
@@ -403,10 +501,12 @@ function mostrarListaSolicitudes(pFiltro) {
                 botonEditar.addEventListener('click', buscar_por_solicitud_id);
 
 
-                if(rol.toLowerCase() == 'Administrador'.toLowerCase() && 
-                inputEstado.value.toLowerCase() == 'Pendiente de Decanatura'.toLowerCase()){
+                if (rol.toLowerCase() == 'Administrador'.toLowerCase() &&
+                    inputEstado.value.toLowerCase() == 'Pendiente de Decanatura'.toLowerCase()) {
+
                     botonEditar.addEventListener('click', function () {
-                        popup = document.querySelector('#sct_modificar');
+
+                        popup = document.querySelector('#sct_registrar');
                         popup.style.display = "block";
                         let titulo;
                         titulo = document.getElementById('h1');
@@ -414,20 +514,19 @@ function mostrarListaSolicitudes(pFiltro) {
                     });
                     celdaOpciones.appendChild(botonEditar);
                 }
-                else{
-                botonEditar.addEventListener('click', function () {
+                else {
+                    botonEditar.addEventListener('click', function () {
 
+                        let ocultar = document.querySelector('#div_registrar');
+                        ocultar.hidden = false;
 
-                    let ocultar = document.querySelector('#div_registrar');
-                    ocultar.hidden = false;
-
-                    popup = document.querySelector('#sct_registrar');
-                    popup.style.display = "block";
-                    let titulo;
-                    titulo = document.getElementById('h1');
-                    titulo.innerHTML = 'Modificar solicitud';
-                });
-            }
+                        popup = document.querySelector('#sct_registrar');
+                        popup.style.display = "block";
+                        let titulo;
+                        titulo = document.getElementById('h1');
+                        titulo.innerHTML = 'Modificar solicitud';
+                    });
+                }
                 celdaOpciones.appendChild(botonEditar);
 
 
@@ -444,105 +543,24 @@ function mostrarListaSolicitudes(pFiltro) {
 
                 celdaOpciones.appendChild(botonEliminar);
 
+                celdaOpciones.appendChild(botonEliminar);
 
                 let botonVer = document.createElement('span');
                 botonVer.href = '#'// path del html editar lab
                 botonVer.classList.add('fas');
                 botonVer.classList.add('fa-eye');
 
+                botonVer.dataset._id = listaPostulantes[i]['_id'];
+                debugger;
+                botonVer.addEventListener('click', buscar_por_postulante_id);
+
                 botonVer.addEventListener('click', function () {
-                    popup = document.querySelector('#sct_info_solicitud');
+                    popup = document.querySelector('#sct_postulante');
                     popup.style.display = "block";
                 });
                 celdaOpciones.appendChild(botonEditar);
-
                 celdaOpciones.appendChild(botonVer);
             }
-        }else{
-            let fila = tbody.insertRow();
-
-            let cProfesor_solicitud = fila.insertCell();
-            let cCarrera_solicitud = fila.insertCell();
-            let cCurso_solicitud = fila.insertCell();
-            let cPeriodo_solicitud = fila.insertCell();
-            let cNombre_solicitud = fila.insertCell();
-            let cEstado_solicitud = fila.insertCell();
-
-            let celdaOpciones = fila.insertCell();
-
-            cProfesor_solicitud.innerHTML = listaSolicitudes[i]['profesor_solicitud'],
-                cCarrera_solicitud.innerHTML = listaSolicitudes[i]['carrera_solicitud'],
-                cCurso_solicitud.innerHTML = listaSolicitudes[i]['curso_solicitud'],
-                cPeriodo_solicitud.innerHTML = listaSolicitudes[i]['periodo_solicitud'],
-                cNombre_solicitud.innerHTML = listaSolicitudes[i]['nombre_solicitud'],
-                cEstado_solicitud.innerHTML = listaSolicitudes[i]['estado_solicitud']
-
-            // boton  editar
-            let botonEditar = document.createElement('span');
-            botonEditar.href = '#'// path del html editar lab
-            botonEditar.classList.add('fas');
-            botonEditar.classList.add('fa-cogs');
-
-            botonEditar.dataset._id = listaSolicitudes[i]['_id'];
-
-            botonEditar.addEventListener('click', buscar_por_solicitud_id);
-
-
-            if(rol.toLowerCase() == 'Administrador'.toLowerCase() && 
-            inputEstado.value.toLowerCase() == 'Pendiente de Decanatura'.toLowerCase()){
-                botonEditar.addEventListener('click', function () {
-                    popup = document.querySelector('#sct_registrar');
-                    popup.style.display = "block";
-                    let titulo;
-                    titulo = document.getElementById('h1');
-                    titulo.innerHTML = 'Modificar solicitud';
-                });
-                celdaOpciones.appendChild(botonEditar);
-            }
-            else{
-            botonEditar.addEventListener('click', function () {
-
-                let ocultar = document.querySelector('#div_registrar');
-                ocultar.hidden = false;
-
-                popup = document.querySelector('#sct_registrar');
-                popup.style.display = "block";
-                let titulo;
-                titulo = document.getElementById('h1');
-                titulo.innerHTML = 'Modificar solicitud';
-            });
-        }
-            celdaOpciones.appendChild(botonEditar);
-
-
-            // boton eliminar
-            let botonEliminar = document.createElement('span');
-            botonEliminar.href = '#'//evento  eliminar lab
-            botonEliminar.classList.add('fas');
-            botonEliminar.classList.add('fa-trash-alt');
-
-
-            botonEliminar.dataset._id = listaSolicitudes[i]['_id'];
-
-            botonEliminar.addEventListener('click', remover_solicitud);
-
-            celdaOpciones.appendChild(botonEliminar);
-
-            celdaOpciones.appendChild(botonEliminar);
-
-            let botonVer = document.createElement('span');
-            botonVer.href = '#'// path del html editar lab
-            botonVer.classList.add('fas');
-            botonVer.classList.add('fa-eye');
-
-            botonVer.addEventListener('click', function () {
-                popup = document.querySelector('#sct_info_solicitud');
-                popup.style.display = "block";
-            });
-            celdaOpciones.appendChild(botonEditar);
-
-            celdaOpciones.appendChild(botonVer);
-        }
 
             // Icono de editar: <i class="fas fa-cogs"></i>
             // Icono de visualizar: <i class="fas fa-eye"></i>
@@ -560,9 +578,9 @@ function buscar_por_solicitud_id() {
     botonActualizar.hidden = false;
     let listaSolicitudes = buscar_solicitud_id(_id);
 
-        inputCarrera.value = listaSolicitudes['carrera_solicitud'],
+    inputCarrera.value = listaSolicitudes['carrera_solicitud'],
         inputCurso.value = listaSolicitudes['curso_solicitud'];
-        inputPeriodo.value = listaSolicitudes['periodo_solicitud'],
+    inputPeriodo.value = listaSolicitudes['periodo_solicitud'],
         inputNombre.value = listaSolicitudes['nombre_solicitud'],
         inputEstado.value = listaSolicitudes['estado_solicitud'],
         inputIdSolicitud.value = listaSolicitudes['_id']
@@ -574,16 +592,19 @@ function buscar_por_postulante_id() {
 
     botonRegistrar.hidden = true;
     botonActualizar.hidden = false;
-    let listaPostulantes = buscar_postulante_id(_id);
+    debugger;
+    let postulante = buscar_postulante_id(_id);
 
-        inputCorreo.value = listaPostulantes['correo_postulante'],
-        inputCedula.value = listaPostulantes['cedula_postulante'];
-        inputTelefono.value = listaPostulantes['telefono_postulante'],
-        inputDireccion.value = listaPostulantes['direccion_postulante'],
-        inputCarrera_postulante.value = listaPostulantes['carrera_postulante'],
+    debugger;
 
-        inputIdPostulante.value = listaPostulantes['_id']
+    $("#div_tabla_postulantes .td_cedula").text(postulante['cedula_postulante']);
+    $("#div_tabla_postulantes .td_correo").text(postulante['correo_postulante']);
+    $("#div_tabla_postulantes .td_telefono").text(postulante['telefono_postulante']);
+    $("#div_tabla_postulantes .td_direccion").text(postulante['direccion_postulante']);
+    $("#div_tabla_postulantes .td_carrera").text(postulante['carrera_postulante']);
+    $("#div_tabla_postulantes .td_ingreso").text(postulante['fecha_ingreso_postulante']);
 };
+
 ////////////ELIMINAR
 function remover_solicitud() {
     let _id = this.dataset._id;

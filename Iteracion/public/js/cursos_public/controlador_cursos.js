@@ -21,7 +21,7 @@ function mostrarListaCursos(pFiltro) {
     }
     let tbody = document.querySelector('#tblCursos tbody');
     tbody.innerHTML = '';
-    
+
     for (let i = 0; i < listaCursos.length; i++) {
         if (listaCursos[i]['nombre_curso'].toLowerCase().includes(pFiltro.toLowerCase())) {
             let fila = tbody.insertRow();
@@ -120,9 +120,23 @@ function mostrarListaCursos(pFiltro) {
                 btnAsociar.dataset._id = botonAsociar.dataset._id;
 
                 let aCursos = document.querySelectorAll('#divRequisitoAsociar input[type=checkbox]');
+                let aGrupos = document.querySelectorAll('#divGrupoAsociar input[type=checkbox]');
                 deselectOptions();
                 let aRequisitos = getRequisitos(ppAsociar.dataset._id);
+                let aGrupos = getGrupos(ppAsociar.dataset._id);
 
+                if (aRequisitos.length > 0 && !null) {
+                    for (let j = 0; j < aRequisitos.length; j++) {
+                        // Compare los que tiene registrados con los cursos en la base de datos
+                        for (let k = 0; k < aCursos.length; k++) {
+                            if (aRequisitos[j] == aCursos[k].id) {
+                                aCursos[k].checked = true;
+                            }
+                        }
+                    }
+                }
+
+                let listaGrupos = obtenerListaGrupos();
                 if (aRequisitos.length > 0 && !null) {
                     for (let j = 0; j < aRequisitos.length; j++) {
                         // Compare los que tiene registrados con los cursos en la base de datos
@@ -216,6 +230,12 @@ function limpiarSubdocumentosRequisito(idCurso) {
     }
 };
 
+function limpiarSubdocumentosGrupos(idGrupo) {
+    let infoGrupo = buscar_grupo_id(idGrupo);
+    for (let i = 0; i < infoGrupo['curso_grupo'].length; i++) {
+        eliminarCursoGrupo(idGrupo, infoGrupo['curso_grupo'][i]['_id']);
+    }
+};
 
 function obtenerCursosActualizar() {
     let aInfoCursos = [];
@@ -368,39 +388,6 @@ function remover_curso() {
 };
 ///////////// Asociar cursos a carreras
 
-// function obtenerDatosAsociar() {
-
-//     let requisitosElegidos = document.querySelectorAll('#divRequisitoAsociar input[type=checkbox]:checked');
-//     let divRequisitoAsociar = document.querySelector('#divRequisitoAsociar');
-
-//     let nombre_curso = ppAsociar.dataset.nombre_curso;
-//     let codigo_curso = ppAsociar.dataset.codigo_curso;
-//     let id_curso = ppAsociar.dataset._id;
-
-
-//     if (requisitosElegidos.length > 0) {
-
-//         if (requisitosElegidos.length > 0) {
-//             for (let i = 0; i < requisitosElegidos.length; i++) {
-//                 let infoCurso = getInfoCurso(requisitosElegidos[i].id);
-//                 agregarRequisitoCurso(id_curso, infoCurso['nombre_curso'], infoCurso['codigo_curso']);
-//             }
-//         }
-//         swal({
-//             title: 'Asociación correcta',
-//             text: 'La información se asoció correctamente',
-//             type: 'success',
-//             confirmButtonText: 'Entendido'
-//         });
-//         $('.swal2-confirm').click(function () {
-//             reload();
-//         });
-//     } else {
-//         ppAsociar.style.display = "none";
-//     }
-//     limpiarFormulario();
-// };
-
 function obtenerDatosAsociar() {
 
     swal({
@@ -441,6 +428,14 @@ function getRequisitos(id_curso) {
     return aCursos;
 };
 
+function getGrupos(id_grupo) {
+    let infoGrupo = buscar_grupo_id(id_grupo);
+    let aGrupos = [];
+    for (let i = 0; i < infoGrupo['curso_grupo'].length; i++) {
+        aGrupos.push(infoGrupo[i]['curso_grupo']);
+    }
+    return aGrupos;
+};
 function getInfoCurso(pCursoNombre) {
     let listaCurso = obtenerCursos();
     let informacionCurso = "";
@@ -469,6 +464,27 @@ function mostrarRequisitosAsociar() {
 
         divRequisitoAsociar.appendChild(newInput);
         divRequisitoAsociar.appendChild(newLabel);
+        newLabel.appendChild(newSpan);
+    }
+
+};
+
+function mostrarGruposAsociar() {
+    let divGrupoAsociar = document.querySelector('#divGrupoAsociar');
+    let listaGrupos = obtenerListaGrupos();
+    for (let i = 0; i < listaGrupos.length; i++) {
+
+        let newInput = document.createElement('input');
+        newInput.type = 'checkbox';
+        newInput.id = listaGrupos[i]['nombre_curso'];
+
+        let newLabel = document.createElement('label');
+        newLabel.htmlFor = newInput.id;
+        let newSpan = document.createElement('span');
+        newSpan.textContent = listaGrupos[i]['nombre_curso'];
+
+        divGrupoAsociar.appendChild(newInput);
+        divGrupoAsociar.appendChild(newLabel);
         newLabel.appendChild(newSpan);
     }
 

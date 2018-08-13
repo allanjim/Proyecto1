@@ -84,72 +84,79 @@
         </section>
 
 
-            <section id="sct_registrar" class="popup-bg">
-                <!-- Formulario que aparece -->
-                <form id="sct_registrar_solicitud" class="popup-content scroll">
-                    <h1 class="title" id="h1">Registrar solicitud</h1>
+        <section id="sct_registrar" class="popup-bg">
+            <!-- Formulario que aparece -->
+            <form id="sct_registrar_solicitud" class="popup-content scroll">
+                <h1 class="title" id="h1">Registrar solicitud</h1>
 
-                    <div class="form">
+                <div class="form">
 
-                        <input type="hidden" id="txtId">
+                    <input type="hidden" id="txtId">
 
-                        <input type="hidden" id="txtProfesor" placeholder="Nombre completo del profesor*" required>
+                    <input type="hidden" id="txtProfesor" placeholder="Nombre completo del profesor*" required>
 
-                        <label for="txtNombre">Nombre postulante:</label>
-                        <input type="text" id="txtNombre" placeholder="Nombre completo del postulante*" required>
+                    <label for="txtNombre">Nombre postulante:</label>
+                    <input type="text" id="txtNombre" placeholder="Nombre completo del postulante*" required>
 
-                        <label for="sltCarrera">Carrera del curso a asistir:</label>
-                        <select id="sltCarrera">
-                            <option value="">Seleccione la carrera</option>
+                    <label for="sltCarrera">Carrera del curso a asistir:</label>
+                    <select id="sltCarrera">
+                        <option value="">Seleccione la carrera</option>
+                    </select>
+
+                    <label for="sltCurso">Curso a asistir:</label>
+                    <select id="sltCurso">
+                        <option value="">Seleccione el curso a asistir</option>
+                    </select>
+
+                    <label for="sltPeriodo">Período de la postulación:</label>
+                    <select id="sltPeriodo">
+                        <option value="">Seleccione el período</option>
+                    </select>
+
+                    <div hidden>
+
+                        <select id="sltEstado">
+                            <option value="Pendiente de Decanatura">Pendiente de Decanatura</option>
                         </select>
-
-                        <label for="sltCurso">Curso a asistir:</label>
-                        <select id="sltCurso">
-                            <option value="">Seleccione el curso a asistir</option>
-                        </select>
-
-                        <label for="sltPeriodo">Período de la postulación:</label>
-                        <select id="sltPeriodo">
-                            <option value="">Seleccione el período</option>
-                        </select>
-
-                        <div hidden>
-
-                            <select id="sltEstado">
-                                <option value="Pendiente de Decanatura">Pendiente de Decanatura</option>
-                            </select>
-                        </div>
-
-                        <button type="button" class="button" id="btn_Actualizar">Actualizar</button>
-                        <button type="button" class="button" id="btn_Registrar">Registrar</button>
                     </div>
-                </form>
-                <!-- Formulario que aparece -->
-            </section>
+
+                    <button type="button" class="button" id="btn_Actualizar">Actualizar</button>
+                    <button type="button" class="button" id="btn_Registrar">Registrar</button>
+                </div>
+            </form>
+            <!-- Formulario que aparece -->
+        </section>
 
 
-        <section id="sct_solicitud" class="popup-bg">
-            <div class="popup-content">
-                <h1 class="title">Información de la solicitud</h1>
-                <div id="div_tabla_solicitud">
-                    <table id="tblRequisitos">
-                        <thead>
-                            <th>Correo del profesor</th>
-                            <th>Carrera del curso</th>
-                            <th>Curso a asistir</th>
-                            <th>Período</th>
-                            <th>Estado</th>
-                            <th>Nombre del postulante</th>
-                            <th>Cedúla del postulante</th>
-                            <th>Correo del postulante</th>
-                            <th>Teléfono del postulante</th>
-                            <th>Dirección del postulante</th>
-                            <th>Carrera que cursa el postulante</th>
-                            <th>Fecha ingreso del postulante</th>
-                        </thead>
-                        <tbody>
-
-                        </tbody>
+        <section id="sct_postulante" class="popup-bg">
+            <div class="popup-content" id="div_postulante">
+                <h1 class="title">Información del postulante</h1>
+                <div id="div_tabla_postulantes">
+                    <table class="info_postulante">
+                        <tr>
+                            <td>Cédula</td>
+                            <td class="td_cedula"></td>
+                        </tr>
+                        <tr>
+                            <td>Correo</td>
+                            <td class="td_correo"></td>
+                        </tr>
+                        <tr>
+                            <td>Teléfono</td>
+                            <td class="td_telefono"></td>
+                        </tr>
+                        <tr>
+                            <td>Dirección</td>
+                            <td class="td_direccion"></td>
+                        </tr>
+                        <tr>
+                            <td>Carrera que cursa</td>
+                            <td class="td_carrera"></td>
+                        </tr>
+                        <tr>
+                            <td>Fecha ingreso</td>
+                            <td class="td_ingreso"></td>
+                        </tr>
                     </table>
                 </div>
             </div>
@@ -173,6 +180,7 @@
     <!-- SCRIPTS FIJOS PARA TODOS Dashboards -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2"></script>
     <script src="../../js/jquery-3.3.1.js"></script>
+    <script src="../../js/controlador_menu.js"></script>
     <!-- SCRIPTS FIJOS PARA TODOS -->
 
     <!-- Todos los servicios necesarios -->

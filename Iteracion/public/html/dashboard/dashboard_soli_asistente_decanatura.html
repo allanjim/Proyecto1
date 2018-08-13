@@ -97,7 +97,7 @@
             </table>
         </section>
         <div hidden>
-            <section id="sct_registrar" class="popup-bg">
+            <section id="sct_modificar" class="popup-bg">
                 <!-- Formulario que aparece -->
 
                 <form class="popup-content" id="form_registrar">
@@ -134,7 +134,7 @@
             </section>
         </div>
 
-        <section id="sct_modificar" class="popup-bg">
+        <section id="sct_registrar" class="popup-bg">
             <!-- Formulario que aparece -->
             <form class="popup-content" id="asistente_registro">
                 <h1 class="title" id="h1">Información del postulante</h1>
@@ -160,34 +160,47 @@
                     </select>
 
                     <label for="txtFecha_ingreso">Fecha de ingreso</label>
-                    <input type="date" id="txtFecha_ingreso" placeholder ="Fecha de ingreso del postulante a la universidad" required>
+                    <input type="date" id="txtFecha_ingreso" placeholder="Fecha de ingreso del postulante a la universidad" required>
 
                     <button type="button" class="button" id="btn_RegistrarPostulante">Enviar</button>
                 </div>
             </form>
         </section>
 
-        <section id="sct_info_solicitud" class="popup-bg">
-            <div class="popup-content" id="div_solicitud">
-                <h1 class="title"></h1>
-                <div id="div_tabla_cursos">
-                    <table id="tblCursos">
-                        <thead>
-                            <th>Correo del profesor</th>
-                            <th>Carrera</th>
-                            <th>Curso</th>
-                            <th>Período</th>
-                            <th>Nombre del postulante</th>
-                            <th>Estado</th>
-                        </thead>
-                        <tbody>
-
-                        </tbody>
+        <section id="sct_postulante" class="popup-bg">
+            <div class="popup-content" id="div_postulante">
+                <h1 class="title">Información del postulante</h1>
+                <div id="div_tabla_postulantes">
+                    <table class="info_postulante">
+                        <tr>
+                            <td>Cédula</td>
+                            <td class="td_cedula"></td>
+                        </tr>
+                        <tr>
+                            <td>Correo</td>
+                            <td class="td_correo"></td>
+                        </tr>
+                        <tr>
+                            <td>Teléfono</td>
+                            <td class="td_telefono"></td>
+                        </tr>
+                        <tr>
+                            <td>Dirección</td>
+                            <td class="td_direccion"></td>
+                        </tr>
+                        <tr>
+                            <td>Carrera que cursa</td>
+                            <td class="td_carrera"></td>
+                        </tr>
+                        <tr>
+                            <td>Fecha ingreso</td>
+                            <td class="td_ingreso"></td>
+                        </tr>
                     </table>
                 </div>
             </div>
-            <!-- Formulario que aparece -->
         </section>
+
         <!-- Todos deben tener esta seccion de perfil -->
         <section id="sct_perfil" class="popup-bg">
             <div class="popup-content">
@@ -205,6 +218,7 @@
     <!-- SCRIPTS FIJOS PARA TODOS Dashboards -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2"></script>
     <script src="../../js/jquery-3.3.1.js"></script>
+    <script src="../../js/controlador_menu.js"></script>
     <!-- SCRIPTS FIJOS PARA TODOS -->
 
     <!-- Todos los servicios necesarios -->

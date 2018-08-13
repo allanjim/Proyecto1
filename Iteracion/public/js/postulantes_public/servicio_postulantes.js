@@ -57,8 +57,9 @@ function obtenerPostulante(){
 
 function buscar_postulante_id(_pid){
     let postulante = '';
+    debugger;
     let peticion = $.ajax({
-        url : 'http://localhost:4000/api/buscar_postulante_id',
+        url : 'http://localhost:4000/api/buscar_postulante',
         type : 'post',
         contentType : 'application/x-www-form-urlencoded; charset=utf-8',
         dataType : 'json',

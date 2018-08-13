@@ -40,17 +40,23 @@ module.exports.registrar_postulante = function (req, res) {
                 if (error) {
                     res.json({ success: false, msg: 'No se pudo encontrar la solicitud, ocurrio el siguiente error ' + error });
                 }
-                    mailOptions.to = nuevoPostulante.correo_postulante;
-                    mailOptions.html = `
+                mailOptions.to = nuevoPostulante.correo_postulante;
+                mailOptions.html = `
                     <html>   
                     <head>
-                        <style>
-                            h1{
-                                background: #ff7675;
-                                padding: 15px 0 15px 0;
-                                text-align: center;
-                            }
-                        </style>
+                    <style>
+                    h1{
+                        padding: 15px 0 15px 0;
+                        text-align: center;
+                    }
+                </style>
+                <style>
+                    html{
+                        background: rgba(77,84,170, 0.7);
+                        color : #ffffff;
+                        padding: 15px 0 15px 0;
+                    }
+                </style>
                     </head> 
                     <body>
                         <h1>Buen día ${solicitudDatos.nombre_solicitud} </h1>
@@ -63,14 +69,14 @@ module.exports.registrar_postulante = function (req, res) {
                     </body>
                     </html>  
                     `;
-                    transporter.sendMail(mailOptions, function (error, info) {
-                        if (error) {
-                            console.log(error);
-                        } else {
-                            console.log('Email sent: ' + info.response);
-                        }
-                    });
-                    res.json({ success: true, msg: 'El postulante se ha registro con exito' })
+                transporter.sendMail(mailOptions, function (error, info) {
+                    if (error) {
+                        console.log(error);
+                    } else {
+                        console.log('Email sent: ' + info.response);
+                    }
+                });
+                res.json({ success: true, msg: 'El postulante se ha registro con exito' })
             });
         }
     });
@@ -81,10 +87,9 @@ module.exports.listar_postulante = function (req, res) {
             res.send(postulantes);
         }
     );
-
 };
 
-module.exports.buscar_postulante_id = function (req, res) {
+module.exports.buscar_postulante = function (req, res) {
     postulanteSchema.findById({ _id: req.body._id }).then(
         function (postulante) {
             res.send(postulante);

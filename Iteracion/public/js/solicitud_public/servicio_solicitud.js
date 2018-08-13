@@ -54,7 +54,7 @@ function obtenerSolicitud(){
 };
 
 function buscar_solicitud_id(_pid){
-    let curso = '';
+    let solicitud = '';
     let peticion = $.ajax({
         url : 'http://localhost:4000/api/buscar_solicitud_id',
         type : 'post',
@@ -67,14 +67,14 @@ function buscar_solicitud_id(_pid){
       });
     
       peticion.done(function(response){
-        curso = response;
+        solicitud = response;
       });
     
       peticion.fail(function(response){
        
       });
 
-      return curso;
+      return solicitud;
 
 };
 

@@ -265,6 +265,9 @@ table tbody{
     font-size: 0.8em;
 }
 
+.info_postulante tbody{
+    background-color: #e6e3ea;
+}
 
 table tbody td{
     padding: 10px;

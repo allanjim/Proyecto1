@@ -26,25 +26,28 @@
             <a href="../landing_page.html">Inicio</a>
             <a href="#">Perfil</a>
             <div>
+                <a id="btnBeca">Beca
+                    <span class="fas fa-caret-down"></span>
+                </a>
+                <!-- Agregar esta parte nueva y cambiar el controlador menu -->
+                <ul id="menuBeca" class="menu">
+
+                </ul>
+            </div>
+            <div>
+                <a id="btnReportes">Reportes
+                    <span class="fas fa-caret-down"></span>
+                </a>
+                <ul id="menuReportes" class="menu">
+
+                </ul>
+            </div>
+            <div id="divOpciones">
                 <a id="btnOpciones">Opciones
                     <span class="fas fa-caret-down"></span>
                 </a>
                 <ul id="menuOpciones" class="menu">
-                    <li>
-                        <a href="#">Carreras</a>
-                    </li>
-                    <li>
-                        <a href="#">Períodos</a>
-                    </li>
-                    <li>
-                        <a href="#">Grupos</a>
-                    </li>
-                    <li>
-                        <a href="#">Sedes</a>
-                    </li>
-                    <li>
-                        <a href="#">Laboratorios</a>
-                    </li>
+
                 </ul>
             </div>
             <a id="btnCerrarSesion">Cerrar sesión</a>
@@ -105,57 +108,91 @@
 
                         <div>
 
-                        <input type="hidden" id="txtProfesor" placeholder="Nombre completo del profesor*" required>
+                            <input type="hidden" id="txtProfesor" placeholder="Nombre completo del profesor*" required>
 
-                        <input type="hidden" id="txtNombre" placeholder="Ejemplo: José Andres Salvatierra Hernandez*" required>
-.
-                        <select id="sltCarrera" class="hidden">
-                            <option value="">Seleccione la carrera</option>
-                        </select>
+                            <input type="hidden" id="txtNombre" placeholder="Ejemplo: José Andres Salvatierra Hernandez*" required> .
+                            <select id="sltCarrera" class="hidden">
+                                <option value="">Seleccione la carrera</option>
+                            </select>
 
-                        <select id="sltCurso" class="hidden">
-                            <option value="">Seleccione el curso a asistir</option>
-                        </select>
+                            <select id="sltCurso" class="hidden">
+                                <option value="">Seleccione el curso a asistir</option>
+                            </select>
 
-                        <select id="sltPeriodo" class="hidden">
-                            <option value="">Seleccione el período</option>
-                        </select>
+                            <select id="sltPeriodo" class="hidden">
+                                <option value="">Seleccione el período</option>
+                            </select>
 
-                        <label for="sltEstado">Seleccione el estado de la solicitud</label>
-                        <select id="sltEstado">
-                            <option value="Aprobado por rectoría">Aprobado por rectoría</option>
-                            <option value="Reprobado por rectoría">Reprobado por rectoría</option>
-                            <option value="Pendiente de rectoría">Pendiente de rectoría</option>
-                            <option value="Pendiente de decanatura" hidden>Pendiente de decanatura</option>
-                        </select>
+                            <label for="sltEstado">Seleccione el estado de la solicitud</label>
+                            <select id="sltEstado">
+                                <option value="Aprobado por rectoría">Aprobado por rectoría</option>
+                                <option value="Reprobado por rectoría">Reprobado por rectoría</option>
+                                <option value="Pendiente de rectoría">Pendiente de rectoría</option>
+                                <option value="Pendiente de decanatura" hidden>Pendiente de decanatura</option>
+                            </select>
 
-                        <button type="button" class="button" id="btn_Actualizar">Actualizar</button>
-                        <button type="button" class="button" id="btn_Registrar">Registrar</button>
-                    </div>
-                    
+                            <button type="button" class="button" id="btn_Actualizar">Actualizar</button>
+                            <button type="button" class="button" id="btn_Registrar">Registrar</button>
+                        </div>
+
                 </form>
                 <!-- Formulario que aparece -->
             </section>
 
-        </div>
-        <!-- Todos deben tener esta seccion de perfil -->
-        <section id="sct_perfil" class="popup-bg">
-            <div class="popup-content">
-                <h1 id="nombrePerfil"></h1>
-                <div class="perfil">
-                    <div id="img">
-                    </div>
-                    <div class="perfil-info">
+            </div>
 
+            <section id="sct_postulante" class="popup-bg">
+                <div class="popup-content" id="div_postulante">
+                    <h1 class="title">Información del postulante</h1>
+                    <div id="div_tabla_postulantes">
+                        <table class="info_postulante">
+                            <tr>
+                                <td>Cédula</td>
+                                <td class="td_cedula"></td>
+                            </tr>
+                            <tr>
+                                <td>Correo</td>
+                                <td class="td_correo"></td>
+                            </tr>
+                            <tr>
+                                <td>Teléfono</td>
+                                <td class="td_telefono"></td>
+                            </tr>
+                            <tr>
+                                <td>Dirección</td>
+                                <td class="td_direccion"></td>
+                            </tr>
+                            <tr>
+                                <td>Carrera que cursa</td>
+                                <td class="td_carrera"></td>
+                            </tr>
+                            <tr>
+                                <td>Fecha ingreso</td>
+                                <td class="td_ingreso"></td>
+                            </tr>
+                        </table>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
+            <!-- Todos deben tener esta seccion de perfil -->
+            <section id="sct_perfil" class="popup-bg">
+                <div class="popup-content">
+                    <h1 id="nombrePerfil"></h1>
+                    <div class="perfil">
+                        <div id="img">
+                        </div>
+                        <div class="perfil-info">
+
+                        </div>
+                    </div>
+                </div>
+            </section>
 
     </main>
     <!-- SCRIPTS FIJOS PARA TODOS Dashboards -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2"></script>
     <script src="../../js/jquery-3.3.1.js"></script>
+    <script src="../../js/controlador_menu.js"></script>
     <!-- SCRIPTS FIJOS PARA TODOS -->
 
     <!-- Todos los servicios necesarios -->

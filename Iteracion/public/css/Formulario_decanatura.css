@@ -41,6 +41,9 @@
     padding: 0px 10px;
 }
 
+#div_postulante{
+    height : 480px;
+}
 .popup-content label {
     margin: 0px auto;
     margin-bottom: 5px;

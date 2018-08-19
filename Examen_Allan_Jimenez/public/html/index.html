@@ -1,43 +1,77 @@
-<!Doctype>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Entrenador pokémon</title>
-    <link rel="stylesheet" href="../css/estilos_index.css">
+    <title>Inicio de sesión</title>
     <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/style_inicio.css">
 </head>
 
 <body>
-    <header>
-            <div id="titulo">
-                    <h1>Pokémon</h1>
-                </div>
-                <div id="menu">
-                    <nav>
-                        <a href="../html/entrenador.html">Entrenador</a>
-                        <a href="../html/pokemon.html">Pokémon</a>
-                        <a href="../html/asociar_pokemon.html">Asociar pokémon</a>
-                    </nav>
-                </div>
-            </div>
-    </header>
 
-    <main>
-        <div id="banner">
-            <h1>Centro de pokémon</h1>
-            <p>Página para el registro de pokemones y entrenadores alrededor del mundo</p>
-            </div>
+    <div hidden>
+
+        <section id="sct_iniciar_sesion">
             <div>
-                <button type="button" id="btnPokemon"><a href="../html/pokemon.html">Pokémon</a></button>
-                <button type="button" id="btnEntrenador"><a href="../html/entrenador.html">Entrenador</a></button>
+                <!-- Formulario que aparece -->
+                <form>
+                    <div>
+                        <h1>Iniciar sesión</h1>
+                        <input type="text" id="txtCorreo" placeholder="ejemplo@ucenfotec.ac.cr">
+                        <div id="divContrasenna">
+                            <input type="password" id="txtContrasenna" placeholder="Contraseña"><a type="button" class="fas fa-lock"
+                                id="btnVerContrasenna"></a>
+                        </div>
+                        <button type="button" id="btnIngresar" class="x-align">Ingresar</button>
+                    </div>
+                </form>
+                <!-- Formulario que aparece -->
             </div>
-    </main>
-    <footer>
+        </section>
+    </div>
 
-    </footer>
+    <section id="banner">
+        <h2>Triwago</h2>
+    </section>
+
+
+    <section class="sct_desc">
+        <div class="id_desc">
+            <header>
+                <h2 id="industria">Que es Triwago?</h2>
+                <p>Triwago es una aplicación para el registro, visualización y evaluación de hoteles, para facilitarle al
+                    usuario la búsqueda para de un lugar para hospedarse en sus viajes.</p>
+            </header>
+        </div>
+    </section>
+    <!-- One -->
+    <section id="one" class="wrapper style1 align-center">
+        <div class="container">
+            <header>
+                <h2 id="misionYvision">Objetivos</h2>
+            </header>
+            <div class="row 200%">
+                <section class="4u 12u$(small)" id="id_Mision">
+                    <p>Facilitarle al usuario la evaluación de hoteles para tener un control con un ranking todos lo hoteles
+                        registrados.
+                    </p>
+                </section>
+                <section class="4u$ 12u$(small)" id="id_Vision">
+
+                    <p>Permitir facil accesso para el registro de usuarios y evaluacion de hoteles.
+                    </p>
+                </section>
+            </div>
+        </div>
+    </section>
+
+    <script src="../js/jquery-3.3.1.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2"></script>
+    <script src="../js/user_public/servicio_users.js"></script>
+    <script src="../js/controlador_sesion.js"></script>
 </body>
 
 </html>

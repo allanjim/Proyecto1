@@ -64,10 +64,10 @@
                     </select>
 
                     <label for="txtContrasenna" id="lbContrasenna">Contraseña:</label>
-                    <input type="text" id="txtContrasenna">
+                    <input type="password" id="txtContrasenna">
 
                     <label for="txtContrasenna_confirmacion" id="lbConfirmacion">Confirme su contraseña:</label>
-                    <input type="text" id="txtContrasenna_confirmacion">
+                    <input type="password" id="txtContrasenna_confirmacion">
 
                     <button type="button" id="btn_Registrar">Registrar</button>
                     <button type="button" id="btn_Actualizar">Actualizar</button>
@@ -75,28 +75,33 @@
             </div>
         </section>
 
-        <div hidden>
-                <input type="text" id="txtBusqueda">
-            <section>
-                <div>
-                    <table id="tblUsuarios">
-                        <thead>
-                            <th>Foto</th>
-                            <th>Nombre</th>
-                            <th>Cédula</th>
-                            <th>Correo</th>
-                            <th>Fecha de nacimiento</th>
-                            <th>Género</th>
-                            <th>Modificar</th>
-                        </thead>
-                        <tbody>
-
-                        </tbody>
-                    </table>
-
+        
+        <section class="sct_lista">
+                <div class="div_lista">
+                    <h1>Visualizar usuario</h1>
                 </div>
             </section>
-        </div>
+            
+        <input type="text" id="txtBusqueda">
+        <section>
+            <div>
+                <table id="tblUsuarios">
+                    <thead>
+                        <th>Foto</th>
+                        <th>Nombre</th>
+                        <th>Cédula</th>
+                        <th>Correo</th>
+                        <th>Fecha de nacimiento</th>
+                        <th>Género</th>
+                        <th>Modificar</th>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                </table>
+
+            </div>
+        </section>
     </main>
     <script src="../js/jquery-3.3.1.js"></script>
     <script src='https://cdn.jsdelivr.net/jquery.cloudinary/1.0.18/jquery.cloudinary.js' type='text/javascript'></script>

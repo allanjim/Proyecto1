@@ -4,8 +4,8 @@ let windowLocation = window.location.href;
 let listaUsuarios = obtener_usuarios();
 
 // Inicio iniciar sesion
-let inputCorreo = document.querySelector('#txtCorreo');
-let inputContrasenna = document.querySelector('#txtContrasenna');
+let inputCorreoUsuario = document.querySelector('#txtCorreo');
+let inputContrasennaUsuario = document.querySelector('#txtContrasenna');
 let botonIngresar = document.querySelector('#btnIngresar');
 botonIngresar.addEventListener('click', obtenerDatosInicio);
 
@@ -14,19 +14,19 @@ let sContrasenna = "";
 
 function obtenerDatosInicio() {
     localStorage.clear();
-    sCorreo = inputCorreo.value;
-    sContrasenna = inputContrasenna.value;
+    sCorreo = inputCorreoUsuario.value;
+    sContrasenna = inputContrasennaUsuario.value;
 
     // validar pequenno
     if (sCorreo == "") {
-        inputCorreo.classList.add('errorInput');
+        inputCorreoUsuario.classList.add('errorInput');
     } else {
-        inputCorreo.classList.remove('errorInput');
+        inputCorreoUsuario.classList.remove('errorInput');
     }
     if (sContrasenna == "") {
-        inputContrasenna.classList.add('errorInput');
+        inputContrasennaUsuario.classList.add('errorInput');
     } else {
-        inputContrasenna.classList.remove('errorInput');
+        inputContrasennaUsuario.classList.remove('errorInput');
     }
     // validar pequenno
 
@@ -58,7 +58,7 @@ function verificarCredenciales(sCorreo, sContrasenna) {
                 localStorage.setItem('nombreCompletoUsuario', nombreCompleto);
                 localStorage.setItem('correo_usuario', listaUsuarios[i]['correo_usuario']);
 
-                inputContrasenna.classList.remove('errorInput');
+                inputContrasennaUsuario.classList.remove('errorInput');
                 bError = false;
                 break;
             }
@@ -78,20 +78,6 @@ function accionRol(psRol) {
     }
 }
 
-// Contrasenna visible o no
-let botonVer = document.querySelector('#btnVerContrasenna');
-botonVer.addEventListener('click', function () {
-    let isOpen = botonVer.classList.contains('fa-eye');
-    if (isOpen) {
-        botonVer.classList.remove('fa-eye');
-        botonVer.classList.add('fa-eye-slash');
-        inputContrasenna.type = 'password';
-    } else {
-        botonVer.classList.remove('fa-eye-slash');
-        botonVer.classList.add('fa-eye');
-        inputContrasenna.type = 'text';
-    }
-});
 
 // Fin iniciar sesion
 

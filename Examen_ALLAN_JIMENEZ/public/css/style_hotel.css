@@ -5,7 +5,12 @@ html{
 h1{
     font-size: 40px;
 }
-.div_info h1{
+a{
+    float: right;
+    color: #fff;
+    font-size: 24px;
+}
+.div_info h2{
     text-align: center;
     margin-top: 50px;
     font-weight : bold;
@@ -14,6 +19,7 @@ h1{
 .div_info p{
     text-align: center;
     margin-top: 30px;
+    margin-left: 65px;
     color : #fff;
     font-size: 20px;
 }
@@ -121,10 +127,19 @@ img{
     padding-top: 15px;
     font-weight: bold;
 }
+.div_lista h1{
+    text-align: center;
+    margin-top: 1200px;
+    font-weight : bold;
+}
+.div_lista p{
+    text-align: center;
+    margin-top: 30px;
+}
 #txtBusqueda{
     width: 300px;
     margin-top: 10px;
-    margin-left: 130px;
+    margin-left: 60px;
     margin-bottom: 10px;
     border-radius: 5px;
     border: 1px solid #fe9126;
@@ -133,12 +148,54 @@ img{
     margin-left: 130px;
     font-size: 22px;
 }
+.form {
+    width: 250px;
+    margin: 0 auto;
+    height: 50px;
+  }
+  
+.form p {
+    text-align: center;
+  }
+  
+.form label {
+    font-size: 20px;
+  }
+  
+  input[type="radio"] {
+    display: none;
+  }
+  
+  label {
+    color: grey;
+  }
+.clasificacion {
+    direction: rtl;
+    unicode-bidi: bidi-override;
+  }
+  
+  label:hover,
+  label:hover ~ label {
+    color: orange;
+  }
+  
+input[type="radio"]:checked ~ label {
+    color: orange;
+}
+
+p{
+    display: inline
+}
+.form_resenna{
+    background-color: #fff
+}
 table{
     background: #fff;
     text-align: left;
     border-collapse: collapse;
     width: 90%;
     margin-top: 15px;
+    margin-left: 60px;
 }
 thead{
     background: #ff7675;
@@ -165,5 +222,9 @@ tr:nth-child(even){
 }
 
 .fa-trash-alt{
+    color : #2d3436;
+    margin-right: 10px;
+}
+.fa-gavel{
     color : #2d3436;
 }

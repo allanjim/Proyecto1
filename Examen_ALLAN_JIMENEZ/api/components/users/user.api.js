@@ -14,7 +14,7 @@ const transporter = nodemailer.createTransport({
 let mailOptions = {
     from: 'standasama@gmail.com',
     to: '',
-    subject: 'Bienvenido a la universidad Cenfotec',
+    subject: 'Registro exitoso',
     html: ''
 };
 module.exports.registrar_usuarios = function (req, res)
@@ -30,7 +30,7 @@ module.exports.registrar_usuarios = function (req, res)
         fechaNacimiento_usuario: req.body.fechaNacimiento_usuario,
         sexo_usuario : req.body.sexo_usuario,
         correo_usuario: req.body.correo_usuario,
-        rol_usuario: 'Cliente',
+        rol_usuario: 'Administrador',
         contrasenna_usuario: req.body.contrasenna_usuario,
         contrasennaConfirmacion_usuario: req.body.contrasennaConfirmacion_usuario
     });
@@ -63,7 +63,6 @@ module.exports.registrar_usuarios = function (req, res)
                                 <p>Le contactamos para informarle que su registro fue exitoso, por lo que 
                                 brindaremos su datos para su respectivo inicio de sesión.</p>
                                 <p>Correo del usuario : ${ req.body.correo_usuario} .</p>
-                                <p>Contraseña temporal : ${req.body.cedula_usuario} .</p>
         
                                 <p>Por favor verifique que los datos sean correctos.</p>
                                 <p>Muchas gracias, pase buen día.</p>

@@ -2,8 +2,6 @@
 
 mostrarListaUsuarios();
 
-let popup = document.querySelector('.sct_usuario');
-popup.style.display = 'none';
 const inputFoto = document.querySelector('#txtImagen');
 const inputPrimer_nombre = document.querySelector('#txtNombre');
 const inputSegundo_nombre = document.querySelector('#txtSegundo_nombre');
@@ -33,7 +31,7 @@ let sCedula = '';
 let sCorreo = '';
 let dFecha_nacimiento = '';
 let sSexo = '';
-let rolCliente = 'Cliente';
+let rolCliente = 'Administrador';
 let sContrasenna = '';
 let sConfirmacion_contrasenna = '';
 
@@ -62,7 +60,7 @@ function obtenerDatosUsuarios() {
     sConfirmacion_contrasenna = inputConfirmacion_contrasenna.value;
 
     ainfoUsuarios.push(imagenUrl, sNombre, sSegundo_nombre, sApellido, sSegundo_apellido,
-         sCedula, dFecha_nacimiento, sSexo, sCorreo, rolCliente, sContrasenna, sConfirmacion_contrasenna);
+        sCedula, dFecha_nacimiento, sSexo, sCorreo, rolCliente, sContrasenna, sConfirmacion_contrasenna);
 
     bError = validarUsuarios();
     if (bError == true) {
@@ -75,12 +73,15 @@ function obtenerDatosUsuarios() {
     } else {
         swal({
             title: 'Registro correcto',
-            text: 'El usuario se registro correctamente',
+            text: 'El usuario se registro correctamente, por favor revise su correo para iniciar sesión',
             type: 'success',
             confirmButtonText: 'Entendido!'
         });
+        window.location.href("../../html/index.html");
         registrar_usuarios(ainfoUsuarios);
         mostrarListaUsuarios();
+        limpiarFormulario();
+        window.location.href("../../html/index.html");
     }
 
 };
@@ -104,75 +105,49 @@ function validarUsuarios() {
     sContrasenna = inputContrasenna.value;
     sConfirmacion_contrasenna = inputConfirmacion_contrasenna.value;
 
-    for (let i = 0; i < arregloInputs; i++) {
-        if (arregloInputs[i].value == '') {
-            bError = true;
-            arregloInputs[i].classList.add('errorInput');
-        } else {
-            arregloInputs[i].classList.remove('errorInput');
-        }
-    }
-    if (regexSoloLetras.test(sNombre) == false) {
+    if (regexSoloLetras.test(sNombre) == false || sNombre == '') {
         bError = true;
         inputPrimer_nombre.classList.add('errorInput');
     } else {
         inputPrimer_nombre.classList.remove('errorInput');
     }
-    if (regexSoloLetras.test(sSegundo_nombre) == false) {
-        bError = true;
-        inputSegundo_nombre.classList.add('errorInput');
-    } else {
-        inputSegundo_nombre.classList.remove('errorInput');
-    }
-    if (regexSoloLetras.test(sApellido) == false) {
+    if (regexSoloLetras.test(sApellido) == false || sApellido == '') {
         bError = true;
         inputPrimer_apellido.classList.add('errorInput');
     } else {
         inputPrimer_apellido.classList.remove('errorInput');
     }
-    if (regexSoloLetras.test(sSegundo_apellido) == false) {
-        bError = true;
-        inputSegundo_apellido.classList.add('errorInput');
-    } else {
-        inputSegundo_apellido.classList.remove('errorInput');
-    }
-    if (regexSoloLetras.test(sSexo) == false && sSexo == '') {
+    if (regexSoloLetras.test(sSexo) == false || sSexo == '') {
         bError = true;
         inputSexo.classList.add('errorInput');
     } else {
         inputSexo.classList.remove('errorInput');
     }
-    if (regexSoloLetras.test(sSegundo_apellido) == false) {
-        bError = true;
-        inputSegundo_apellido.classList.add('errorInput');
-    } else {
-        inputSegundo_apellido.classList.remove('errorInput');
-    }
-    if (regexSoloNumero.test(sCedula) == false) {
+    if (regexSoloNumero.test(sCedula) == false || sCedula == '') {
         bError = true;
         inputCedula.classList.add('errorInput');
     } else {
         inputCedula.classList.remove('errorInput');
     }
-    if (regexSoloNumero.test(dFecha_nacimiento) == false) {
+    if (regexSoloNumero.test(dFecha_nacimiento) == false || dFecha_nacimiento == '') {
         bError = true;
         inputFecha_nacimiento.classList.add('errorInput');
     } else {
         inputFecha_nacimiento.classList.remove('errorInput');
     }
-    if (regexCorreo.test(sCorreo) == false) {
+    if (regexCorreo.test(sCorreo) == false || sCorreo == '') {
         bError = true;
         inputCorreo.classList.add('errorInput');
     } else {
         inputCorreo.classList.remove('errorInput');
     }
-    if (regexContrasenna.test(sContrasenna) == false) {
+    if (regexContrasenna.test(sContrasenna) == false || sContrasenna == '') {
         bError = true;
         inputContrasenna.classList.add('errorInput');
     } else {
         inputContrasenna.classList.remove('errorInput');
     }
-    if (regexContrasenna.test(sConfirmacion_contrasenna) == false && sConfirmacion_contrasenna != sContrasenna) {
+    if (regexContrasenna.test(sConfirmacion_contrasenna) == false && sConfirmacion_contrasenna != sContrasenna || sConfirmacion_contrasenna == '') {
         bError = true;
         inputConfirmacion_contrasenna.classList.add('errorInput');
     } else {
@@ -214,6 +189,7 @@ function obtenerDatosActualizar() {
         });
         actualizarUsuario(ainfoUsuarios);
         mostrarListaUsuarios();
+        limpiarFormulario();
     }
 
 };
@@ -239,7 +215,7 @@ function mostrarListaUsuarios(paBuscar) {
             let celdaFecha_nacimiento = fila.insertCell();
             let celdaSexo = fila.insertCell();
             let celdaOpciones = fila.insertCell();
- 
+
 
             let imagen = document.createElement('img');
             imagen.src = listaUsuarios[i]['foto_usuario'];
@@ -342,4 +318,18 @@ function eliminar_usuario() {
         }
     });
 
+};
+function limpiarFormulario() {
+
+    inputFoto.value = '';
+    inputPrimer_nombre.value = '';
+    inputSegundo_nombre.value = '';
+    inputPrimer_apellido.value = '';
+    inputSegundo_apellido.value = '';
+    inputCedula.value = '';
+    inputCorreo.value = '';
+    inputFecha_nacimiento.value = '';
+    inputSexo.value = '';
+    inputContrasenna.value = '';
+    inputConfirmacion_contrasenna.value = '';
 };

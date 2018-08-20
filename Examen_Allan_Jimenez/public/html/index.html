@@ -8,65 +8,22 @@
     <title>Inicio de sesión</title>
     <link rel="stylesheet" href="../css/reset.css">
     <link rel="stylesheet" href="../css/style_inicio.css">
+    <link rel="stylesheet" href="../css/style_login.css">
 </head>
 
 <body>
-
-    <div hidden>
-
-        <section id="sct_iniciar_sesion">
-            <div>
-                <!-- Formulario que aparece -->
-                <form>
-                    <div>
-                        <h1>Iniciar sesión</h1>
-                        <input type="text" id="txtCorreo" placeholder="ejemplo@ucenfotec.ac.cr">
-                        <div id="divContrasenna">
-                            <input type="password" id="txtContrasenna" placeholder="Contraseña"><a type="button" class="fas fa-lock"
-                                id="btnVerContrasenna"></a>
-                        </div>
-                        <button type="button" id="btnIngresar" class="x-align">Ingresar</button>
-                    </div>
-                </form>
-                <!-- Formulario que aparece -->
-            </div>
-        </section>
-    </div>
 
     <section id="banner">
         <h2>Triwago</h2>
     </section>
 
-
-    <section class="sct_desc">
-        <div class="id_desc">
-            <header>
-                <h2 id="industria">Que es Triwago?</h2>
-                <p>Triwago es una aplicación para el registro, visualización y evaluación de hoteles, para facilitarle al
-                    usuario la búsqueda para de un lugar para hospedarse en sus viajes.</p>
-            </header>
-        </div>
-    </section>
-    <!-- One -->
-    <section id="one" class="wrapper style1 align-center">
-        <div class="container">
-            <header>
-                <h2 id="misionYvision">Objetivos</h2>
-            </header>
-            <div class="row 200%">
-                <section class="4u 12u$(small)" id="id_Mision">
-                    <p>Facilitarle al usuario la evaluación de hoteles para tener un control con un ranking todos lo hoteles
-                        registrados.
-                    </p>
-                </section>
-                <section class="4u$ 12u$(small)" id="id_Vision">
-
-                    <p>Permitir facil accesso para el registro de usuarios y evaluacion de hoteles.
-                    </p>
-                </section>
-            </div>
-        </div>
-    </section>
+    <form class="login">
+        <h1 class="login-title">Iniciar sesión</h1>
+        <input type="text" id="txtCorreo" class="login-input" placeholder="ejemplo@gmail.com" autofocus>
+        <input type="password" id="txtContrasenna" class="login-input" placeholder="Contraseña">
+        <button type="button" id="btnIngresar" class="login-button">Ingresar</button>
+        <p class="login-lost"><a href="../html/usuario.html">Registro gratis</a></p>
+    </form>
 
     <script src="../js/jquery-3.3.1.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2"></script>

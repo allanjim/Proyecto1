@@ -101,7 +101,7 @@ module.exports.evaluar_hotel = function (req, res) {
             });
         }
     });
-}
+};
 
 module.exports.listar_ranking_hoteles = function (req, res) {
     hotelModel.find().sort({ ranking: 'asc' }).then(

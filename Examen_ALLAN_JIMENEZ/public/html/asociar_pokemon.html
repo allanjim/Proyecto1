@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Agregar pokémon</title>
+    <link rel="stylesheet" href="../css/estilos_asociar.css">
+</head>
+
+<body>
+    <header>
+        <div>
+            <div id="titulo">
+                <h1>Asociar pokémon</h1>
+            </div>
+            <div id="menu">
+                <nav>
+                    <a href="../html/index.html">Inicio</a>
+                    <a href="../html/entrenador.html">Entrenador</a>
+                    <a href="../html/pokemon.html">Pokémon</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <main>
+        <section class="sct_fondo">
+            <h1>Registro de entrenador</h1>
+        </section>
+        <section class="sct_registro">
+            <div id="container_formulario">
+
+                    <div class="formulario">
+
+                        <form>
+                            <select name="" id="sltEntrenador">
+                                <option value="">Seleccione el entrenador</option>
+                            </select>
+                            <select name="" id="sltPokemon">
+                                    <option value="">Seleccione el pokémon</option>
+                            </select>
+
+                            <button type="button" id="btnAgregar">Agregar pokémon</button>
+                        </form>
+                    </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="../js/jquery-3.3.1.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2"></script>
+    <script src="../js/servicio_entrenador.js"></script>
+    <script src="../js/servicio_agregar_pokemon.js"></script>
+    <script src="../js/servicio_pokemon.js"></script>
+    <script src="../js/agregar_pokemon.js"></script>
+</body>
+
+</html>

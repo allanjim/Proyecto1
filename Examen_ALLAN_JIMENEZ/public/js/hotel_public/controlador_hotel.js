@@ -3,8 +3,9 @@
 mostrarListahoteles();
 
 let listaHotel = obtener_hoteles();
-let popup = document.querySelector('.sct_registro_hotel');
-popup.style.display = 'none';
+let popup;
+document.querySelector('#sltProvincia').addEventListener('change', llenarCanton);
+document.querySelector('#sltCanton').addEventListener('change', llenarDistrito);
 
 const inputNombre = document.querySelector('#txtNombre_hotel');
 const inputLatitud = document.querySelector('#txtLatitud_hotel');
@@ -290,17 +291,22 @@ function mostrarListahoteles(paBuscar) {
 
             celdaOpciones.appendChild(botonEditar);
 
-
-
             // Este es el boton de eliminar
             let botonEliminar = document.createElement('span');
             botonEliminar.classList.add('fas');
             botonEliminar.classList.add('fa-trash-alt');
             botonEliminar.dataset._id = listaHotel[i]['_id'];
 
-            celdaOpciones.appendChild(botonEliminar);
             botonEliminar.addEventListener('click', remover_hotel);
+            celdaOpciones.appendChild(botonEliminar);
 
+            let botonResenna = document.createElement('span');
+            botonResenna.classList.add('fas');
+            botonResenna.classList.add('fa-gavel');
+            botonResenna.dataset._id = listaHotel[i]['_id'];
+
+            botonResenna.addEventListener('click', remover_hotel);
+            celdaOpciones.appendChild(botonResenna);
         }
     };
 };
@@ -329,6 +335,27 @@ function buscar_hotel_id() {
     inputCorreo_reservacion.value = hotel['correo_reservaciones']
     inputTelefono_reservacion.value = hotel['telefono_reservaciones'];
     selectEstado.value = hotel['estado_hotel'];
+
+    let sProvincia = document.querySelector('#sltProvincia');
+    for (let i = 1; i < sProvincia.length; i++) {
+        if (sProvincia.options[i].value == hotel['provincia_hotel']) {
+            sProvincia.selectedIndex = i;
+        }
+    }
+    llenarCanton();
+    let sCanton = document.querySelector('#sltCanton');
+    for (let i = 1; i < sCanton.length; i++) {
+        if (sCanton.options[i].value == hotel['canton_hotel']) {
+            sCanton.selectedIndex = i;
+        }
+    }
+    llenarDistrito();
+    let sDistrito = document.querySelector('#sltDistrito');
+    for (let i = 1; i < sDistrito.length; i++) {
+        if (sDistrito.options[i].value == hotel['distrito_hotel']) {
+            sDistrito.selectedIndex = i;
+        }
+    }
 };
 
 function remover_hotel() {

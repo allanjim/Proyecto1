@@ -659,8 +659,8 @@ function llenarCanton() {
 
 
 function llenarDistrito() {
-    let selectvProvinciaed = eleProvincia.options[eleProvincia.selectedIndex].innerHTML;
-    let selectvCanton = eleCanton.options[eleCanton.selectedIndex].innerHTML;
+    let selectvProvinciaed = eleProvincia.options[eleProvincia.selectedIndex].text;
+    let selectvCanton = eleCanton.options[eleCanton.selectedIndex].text;
     elDistrito.innerHTML = '';
 
     if (selectvProvinciaed == 'San José') {

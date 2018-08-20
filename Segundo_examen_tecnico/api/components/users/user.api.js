@@ -30,7 +30,7 @@ module.exports.registrar_usuarios = function (req, res)
         fechaNacimiento_usuario: req.body.fechaNacimiento_usuario,
         sexo_usuario : req.body.sexo_usuario,
         correo_usuario: req.body.correo_usuario,
-        rol_usuario: 'Administrador',
+        rol_usuario: 'Cliente',
         contrasenna_usuario: req.body.contrasenna_usuario,
         contrasennaConfirmacion_usuario: req.body.contrasennaConfirmacion_usuario
     });

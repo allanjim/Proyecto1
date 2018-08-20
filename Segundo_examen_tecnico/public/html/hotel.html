@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Registro de hotel</title>
+
+    <link rel="stylesheet" href="../css/style_hotel.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
+        crossorigin="anonymous">
+</head>
+
+<body>
+    <header>
+
+            <nav>
+                <a href="../html/index.html">Cerrar sesión</a>
+            </nav>
+    </header>
+    <main>
+
+        <section class="sct_info">
+            <div class="div_info">
+                <h2>Registro de hoteles</h1>
+                <p>
+                    Por favor, ingrese su información para su respectivo registro para que pueda usar todas las funcionalidades que la página
+                    le brinda.
+                </p>
+            </div>
+        </section>
+
+        <section class="sct_registro_hotel">
+
+            <div class="container_formulario">
+
+                <form class="formulario">
+
+                    <input type="hidden" id="IdHotel">
+
+                    <label for="txtNombre_hotel">Nombre:</label>
+                    <input type="text" id="txtNombre_hotel">
+
+                    <div id="mapa"></div>
+
+                    <input type="hidden" id="txtLatitud_hotel" disabled required placeholder="Latitud de la sede*">
+
+                    <input type="hidden" id="txtLongitud_hotel" disabled required placeholder="Longitud de la sede*">
+
+                    <label for="txtDireccion_hotel">Dirección:</label>
+                    <input type="text" id="txtDireccion_hotel">
+
+                    <label for="ubicacion">Provincia</label>
+                    <div id=ubicacion>
+                        <select name="provincia" id="sltProvincia" required>
+                            <option value="">--Seleccione una provincia--</option>
+                        </select>
+                        <label for="ubicacion">Cantón</label>
+                        <select name="canton" id="sltCanton" required>
+                            <option value="">--Seleccione un cantón-</option>
+                        </select>
+                        <label for="ubicacion">Distrito</label>
+                        <select name="distrito" id="sltDistrito" required>
+                            <option value="">--Seleccione un distrito--</option>
+                        </select>
+
+                        <label for="txtCorreo_servicioCliente">Correo servicio al cliente:</label>
+                        <input type="text" id="txtCorreo_servicioCliente">
+
+
+                        <label for="txtTelefono_servicioCliente">Teléfono servicio al cliente:</label>
+                        <input type="text" id="txtTelefono_servicioCliente">
+
+
+                        <label for="txtCorreo_reservaciones">Correo reservaciones:</label>
+                        <input type="text" id="txtCorreo_reservaciones">
+
+
+                        <label for="txtTelefono_reservaciones">Teléfono reservaciones:</label>
+                        <input type="text" id="txtTelefono_reservaciones">
+
+                        <label for="sltEstado">Estado del hotel:</label>
+                        <select id="sltEstado">
+                            <option value="">Seleccione el estado del hotel</option>
+                            <option value="Activo">Activo</option>
+                            <option value="Inactivo">Inactivo</option>
+                        </select>
+                        <button type="button" id="btn_Registrar">Registrar</button>
+                        <button type="button" id="btn_Actualizar">Actualizar</button>
+
+                    </div>
+
+                </form>
+            </div>
+        </section>
+
+        <section class="sct_lista">
+            <div class="div_lista">
+                <h1>Visualizar hoteles</h1>
+            </div>
+        </section>
+
+        <section>
+            <div>
+                <input type="text" id="txtBusqueda" placeholder="Buscar">
+                <table id="tblHoteles">
+                    <thead>
+                        <th>Nombre</th>
+                        <th>Dirección</th>
+                        <th>Correo servicio cliente</th>
+                        <th>Teléfono servicio cliente</th>
+                        <th>Correo reservaciones</th>
+                        <th>Teléfono reservaciones</th>
+                        <th>Modificar</th>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                </table>
+
+            </div>
+        </section>
+
+        <section>
+            <form class="form_resenna">
+                <div>
+                    <label>Comida:</label>
+                    <p class="clasificacion">
+                        <input id="comida1" name="comida" value="5" type="radio">
+                        <!--
+                                      --><label for="comida1">★</label>
+                        <!--
+                                      --><input id="comida2" name="comida" value="4" type="radio">
+                        <!--
+                                      --><label for="comida2">★</label>
+                        <!--
+                                      --><input id="comida3" name="comida" value="3" type="radio">
+                        <!--
+                                      --><label for="comida3">★</label>
+                        <!--
+                                      --><input id="comida4" name="comida" value="2" type="radio">
+                        <!--
+                                      --><label for="comida4">★</label>
+                        <!--
+                                      --><input id="comida5" name="comida" value="1" type="radio">
+                        <!--
+                                      --><label for="comida5">★</label>
+                    </p>
+                </div>
+
+                <div>
+                    <label>Atención del cliente:</label>
+                    <p class="clasificacion">
+                        <input id="cliente1" name="cliente" value="5" type="radio">
+                        <!--
+                                          --><label for="cliente1">★</label>
+                        <!--
+                                          --><input id="cliente2" name="cliente" value="4" type="radio">
+                        <!--
+                                          --><label for="cliente2">★</label>
+                        <!--
+                                          --><input id="cliente3" name="cliente" value="3" type="radio">
+                        <!--
+                                          --><label for="cliente3">★</label>
+                        <!--
+                                          --><input id="cliente4" name="cliente" value="2" type="radio">
+                        <!--
+                                          --><label for="cliente4">★</label>
+                        <!--
+                                          --><input id="cliente5" name="cliente" value="1" type="radio">
+                        <!--
+                                          --><label for="cliente5">★</label>
+                    </p>
+                </div>
+
+                <div>
+                    <label>Habitaciones:</label>
+                    <p class="clasificacion">
+                        <input id="habitacion1" name="habitacion" value="5" type="radio">
+                        <label for="habitacion1">★</label>
+
+                        <input id="habitacion2" name="habitacion" value="4" type="radio">
+                        <label for="habitacion2">★</label>
+
+                        <input id="habitacion3" name="habitacion" value="3" type="radio">
+                        <label for="habitacion3">★</label>
+
+                        <input id="habitacion4" name="habitacion" value="2" type="radio">
+                        <label for="habitacion4">★</label>
+
+                        <input id="habitacion5" name="habitacion" value="1" type="radio">
+                        <label for="habitacion5">★</label>
+                    </p>
+                </div>
+
+                <div>
+                    <label>Infraestructura:</label>
+                    <p class="clasificacion">
+                        <input id="infraestructura1" name="infraestructura" value="5" type="radio">
+                        <label for="infraestructura1">★</label>
+
+                        <input id="infraestructura2" name="infraestructura" value="4" type="radio">
+                        <label for="infraestructura2">★</label>
+
+                        <input id="infraestructura3" name="infraestructura" value="3" type="radio">
+                        <label for="infraestructura3">★</label>
+
+                        <input id="infraestructura4" name="infraestructura" value="2" type="radio">
+                        <label for="infraestructura4">★</label>
+
+                        <input id="infraestructura5" name="infraestructura" value="1" type="radio">
+                        <label for="infraestructura5">★</label>
+                    </p>
+                </div>
+
+                <div>
+                    <label>Limpieza:</label>
+                    <p class="clasificacion">
+                        <input id="limpieza1" name="limpieza" value="5" type="radio">
+                        <label for="limpieza1">★</label>
+
+                        <input id="limpieza2" name="limpieza" value="4" type="radio">
+                        <label for="limpieza2">★</label>
+
+                        <input id="limpieza3" name="limpieza" value="3" type="radio">
+                        <label for="limpieza3">★</label>
+
+                        <input id="limpieza4" name="limpieza" value="2" type="radio">
+                        <label for="limpieza4">★</label>
+
+                        <input id="limpieza5" name="limpieza" value="1" type="radio">
+                        <label for="limpieza5">★</label>
+                    </p>
+                </div>
+
+            </form>
+        </section>
+    </main>
+    <script src="../js/hotel_public/controlador_direccion_exacta.js"></script>
+    <script src="../js/jquery-3.3.1.js"></script>
+    <script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAIJ2TrApBrLvBsy7Rx-8WNrYfZNO39waQ&callback=initMap"></script>
+    <script src="../js/hotel_public/mapa.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2"></script>
+    <script src="../js/hotel_public/servicio_hotel.js"></script>
+    <script src="../js/user_public/servicio_users.js"></script>
+
+    <script src="../js/hotel_public/controlador_hotel.js"></script>
+</body>
+
+</html>

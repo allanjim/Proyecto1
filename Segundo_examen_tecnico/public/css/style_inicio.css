@@ -1,0 +1,26 @@
+html{
+    font-family: Arial;
+}
+h2{
+    font-size: 60px;
+    color : #e74c3c;
+}
+#banner{
+    background-image: url(../img/architecture-buildings-city-97904.jpg);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 700px;
+    position: relative;
+}
+#banner h2{
+    top : 1px;
+    margin-left: 550px;
+    position: absolute;
+    margin-top: 200px;
+}
+.sct_desc{
+    background: #74b9ff;
+    margin-top: 5px;
+    text-align: center;
+}
